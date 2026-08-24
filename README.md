@@ -2,6 +2,8 @@
 
 Uma aplicação web moderna, responsiva e completa para cálculo de arbitragem esportiva (surebets) e extração de bônus/freebets (SNR - Stake Not Returned).
 
+🔗 **Acesse online:** [https://juniorsampaiobr-code.github.io/calculadoraodds/](https://juniorsampaiobr-code.github.io/calculadoraodds/)
+
 ## 🚀 Funcionalidades
 
 - **Arbitragem 2 Vias**: Cálculo balanceado e otimização de stakes para mercados binários (Ex: Ambos Marcam, Mais/Menos Gols, Moneyline de Basquete/Tênis).
