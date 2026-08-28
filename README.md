@@ -8,7 +8,10 @@ Uma aplicação web moderna, responsiva e completa para cálculo de arbitragem e
 
 - **Arbitragem 2 Vias**: Cálculo balanceado e otimização de stakes para mercados binários (Ex: Ambos Marcam, Mais/Menos Gols, Moneyline de Basquete/Tênis).
 - **Arbitragem 3 Vias**: Cálculo de cobertura completa para mercados 1X2 (Casa / Empate / Fora).
-- **Extração de Freebet (SNR)**: Maximização de conversão e cálculo de garantia para apostas grátis.
+- **Aporte Flexível (Junto ou Separado)**:
+  - **Modo Total (Junto)**: Digite o investimento total e as stakes ideais são calculadas automaticamente.
+  - **Modo Por Casa (Separado)**: Digite valores individuais em cada casa, visualize o lucro líquido de cada cenário e utilize o assistente de equalização ("Fixar Casa").
+- **Extração de Freebet (SNR / SR)**: Maximização de conversão e cálculo de garantia para apostas grátis com e sem aporte próprio.
 - **Detecção Automática de Lucro**: Identificação visual de oportunidades lucrativas, margens da casa e retorno garantido.
 - **Interface Moderna e Responsiva**: Design escuro (dark mode), intuitivo e adaptável para desktop e mobile.
 

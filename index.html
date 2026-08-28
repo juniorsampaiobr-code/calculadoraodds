@@ -1,369 +1,935 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Arbitragem & Freebets</title>
+    <title>Bet Tracker — Calculadora de Arbitragem & Freebets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --card-sub-bg: #182234;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --primary: #3b82f6;
-            --primary-hover: #2563eb;
-            --success-bg: rgba(34, 197, 94, 0.15);
-            --success-border: #22c55e;
-            --success-text: #4ade80;
-            --danger-bg: rgba(239, 68, 68, 0.15);
-            --danger-border: #ef4444;
-            --danger-text: #f87171;
-            --neutral-bg: rgba(234, 179, 8, 0.15);
-            --neutral-border: #eab308;
-            --neutral-text: #fde047;
-            --freebet-color: #a855f7;
-            --freebet-bg: rgba(168, 85, 247, 0.15);
-            --freebet-border: #a855f7;
+            --bg-body: #0d0e12;
+            --card-bg: #15161c;
+            --card-sub-bg: #191b22;
+            --card-border: #232632;
+            --card-border-subtle: #2b2e3c;
+
+            --input-bg: #101116;
+            --input-border: #2c2f3d;
+            --input-focus: #facc15;
+
+            --text-main: #f3f4f6;
+            --text-muted: #8e94a4;
+            --text-submuted: #5e6475;
+
+            --gold-primary: #facc15;
+            --gold-hover: #eab308;
+            --gold-bg: rgba(250, 204, 21, 0.08);
+            --gold-border: rgba(250, 204, 21, 0.4);
+
+            --green-profit: #22c55e;
+            --green-bg: rgba(34, 197, 94, 0.12);
+            --red-loss: #ef4444;
+            --red-bg: rgba(239, 68, 68, 0.12);
+            --purple-fb: #c084fc;
+            --purple-bg: rgba(192, 132, 252, 0.12);
+            --neutral-color: #facc15;
+
+            --pill-radius: 9999px;
+            --card-radius: 18px;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-variant-numeric: tabular-nums;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 24px 16px;
+            padding: 8px 16px;
         }
 
-        .container {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 28px;
+        .app-container {
             width: 100%;
-            max-width: 680px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        h1 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin-bottom: 6px;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #60a5fa, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p.subtitle {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        /* Seletor de Modo (2 Vias / 3 Vias) */
-        .mode-toggle {
+            max-width: 1100px;
+            max-height: 100vh;
             display: flex;
-            background-color: var(--bg-color);
-            padding: 4px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 20px;
-            gap: 4px;
+            flex-direction: column;
+            gap: 6px;
+            justify-content: center;
         }
 
-        .mode-btn {
-            flex: 1;
-            padding: 8px 12px;
-            border: none;
+        /* Top Brand Header */
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4px 4px;
+        }
+
+        .brand-logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+            user-select: none;
+        }
+
+        .brand-logo .highlight {
+            color: var(--gold-primary);
+        }
+
+        /* Main Engine Card */
+        .main-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--card-radius);
+            padding: 10px 18px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Top Strategy Pill Switcher */
+        .strategy-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .strategy-btn {
             background: transparent;
+            border: 1px solid transparent;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            border-radius: 6px;
+            padding: 5px 16px;
+            border-radius: var(--pill-radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .strategy-btn:hover {
+            color: var(--text-main);
+        }
+
+        .strategy-btn.active {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            box-shadow: 0 0 12px rgba(250, 204, 21, 0.15);
+        }
+
+        /* Quick Search / Total Toolbar */
+        .top-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 5px 14px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: var(--pill-radius);
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .event-input-wrapper {
+            flex: 1;
+            min-width: 220px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-input-wrapper input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-size: 0.86rem;
+        }
+
+        .event-input-wrapper input::placeholder {
+            color: var(--text-submuted);
+        }
+
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .total-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            padding: 4px 10px;
+            border-radius: var(--pill-radius);
+            font-size: 0.84rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .mode-btn.active {
-            background-color: var(--primary);
+        .total-chip .chip-pencil {
+            color: var(--gold-primary);
+            font-size: 0.85rem;
+        }
+
+        .total-chip .chip-value {
             color: #ffffff;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35);
+            font-weight: 700;
         }
 
-        .input-group {
-            margin-bottom: 20px;
+        .total-chip .chip-roi {
+            color: var(--text-main);
+            font-weight: 700;
         }
 
-        label {
-            display: block;
+        .total-chip:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        /* Rows Table Layout */
+        .rows-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .rows-container::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .rows-container::-webkit-scrollbar-track {
+            background: var(--input-bg);
+            border-radius: 4px;
+        }
+
+        .rows-container::-webkit-scrollbar-thumb {
+            background: var(--card-border-subtle);
+            border-radius: 4px;
+        }
+
+        .row-header {
+            display: grid;
+            grid-template-columns: 2.2fr 1.1fr 1fr 0.8fr 0.85fr 0.85fr 0.85fr 1.55fr;
+            gap: 10px;
+            padding: 0 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .bet-row {
+            display: grid;
+            grid-template-columns: 2.2fr 1.1fr 1fr 0.8fr 0.85fr 0.85fr 0.85fr 1.55fr;
+            gap: 8px;
+            align-items: flex-start;
+            padding: 4px 6px 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .bet-row:last-child {
+            border-bottom: none;
+        }
+
+        .bet-row.locked {
+            border-left: 2px solid var(--gold-primary);
+            padding-left: 6px;
+        }
+
+        /* Column Elements */
+        .col-bookie {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bookie-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .bookie-input-wrap input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: var(--pill-radius);
+            padding: 7px 32px 7px 14px;
+            color: var(--text-main);
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-color);
+            outline: none;
+            transition: border-color 0.2s;
         }
 
-        .input-grid {
-            display: grid;
+        .bookie-input-wrap input:focus {
+            border-color: var(--gold-primary);
+        }
+
+        .bookie-input-wrap .link-icon {
+            position: absolute;
+            right: 12px;
+            font-size: 0.8rem;
+            color: var(--text-submuted);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .bookie-input-wrap .link-icon:hover {
+            color: var(--gold-primary);
+        }
+
+        .row-micro-actions {
+            display: flex;
+            align-items: center;
             gap: 12px;
+            padding-left: 8px;
         }
 
-        .grid-3 {
-            grid-template-columns: repeat(3, 1fr);
+        .micro-action-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-submuted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.15s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
         }
 
-        .grid-2 {
-            grid-template-columns: repeat(2, 1fr);
+        .micro-action-btn:hover {
+            color: var(--text-main);
+            transform: scale(1.15);
         }
 
-        .input-grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+        .micro-action-btn.active {
+            color: var(--gold-primary);
         }
 
-        input[type="number"], input[type="text"], select {
+        /* Generic Pill Inputs */
+        .pill-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .pill-input {
             width: 100%;
-            padding: 10px 12px;
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-color);
-            font-size: 0.95rem;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: var(--pill-radius);
+            padding: 7px 10px;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-align: center;
             outline: none;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        input[type="number"]:focus, select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        .pill-input::placeholder {
+            color: var(--text-submuted);
+            font-weight: 500;
+            font-size: 0.78rem;
         }
 
-        .freebet-section {
-            background: linear-gradient(180deg, rgba(168, 85, 247, 0.08) 0%, rgba(168, 85, 247, 0.02) 100%);
-            border: 1px dashed var(--freebet-border);
-            border-radius: 10px;
-            padding: 16px;
-            margin-bottom: 20px;
+        .pill-input:focus {
+            border-color: var(--gold-primary);
         }
 
-        .freebet-title {
-            font-size: 0.9rem;
+        .pill-input.highlight-gold {
+            border-color: var(--gold-primary);
+            color: #ffffff;
+        }
+
+        /* Warning Icon in Valor */
+        .col-valor {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .valor-input-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .valor-input-box input {
+            padding-right: 22px;
+        }
+
+        .valor-warning-icon {
+            position: absolute;
+            right: 8px;
+            font-size: 0.8rem;
+            color: var(--gold-primary);
+            cursor: pointer;
+            display: none;
+        }
+
+        .valor-warning-icon.show {
+            display: block;
+        }
+
+        /* ODD column */
+        .col-odd {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .odd-subtext {
+            font-size: 0.72rem;
+            color: var(--text-submuted);
+            text-align: center;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Back / Lay badge */
+        .badge-type {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-muted);
+            padding: 7px 8px;
+            border-radius: var(--pill-radius);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            user-select: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .badge-type:hover {
+            border-color: var(--gold-primary);
+            color: var(--text-main);
+        }
+
+        /* Mini Adjustment Inputs (Comissão, Freebets, Aumento) */
+        .col-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mini-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .col-mini input {
+            padding: 7px 4px;
+            font-size: 0.8rem;
+            color: var(--text-main);
+        }
+
+        .col-mini input.fb-highlight {
+            color: var(--purple-fb);
+            border-color: rgba(192, 132, 252, 0.4);
+        }
+
+        .col-mini input::placeholder {
+            color: var(--text-submuted);
+            text-align: center;
+        }
+
+        /* Mini $ e % Mode Switchers */
+        .mini-toggle-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            margin-top: 2px;
+        }
+
+        .mini-tgl {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-submuted);
+            font-size: 0.68rem;
             font-weight: 700;
-            color: var(--freebet-color);
-            margin-bottom: 12px;
+            padding: 1px 6px;
+            border-radius: var(--pill-radius);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            line-height: 1.1;
+        }
+
+        .mini-tgl:hover {
+            color: var(--text-main);
+        }
+
+        .mini-tgl.active {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+            background: rgba(250, 204, 21, 0.12);
+        }
+
+        .mini-tgl.active-fb {
+            border-color: var(--purple-fb);
+            color: var(--purple-fb);
+            background: rgba(192, 132, 252, 0.15);
+        }
+
+        /* Outcome / Profit Column */
+        .col-outcome {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .outcome-pill-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            justify-content: flex-end;
+        }
+
+        .edit-outcome-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-submuted);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .edit-outcome-btn:hover {
+            color: var(--gold-primary);
+        }
+
+        .profit-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 14px;
+            border-radius: var(--pill-radius);
+            font-size: 0.85rem;
+            font-weight: 800;
+            min-width: 90px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+        }
+
+        .profit-pill.positive {
+            color: var(--green-profit);
+            border-color: rgba(34, 197, 94, 0.25);
+        }
+
+        .profit-pill.negative {
+            color: var(--red-loss);
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+
+        .profit-pill.neutral {
+            color: var(--neutral-color);
+            border-color: rgba(250, 204, 21, 0.25);
+        }
+
+        .outcome-subtext-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            color: var(--text-submuted);
+        }
+
+        .btn-remove-row {
+            background: transparent;
+            border: none;
+            color: #ef4444;
+            opacity: 0.6;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: opacity 0.2s, transform 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-remove-row:hover {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        /* Bottom Row Add Button */
+        .row-add-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding-left: 4px;
+        }
+
+        .add-row-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+        }
+
+        .add-row-btn:hover {
+            color: var(--gold-primary);
+            transform: scale(1.2);
+        }
+
+        /* Bottom Grid: 2 Columns (Resumo + Call to Action Card) */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 10px;
+        }
+
+        .summary-card,
+        .action-info-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--card-radius);
+            padding: 10px 16px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-header-line {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .card-header-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .planilhar-btn {
+            background: transparent;
+            border: 1px solid var(--card-border-subtle);
+            color: var(--text-main);
+            font-size: 0.74rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--pill-radius);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .planilhar-btn:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+            background: var(--gold-bg);
+        }
+
+        /* Upgrade: Banner de Diagnóstico de Arbitragem no Resumo */
+        .arbitrage-status-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 5px 10px;
+            border-radius: var(--pill-radius);
+            margin-bottom: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .arbitrage-status-banner.surebet {
+            background: var(--green-bg);
+            border: 1px solid rgba(34, 197, 94, 0.35);
+            color: var(--green-profit);
+        }
+
+        .arbitrage-status-banner.no-surebet {
+            background: var(--red-bg);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            color: var(--red-loss);
+        }
+
+        .arbitrage-status-banner.freebet {
+            background: var(--purple-bg);
+            border: 1px solid rgba(192, 132, 252, 0.35);
+            color: var(--purple-fb);
+        }
+
+        .arbitrage-status-banner.neutral {
+            background: var(--gold-bg);
+            border: 1px solid var(--gold-border);
+            color: var(--gold-primary);
+        }
+
+        .status-badge-text {
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .status-box {
-            padding: 16px 18px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .status-box.success {
-            background-color: var(--success-bg);
-            border-color: var(--success-border);
-            color: var(--success-text);
-        }
-
-        .status-box.danger {
-            background-color: var(--danger-bg);
-            border-color: var(--danger-border);
-            color: var(--danger-text);
-        }
-
-        .status-box.neutral {
-            background-color: var(--neutral-bg);
-            border-color: var(--neutral-border);
-            color: var(--neutral-text);
-        }
-
-        .condition-badge {
-            display: inline-block;
-            font-size: 0.8rem;
+        .status-extra-pill {
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: var(--pill-radius);
+            background: rgba(0, 0, 0, 0.3);
             font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-bottom: 6px;
-            background: rgba(255, 255, 255, 0.12);
-            letter-spacing: 0.5px;
         }
 
-        .status-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .status-desc {
-            font-size: 0.875rem;
-            opacity: 0.92;
-            line-height: 1.4;
-        }
-
-        .results-table-container {
-            overflow-x: auto;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            background-color: var(--card-sub-bg);
-            margin-bottom: 16px;
-        }
-
-        .results-table {
+        /* Summary Table */
+        .summary-table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 6px;
         }
 
-        .results-table th, .results-table td {
-            padding: 12px 14px;
+        .summary-table th,
+        .summary-table td {
+            padding: 4px 4px;
+            font-size: 0.76rem;
             text-align: left;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.875rem;
         }
 
-        .results-table th {
-            background-color: rgba(0, 0, 0, 0.2);
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.5px;
+        .summary-table th {
+            color: var(--text-submuted);
+            font-weight: 500;
+            font-size: 0.7rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 4px;
         }
 
-        .results-table td:last-child, .results-table th:last-child {
+        .summary-table td:nth-child(2),
+        .summary-table td:nth-child(3),
+        .summary-table td:nth-child(4),
+        .summary-table td:nth-child(5),
+        .summary-table td:nth-child(6),
+        .summary-table th:nth-child(2),
+        .summary-table th:nth-child(3),
+        .summary-table th:nth-child(4),
+        .summary-table th:nth-child(5),
+        .summary-table th:nth-child(6) {
             text-align: right;
         }
 
-        .results-table tr:last-child td {
-            border-bottom: none;
+        .summary-table td {
+            color: var(--text-main);
+            font-weight: 600;
+            padding-top: 4px;
+            padding-bottom: 4px;
         }
 
-        .total-row {
-            font-weight: 700;
-            color: var(--text-color);
-            background-color: rgba(255, 255, 255, 0.03);
+        .summary-divider {
+            height: 1px;
+            background: var(--card-border);
+            margin: 6px 0;
         }
 
-        .optional-tag {
-            font-size: 0.75rem;
+        .summary-total-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.76rem;
             color: var(--text-muted);
-            font-weight: normal;
+            margin-bottom: 3px;
         }
 
-        .freebet-badge {
-            display: inline-block;
-            background-color: var(--freebet-bg);
-            color: var(--freebet-color);
-            border: 1px solid var(--freebet-border);
-            font-size: 0.7rem;
+        .summary-total-line .val {
             font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-left: 4px;
-            vertical-align: middle;
+            color: var(--text-main);
+            font-size: 0.8rem;
         }
 
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
+        .summary-total-line .val.highlight {
+            color: var(--green-profit);
+            font-size: 0.86rem;
         }
 
-        .info-card {
-            background-color: var(--card-sub-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 14px 10px;
+        /* Right Action Card (BetTracker Info & CTA) */
+        .action-info-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .info-brand-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .info-brand-title span {
+            color: var(--gold-primary);
+        }
+
+        .info-brand-subtitle {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .info-brand-subtitle .cursor {
+            color: var(--gold-primary);
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .features-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .features-list li span.icon {
+            font-size: 0.9rem;
+            width: 18px;
             text-align: center;
         }
 
-        .info-card-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-
-        .info-card-value {
-            font-size: 1.05rem;
+        .cta-gold-btn {
+            width: 100%;
+            background: var(--gold-primary);
+            color: #000000;
+            border: none;
+            font-size: 0.82rem;
             font-weight: 800;
-            letter-spacing: -0.01em;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 16px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 10px 14px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background-color: var(--card-sub-bg);
-            color: var(--text-color);
-            font-size: 0.85rem;
-            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: var(--pill-radius);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            transition: all 0.2s;
+            box-shadow: 0 4px 18px rgba(250, 204, 21, 0.25);
+            transition: all 0.2s ease;
         }
 
-        .btn:hover {
-            background-color: var(--border-color);
+        .cta-gold-btn:hover {
+            background: #ffe043;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 22px rgba(250, 204, 21, 0.35);
         }
 
-        .btn-primary {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            color: white;
+        .cta-gold-btn:active {
+            transform: translateY(0);
         }
 
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-
+        /* Toast */
         .toast {
             position: fixed;
-            bottom: 20px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: #1e293b;
-            color: #4ade80;
-            border: 1px solid #22c55e;
-            padding: 10px 20px;
-            border-radius: 8px;
+            background: #181920;
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-border);
+            padding: 10px 22px;
+            border-radius: var(--pill-radius);
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             opacity: 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
             z-index: 999;
+            pointer-events: none;
         }
 
         .toast.show {
@@ -371,492 +937,1198 @@
             opacity: 1;
         }
 
-        @media (max-width: 540px) {
-            .container {
-                padding: 18px;
+        /* Modal para Definir Aporte Total (Opcional) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--card-bg);
+            border: 1px solid var(--gold-border);
+            border-radius: 18px;
+            padding: 24px;
+            width: 90%;
+            max-width: 380px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            margin-bottom: 12px;
+        }
+
+        .modal-input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: var(--pill-radius);
+            padding: 10px 14px;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            outline: none;
+        }
+
+        .modal-input:focus {
+            border-color: var(--gold-primary);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 8px 14px;
+            border-radius: var(--pill-radius);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-cancel {
+            background: var(--card-sub-bg);
+            color: var(--text-muted);
+            border: 1px solid var(--card-border) !important;
+        }
+
+        .btn-confirm {
+            background: var(--gold-primary);
+            color: #000;
+        }
+
+        /* Responsive */
+        @media (max-height: 700px), (max-width: 940px) {
+            html, body {
+                height: auto;
+                min-height: 100vh;
+                overflow-y: auto;
             }
-            .grid-3 {
-                grid-template-columns: 1fr;
+
+            body {
+                align-items: flex-start;
+                padding: 16px 12px;
             }
-            .input-grid-2 {
-                grid-template-columns: 1fr;
+
+            .app-container {
+                max-height: none;
             }
-            .info-cards {
+
+            .rows-container {
+                max-height: none;
+            }
+
+            .row-header {
+                display: none;
+            }
+
+            .bet-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .col-bookie {
+                grid-column: span 2;
+            }
+
+            .col-outcome {
+                grid-column: span 2;
+                align-items: flex-start;
+            }
+
+            .outcome-pill-wrapper {
+                justify-content: flex-start;
+            }
+
+            .bottom-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="header">
-        <h1>Calculadora de Arbitragem & Freebets</h1>
-        <p class="subtitle">Análise de Surebets, Desconto de Freebet e Distribuição de Stakes</p>
-    </div>
+    <div class="app-container">
 
-    <!-- Seletor de Vias (2 Opções vs 3 Opções) -->
-    <div class="mode-toggle">
-        <button type="button" id="btn3Vias" class="mode-btn active" onclick="setModoVias(3)">3 Vias (1X2 Futebol)</button>
-        <button type="button" id="btn2Vias" class="mode-btn" onclick="setModoVias(2)">2 Vias (Tênis / Over-Under / ML)</button>
-    </div>
-
-    <!-- Inputs de Odds -->
-    <div class="input-group">
-        <label>Odds das Casas de Apostas</label>
-        <div id="oddsGrid" class="input-grid grid-3">
-            <div>
-                <label id="labelOdd1" style="font-size: 0.75rem; color: var(--text-muted);">Odd 1 (Time 1 / Casa)</label>
-                <input type="number" id="odd1" value="2.50" step="0.01" min="1.01" oninput="calcular()">
+        <!-- Main Engine Card -->
+        <div class="main-card">
+            <!-- Strategy Switcher Tabs -->
+            <div class="strategy-switcher">
+                <button type="button" id="btnStratArbitragem" class="strategy-btn active"
+                    onclick="setEstrategia('arbitragem')">Arbitragem</button>
+                <button type="button" id="btnStratProtecao" class="strategy-btn"
+                    onclick="setEstrategia('protecao')">Proteção de Duplo</button>
             </div>
-            <div id="colOddX">
-                <label style="font-size: 0.75rem; color: var(--text-muted);">Odd X (Empate)</label>
-                <input type="number" id="oddX" value="3.80" step="0.01" min="1.01" oninput="calcular()">
+
+            <!-- Top Search / Total Toolbar -->
+            <div class="top-toolbar">
+                <div class="event-input-wrapper">
+                    <input type="text" id="eventName" placeholder="Digite para buscar jogos...">
+                </div>
+
+                <div class="toolbar-actions">
+                    <div class="total-chip" onclick="abrirModalTotal()"
+                        title="Clique para definir o aporte total conjunto (Opcional)">
+                        <span class="chip-pencil">✏️</span>
+                        <span class="chip-value" id="chipTotalDisplay">R$ 129.69</span>
+                        <span style="color: var(--text-submuted); margin: 0 2px;">|</span>
+                        <span class="chip-roi" id="chipRoiDisplay">6.66%</span>
+                    </div>
+                    <button type="button" class="icon-btn" onclick="abrirModalTotal()"
+                        title="Definir Aporte Total Conjunto">⚙️</button>
+                    <button type="button" class="icon-btn" onclick="salvarComoImagem()"
+                        title="Salvar Imagem da Calculadora">💾</button>
+                    <button type="button" class="icon-btn" onclick="limparCampos()"
+                        title="Limpar Valores / Resetar">🗑️</button>
+                </div>
             </div>
-            <div>
-                <label id="labelOdd2" style="font-size: 0.75rem; color: var(--text-muted);">Odd 2 (Time 2 / Visitante)</label>
-                <input type="number" id="odd2" value="3.20" step="0.01" min="1.01" oninput="calcular()">
+
+            <!-- Rows Table Header (Com Freebets no lugar de Cashback) -->
+            <div class="row-header">
+                <div>Casa de Aposta</div>
+                <div style="text-align: center;">Valor (Opcional)</div>
+                <div style="text-align: center;">ODD</div>
+                <div></div>
+                <div style="text-align: center;">Comissão</div>
+                <div style="text-align: center;">Freebets</div>
+                <div style="text-align: center;">Aumento</div>
+                <div></div>
+            </div>
+
+            <!-- Rows Container -->
+            <div class="rows-container" id="rowsContainer">
+                <!-- Rows injected by JavaScript -->
+            </div>
+
+            <!-- Bottom Row Add Button -->
+            <div class="row-add-wrapper">
+                <button type="button" class="add-row-btn" onclick="adicionarLinha()" title="Adicionar nova casa / via">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom Grid (Resumo Table + BetTracker Features/CTA) -->
+        <div class="bottom-grid">
+            <!-- Left Summary Card -->
+            <div class="summary-card">
+                <div class="card-header-line">
+                    <div class="card-header-title">
+                        <span>🧮</span> Resumo
+                    </div>
+                    <button type="button" class="planilhar-btn" onclick="copiarResumo()">
+                        <span>🔗</span> Planilhar
+                    </button>
+                </div>
+
+                <!-- Upgrade: Diagnóstico Instantâneo de Arbitragem & Freebets -->
+                <div id="arbitrageStatusBox" class="arbitrage-status-banner surebet">
+                    <div class="status-badge-text">
+                        <span id="arbitrageStatusIcon">🟢</span>
+                        <span id="arbitrageStatusText">Existe Arbitragem (Surebet Detectada)</span>
+                    </div>
+                    <span id="arbitrageStatusExtra" class="status-extra-pill">+6.66% Lucro Garantido</span>
+                </div>
+
+                <table class="summary-table">
+                    <thead>
+                        <tr>
+                            <th>Casa de Aposta</th>
+                            <th>Valor</th>
+                            <th>ODD</th>
+                            <th>Tipo</th>
+                            <th>Retorno</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="summaryTableBody">
+                        <!-- Dynamic Summary Rows -->
+                    </tbody>
+                </table>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-total-line">
+                    <span>Status da Arbitragem:</span>
+                    <span class="val" id="sumDiagText" style="color: var(--green-profit);">🟢 Existe Arbitragem</span>
+                </div>
+                <div class="summary-total-line">
+                    <span>Valor Investido (Dinheiro Próprio):</span>
+                    <span class="val" id="sumTotalInvest">R$ 129.69</span>
+                </div>
+                <div class="summary-total-line" id="sumTotalFreebetLine" style="display:none;">
+                    <span>🎁 Total de Freebets:</span>
+                    <span class="val" id="sumTotalFreebetVal" style="color: var(--purple-fb); font-weight: 600;">R$ 0.00</span>
+                </div>
+                <div class="summary-total-line" id="sumTotalCombinedLine" style="display:none;">
+                    <span>💰 Total Mobilizado (Próprio + FB):</span>
+                    <span class="val highlight" id="sumTotalCombinedVal" style="color: var(--gold-primary); font-weight: 700;">R$ 0.00</span>
+                </div>
+                <div class="summary-total-line">
+                    <span>ROI / Lucro Estimado:</span>
+                    <span class="val highlight" id="sumRoi">6.66%</span>
+                </div>
+                <div class="summary-total-line" id="sumFreebetLine" style="display:none;">
+                    <span>🎁 Extração Freebet (Lucro FB):</span>
+                    <span class="val" id="sumFreebetVal" style="color: var(--purple-fb); font-size: 0.88rem;">+R$
+                        0.00</span>
+                </div>
+            </div>
+
+            <!-- Right Action Info Card -->
+            <div class="action-info-card">
+                <div>
+                    <div class="info-brand-subtitle">
+                        Um sistema para <span id="typingText"
+                            style="color: #ffffff; font-weight: 700; margin-left: 3px;">Pr</span><span
+                            class="cursor">|</span>
+                    </div>
+
+                    <ul class="features-list">
+                        <li>
+                            <span class="icon">☁️</span>
+                            <span>Planilha na Nuvem</span>
+                        </li>
+                        <li>
+                            <span class="icon">⚗️</span>
+                            <span>Filtros de estratégias</span>
+                        </li>
+                        <li>
+                            <span class="icon">👥</span>
+                            <span>Múltiplas Parcerias</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <button type="button" class="cta-gold-btn" onclick="salvarComoImagem()">
+                    Salvar
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Seção de Freebet / Bônus -->
-    <div class="freebet-section">
-        <div class="freebet-title">
-            🎁 Crédito de Freebet / Bônus da Casa <span class="optional-tag">(Desconto na aposta)</span>
-        </div>
-        <div class="input-grid-2">
-            <div>
-                <label style="font-size: 0.75rem; color: var(--text-muted);">Valor do Crédito / Freebet (R$)</label>
-                <input type="number" id="valorFreebet" placeholder="0.00" step="5" min="0" oninput="calcular()">
-            </div>
-            <div>
-                <label style="font-size: 0.75rem; color: var(--text-muted);">Aplicar Freebet no Resultado</label>
-                <select id="casaFreebet" onchange="calcular()">
-                    <option value="none">Nenhuma (Sem Freebet)</option>
-                    <option value="1">Odd 1 (Time 1)</option>
-                    <option value="X" id="optFreebetX">Odd X (Empate)</option>
-                    <option value="2">Odd 2 (Time 2)</option>
-                </select>
+    <!-- Modal para Definir Aporte Total (Opcional) -->
+    <div class="modal-overlay" id="modalTotal" onclick="fecharModalTotal(event)">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <div class="modal-title">💵 Definir Aporte Total Conjunto (Opcional)</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.4;">
+                Caso queira apostar um valor específico em dinheiro próprio, digite o total abaixo para distribuir
+                automaticamente. Deixe em branco se quiser apenas calcular as Odds e o ROI.
+            </p>
+            <input type="number" id="modalTotalInput" class="modal-input" placeholder="Ex: 100.00 (Opcional)" min="0"
+                step="any">
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" onclick="limparTotalEFechar()">Limpar Aporte</button>
+                <button type="button" class="btn-confirm" onclick="confirmarAporteTotal()">Aplicar Total</button>
             </div>
         </div>
-        <div style="margin-top: 10px;">
-            <label style="font-size: 0.75rem; color: var(--text-muted);">Tipo de Crédito / Freebet</label>
-            <select id="tipoFreebet" onchange="calcular()">
-                <option value="SNR">SNR - Aposta Grátis Padrão (A casa paga apenas o Lucro Líquido ao vencer)</option>
-                <option value="SR">SR / Crédito Real - Desconto Direto (A casa devolve o valor do crédito + lucro)</option>
-            </select>
-        </div>
     </div>
 
-    <!-- Investimento Total em Dinheiro Próprio (OPCIONAL) -->
-    <div class="input-group">
-        <label for="investimento">
-            Aporte Adicional em Dinheiro Próprio (R$) <span class="optional-tag">— Opcional</span>
-        </label>
-        <input type="number" id="investimento" placeholder="Deixe 0 para ver apenas a extração/distribuição" step="10" min="0" oninput="calcular()">
-    </div>
+    <div id="toast" class="toast">Resumo copiado para a área de transferência!</div>
 
-    <!-- Cards Resumo de Desempenho -->
-    <div class="info-cards">
-        <div class="info-card">
-            <div class="info-card-label">Soma de Probabilidade</div>
-            <div class="info-card-value" id="cardSoma" style="color: var(--primary);">0%</div>
-        </div>
-        <div class="info-card">
-            <div class="info-card-label">Dinheiro Próprio Total</div>
-            <div class="info-card-value" id="cardAporte" style="color: var(--text-color);">R$ 0,00</div>
-        </div>
-        <div class="info-card">
-            <div class="info-card-label" id="cardLucroLabel">Lucro Garantido</div>
-            <div class="info-card-value" id="cardLucro" style="color: var(--success-text);">0%</div>
-        </div>
-    </div>
+    <script>
+        // Initial State matching reference screenshot
+        let rowsData = [
+            { id: 1, bookie: 'Ex: Bet365', valor: 20.00, odd: 6.250, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: true, hasWarning: false },
+            { id: 2, bookie: 'Ex: Bet365', valor: 32.05, odd: 3.900, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: false, hasWarning: true },
+            { id: 3, bookie: 'Ex: Bet365', valor: 77.64, odd: 1.610, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: false, hasWarning: true }
+        ];
 
-    <!-- Banner de Status com Destaque -->
-    <div id="statusBox" class="status-box success">
-        <div id="conditionBadge" class="condition-badge">SOMA &lt; 100%</div>
-        <div id="statusTitle" class="status-title">Existe Arbitragem</div>
-        <div id="statusDesc" class="status-desc">Dá para distribuir o dinheiro e garantir lucro.</div>
-    </div>
+        let currentStrategy = 'arbitragem'; // 'arbitragem' or 'protecao'
+        let lastResultados = [];
 
-    <!-- Tabela de Resultados -->
-    <div class="results-table-container">
-        <table class="results-table">
-            <thead>
-                <tr>
-                    <th>Resultado</th>
-                    <th>Odd</th>
-                    <th id="colApostaHeader">Aposta (Dinheiro + Freebet)</th>
-                    <th id="colRetornoHeader">Retorno Bruto</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                <tr id="row1">
-                    <td><span id="nameResultado1">Time 1</span> <span id="badge1"></span></td>
-                    <td id="odd1Display">2.50</td>
-                    <td id="aposta1">0.00%</td>
-                    <td id="retorno1">0.00%</td>
-                </tr>
-                <tr id="rowX">
-                    <td>Empate (X) <span id="badgeX"></span></td>
-                    <td id="oddXDisplay">3.80</td>
-                    <td id="apostaX">0.00%</td>
-                    <td id="retornoX">0.00%</td>
-                </tr>
-                <tr id="row2">
-                    <td><span id="nameResultado2">Time 2</span> <span id="badge2"></span></td>
-                    <td id="odd2Display">3.20</td>
-                    <td id="aposta2">0.00%</td>
-                    <td id="retorno2">0.00%</td>
-                </tr>
-                <tr class="total-row">
-                    <td colspan="2">Resultado Geral:</td>
-                    <td id="labelResultadoLiq">Rendimento / Lucro:</td>
-                    <td id="lucroLiquidoDisplay" style="font-size: 0.95rem; font-weight: bold;">+0.00%</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        function renderRows() {
+            const container = document.getElementById('rowsContainer');
+            container.innerHTML = '';
 
-    <div class="action-buttons">
-        <button type="button" class="btn" onclick="limparCampos()">🔄 Limpar</button>
-        <button type="button" class="btn btn-primary" onclick="copiarResumo()">📋 Copiar Resumo</button>
-    </div>
-</div>
+            rowsData.forEach((row, index) => {
+                const isFirst = index === 0;
+                const rowEl = document.createElement('div');
+                rowEl.className = 'bet-row' + (row.locked ? ' locked' : '');
+                rowEl.id = `row-${row.id}`;
 
-<div id="toast" class="toast">Resumo copiado para a área de transferência!</div>
+                const valorFormatado = (row.valor && row.valor > 0) ? row.valor.toFixed(2) : '';
 
-<script>
-    let numVias = 3;
+                rowEl.innerHTML = `
+                <!-- Coluna Casa de Aposta (Sem ícone de presente) -->
+                <div class="col-bookie">
+                    <div class="bookie-input-wrap">
+                        <input type="text" value="${row.bookie}" placeholder="Ex: Bet365" oninput="updateRowField(${row.id}, 'bookie', this.value)">
+                        <span class="link-icon" onclick="openBookieLink('${row.bookie}')" title="Link da Casa">🔗</span>
+                    </div>
+                    <div class="row-micro-actions">
+                        <button type="button" class="micro-action-btn ${row.locked ? 'active' : ''}" onclick="toggleLockRow(${row.id})" title="${row.locked ? 'Casa Fixada (Base de Cálculo)' : 'Fixar esta Casa e Balancear as Outras'}">🔒</button>
+                        <button type="button" class="micro-action-btn" onclick="arredondarLinha(${row.id})" title="Arredondar Aposta">✂️</button>
+                        <button type="button" class="micro-action-btn" onclick="definirParceiro(${row.id})" title="Identificação de Conta / Parceria">👤</button>
+                    </div>
+                </div>
 
-    function setModoVias(vias) {
-        numVias = vias;
-        const btn3 = document.getElementById('btn3Vias');
-        const btn2 = document.getElementById('btn2Vias');
-        const colOddX = document.getElementById('colOddX');
-        const oddsGrid = document.getElementById('oddsGrid');
-        const optFreebetX = document.getElementById('optFreebetX');
-        const rowX = document.getElementById('rowX');
-        const labelOdd1 = document.getElementById('labelOdd1');
-        const labelOdd2 = document.getElementById('labelOdd2');
-        const nameRes1 = document.getElementById('nameResultado1');
-        const nameRes2 = document.getElementById('nameResultado2');
+                <!-- Coluna Valor (Dinheiro Próprio - Opcional) -->
+                <div class="col-valor">
+                    <div class="valor-input-box">
+                        <input type="number" id="inputValor-${row.id}" class="pill-input ${row.locked && row.valor > 0 ? 'highlight-gold' : ''}" value="${valorFormatado}" placeholder="Opcional" step="0.01" min="0" oninput="onValorInput(${row.id}, this.value)">
+                        <span id="warnIcon-${row.id}" class="valor-warning-icon ${row.hasWarning ? 'show' : ''}" title="Aposta ajustada proporcionalmente">⚠️</span>
+                    </div>
+                </div>
 
-        if (vias === 2) {
-            btn2.classList.add('active');
-            btn3.classList.remove('active');
-            colOddX.style.display = 'none';
-            rowX.style.display = 'none';
-            optFreebetX.style.display = 'none';
-            oddsGrid.className = 'input-grid grid-2';
-            labelOdd1.innerText = 'Odd 1 (Opção 1)';
-            labelOdd2.innerText = 'Odd 2 (Opção 2)';
-            nameRes1.innerText = 'Opção 1';
-            nameRes2.innerText = 'Opção 2';
+                <!-- Coluna ODD -->
+                <div class="col-odd">
+                    <input type="number" id="inputOdd-${row.id}" class="pill-input" value="${row.odd > 0 ? row.odd : ''}" placeholder="1.00" step="0.001" min="1" oninput="onOddInput(${row.id}, this.value)">
+                    <div class="odd-subtext" id="oddSub-${row.id}">${row.odd > 0 ? row.odd.toFixed(3) : '-'}</div>
+                </div>
 
-            if (document.getElementById('casaFreebet').value === 'X') {
-                document.getElementById('casaFreebet').value = '1';
-            }
-        } else {
-            btn3.classList.add('active');
-            btn2.classList.remove('active');
-            colOddX.style.display = 'block';
-            rowX.style.display = '';
-            optFreebetX.style.display = '';
-            oddsGrid.className = 'input-grid grid-3';
-            labelOdd1.innerText = 'Odd 1 (Time 1 / Casa)';
-            labelOdd2.innerText = 'Odd 2 (Time 2 / Visitante)';
-            nameRes1.innerText = 'Time 1';
-            nameRes2.innerText = 'Time 2';
+                <!-- Coluna Tipo (Back/Lay) -->
+                <div>
+                    <span class="badge-type" onclick="toggleTipoAposta(${row.id})" title="Clique para alternar Back/Lay">${row.tipo}</span>
+                </div>
+
+                <!-- Coluna Comissão com seletor % e $ -->
+                <div class="col-mini">
+                    <div class="mini-input-wrap">
+                        <input type="number" id="comInput-${row.id}" class="pill-input" placeholder="${row.comissaoMode === 'R$' ? 'R$' : '%'}" value="${row.comissao}" step="any" min="0" oninput="updateRowField(${row.id}, 'comissao', this.value)">
+                    </div>
+                    <div class="mini-toggle-group">
+                        <button type="button" class="mini-tgl ${row.comissaoMode === '%' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'comissaoMode', '%')" title="Comissão em porcentagem (%)">%</button>
+                        <button type="button" class="mini-tgl ${row.comissaoMode === 'R$' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'comissaoMode', 'R$')" title="Comissão em valor fixo ($)">$</button>
+                    </div>
+                </div>
+
+                <!-- Coluna Freebets (Bônus/Grátis) com seletor $ e % -->
+                <div class="col-mini">
+                    <div class="mini-input-wrap">
+                        <input type="number" id="fbInput-${row.id}" class="pill-input ${row.freebet > 0 ? 'fb-highlight' : ''}" placeholder="${row.freebetMode === '%' ? '%' : 'R$'}" value="${row.freebet}" step="any" min="0" oninput="updateRowField(${row.id}, 'freebet', this.value)" title="Valor da Freebet (Não consome seu dinheiro próprio)">
+                    </div>
+                    <div class="mini-toggle-group">
+                        <button type="button" class="mini-tgl ${row.freebetMode === 'R$' ? 'active-fb' : ''}" onclick="setFieldMode(${row.id}, 'freebetMode', 'R$')" title="Freebet em valor fixo ($)">$</button>
+                        <button type="button" class="mini-tgl ${row.freebetMode === '%' ? 'active-fb' : ''}" onclick="setFieldMode(${row.id}, 'freebetMode', '%')" title="Freebet em porcentagem da aposta (%)">%</button>
+                    </div>
+                </div>
+
+                <!-- Coluna Aumento com seletor % e $ -->
+                <div class="col-mini">
+                    <div class="mini-input-wrap">
+                        <input type="number" id="aumInput-${row.id}" class="pill-input" placeholder="${row.aumentoMode === 'R$' ? 'R$' : '%'}" value="${row.aumento}" step="any" min="0" oninput="updateRowField(${row.id}, 'aumento', this.value)">
+                    </div>
+                    <div class="mini-toggle-group">
+                        <button type="button" class="mini-tgl ${row.aumentoMode === '%' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'aumentoMode', '%')" title="Aumento/Boost em porcentagem (%)">%</button>
+                        <button type="button" class="mini-tgl ${row.aumentoMode === 'R$' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'aumentoMode', 'R$')" title="Aumento/Boost em valor fixo ($)">$</button>
+                    </div>
+                </div>
+
+                <!-- Coluna Resultado / Stake / Delete -->
+                <div class="col-outcome">
+                    <div class="outcome-pill-wrapper">
+                        ${isFirst ? '<button type="button" class="edit-outcome-btn" onclick="abrirModalTotal()" title="Editar aporte">✏️</button>' : ''}
+                        <div class="profit-pill" id="pillResult-${row.id}">-</div>
+                    </div>
+                    <div class="outcome-subtext-line">
+                        <span id="stakeSub-${row.id}">Stake: ${(row.valor && row.valor > 0) ? row.valor.toFixed(2) : 'Opcional'}</span>
+                        ${rowsData.length > 2 ? `<button type="button" class="btn-remove-row" onclick="removerLinha(${row.id})" title="Remover via">⛔</button>` : ''}
+                    </div>
+                </div>
+            `;
+
+                container.appendChild(rowEl);
+            });
+
+            calcular();
         }
-        calcular();
-    }
 
-    function limparCampos() {
-        document.getElementById('odd1').value = numVias === 3 ? '2.50' : '1.95';
-        document.getElementById('oddX').value = '3.80';
-        document.getElementById('odd2').value = numVias === 3 ? '3.20' : '1.95';
-        document.getElementById('valorFreebet').value = '';
-        document.getElementById('casaFreebet').value = 'none';
-        document.getElementById('investimento').value = '';
-        calcular();
-    }
+        function setEstrategia(est) {
+            currentStrategy = est;
+            document.getElementById('btnStratArbitragem').classList.toggle('active', est === 'arbitragem');
+            document.getElementById('btnStratProtecao').classList.toggle('active', est === 'protecao');
 
-    function showToast(message) {
-        const toast = document.getElementById('toast');
-        toast.innerText = message;
-        toast.classList.add('show');
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 2500);
-    }
-
-    function calcular() {
-        const odd1 = parseFloat(document.getElementById('odd1').value) || 0;
-        const oddX = numVias === 3 ? (parseFloat(document.getElementById('oddX').value) || 0) : 0;
-        const odd2 = parseFloat(document.getElementById('odd2').value) || 0;
-
-        const valorFreebet = parseFloat(document.getElementById('valorFreebet').value) || 0;
-        const casaFreebet = document.getElementById('casaFreebet').value;
-        const tipoFreebet = document.getElementById('tipoFreebet').value;
-
-        const investimentoInput = document.getElementById('investimento').value.trim();
-        const investimentoAdicional = parseFloat(investimentoInput) || 0;
-        const temAporteProprio = !isNaN(parseFloat(investimentoInput)) && parseFloat(investimentoInput) > 0;
-
-        document.getElementById('odd1Display').innerText = odd1 > 0 ? odd1.toFixed(2) : '-';
-        if (numVias === 3) {
-            document.getElementById('oddXDisplay').innerText = oddX > 0 ? oddX.toFixed(2) : '-';
-        }
-        document.getElementById('odd2Display').innerText = odd2 > 0 ? odd2.toFixed(2) : '-';
-
-        // Badges de Freebet
-        document.getElementById('badge1').innerHTML = (casaFreebet === '1' && valorFreebet > 0) ? `<span class="freebet-badge">FREEBET R$ ${valorFreebet.toFixed(2)}</span>` : '';
-        document.getElementById('badgeX').innerHTML = (numVias === 3 && casaFreebet === 'X' && valorFreebet > 0) ? `<span class="freebet-badge">FREEBET R$ ${valorFreebet.toFixed(2)}</span>` : '';
-        document.getElementById('badge2').innerHTML = (casaFreebet === '2' && valorFreebet > 0) ? `<span class="freebet-badge">FREEBET R$ ${valorFreebet.toFixed(2)}</span>` : '';
-
-        const oddsValidas = (numVias === 3) ? (odd1 > 1 && oddX > 1 && odd2 > 1) : (odd1 > 1 && odd2 > 1);
-
-        if (!oddsValidas) {
-            document.getElementById('statusBox').className = 'status-box neutral';
-            document.getElementById('conditionBadge').innerText = 'DADOS INVÁLIDOS';
-            document.getElementById('statusTitle').innerText = 'Insira odds válidas';
-            document.getElementById('statusDesc').innerText = 'Todas as odds ativas devem ser maiores que 1.00';
-            document.getElementById('cardSoma').innerText = '0.00%';
-            document.getElementById('cardAporte').innerText = 'R$ 0,00';
-            document.getElementById('cardLucro').innerText = '0.00%';
-            document.getElementById('aposta1').innerText = '-';
-            if (numVias === 3) document.getElementById('apostaX').innerText = '-';
-            document.getElementById('aposta2').innerText = '-';
-            document.getElementById('retorno1').innerText = '-';
-            if (numVias === 3) document.getElementById('retornoX').innerText = '-';
-            document.getElementById('retorno2').innerText = '-';
-            document.getElementById('lucroLiquidoDisplay').innerText = '-';
-            return;
-        }
-
-        // Soma da probabilidade implícita
-        const S = (1 / odd1) + (numVias === 3 ? (1 / oddX) : 0) + (1 / odd2);
-        const somaPorcentagem = (S * 100).toFixed(2);
-        document.getElementById('cardSoma').innerText = somaPorcentagem + '%';
-
-        const temFreebet = valorFreebet > 0 && casaFreebet !== 'none';
-
-        // MODO 1: SEM FREEBET (Arbitragem Clássica)
-        if (!temFreebet) {
-            document.getElementById('cardLucroLabel').innerText = 'Lucro Garantido';
-
-            const pct1 = ((1 / odd1) / S) * 100;
-            const pctX = numVias === 3 ? (((1 / oddX) / S) * 100) : 0;
-            const pct2 = ((1 / odd2) / S) * 100;
-            const retornoPct = (1 / S) * 100;
-
-            if (temAporteProprio) {
-                document.getElementById('colApostaHeader').innerText = 'Aposta em Dinheiro (R$)';
-                document.getElementById('colRetornoHeader').innerText = 'Retorno Bruto (R$)';
-                document.getElementById('cardAporte').innerText = `R$ ${investimentoAdicional.toFixed(2)}`;
-
-                const a1 = investimentoAdicional / (S * odd1);
-                const aX = numVias === 3 ? (investimentoAdicional / (S * oddX)) : 0;
-                const a2 = investimentoAdicional / (S * odd2);
-
-                const r1 = a1 * odd1;
-                const rX = aX * oddX;
-                const r2 = a2 * odd2;
-
-                document.getElementById('aposta1').innerText = `R$ ${a1.toFixed(2)} (${pct1.toFixed(1)}%)`;
-                if (numVias === 3) document.getElementById('apostaX').innerText = `R$ ${aX.toFixed(2)} (${pctX.toFixed(1)}%)`;
-                document.getElementById('aposta2').innerText = `R$ ${a2.toFixed(2)} (${pct2.toFixed(1)}%)`;
-
-                document.getElementById('retorno1').innerText = `R$ ${r1.toFixed(2)}`;
-                if (numVias === 3) document.getElementById('retornoX').innerText = `R$ ${rX.toFixed(2)}`;
-                document.getElementById('retorno2').innerText = `R$ ${r2.toFixed(2)}`;
+            if (est === 'protecao' && rowsData.length > 2) {
+                showToast('🛡️ Modo Proteção de Duplo ativado!');
             } else {
-                document.getElementById('colApostaHeader').innerText = 'Distribuição (%)';
-                document.getElementById('colRetornoHeader').innerText = 'Retorno sobre Invest. (%)';
-                document.getElementById('cardAporte').innerText = 'R$ 0,00';
+                showToast('⚡ Modo Arbitragem ativado!');
+            }
+            calcular();
+        }
 
-                document.getElementById('aposta1').innerText = pct1.toFixed(2) + '%';
-                if (numVias === 3) document.getElementById('apostaX').innerText = pctX.toFixed(2) + '%';
-                document.getElementById('aposta2').innerText = pct2.toFixed(2) + '%';
+        function setFieldMode(id, fieldMode, mode) {
+            const row = rowsData.find(r => r.id === id);
+            if (row) {
+                row[fieldMode] = mode;
+                renderRows();
+                const nomeCampo = fieldMode.replace('Mode', '');
+                showToast(`⚙️ ${nomeCampo.toUpperCase()}: modo ${mode === '%' ? 'Porcentagem (%)' : 'Valor Fixo ($)'} selecionado!`);
+            }
+        }
 
-                document.getElementById('retorno1').innerText = retornoPct.toFixed(2) + '%';
-                if (numVias === 3) document.getElementById('retornoX').innerText = retornoPct.toFixed(2) + '%';
-                document.getElementById('retorno2').innerText = retornoPct.toFixed(2) + '%';
+        function onOddInput(id, val) {
+            const numOdd = parseFloat(val);
+            const row = rowsData.find(r => r.id === id);
+            if (row) {
+                row.odd = isNaN(numOdd) ? 0 : numOdd;
             }
 
-            atualizarStatus(S, temAporteProprio, investimentoAdicional);
-            return;
-        }
-
-        // MODO 2: COM FREEBET
-        let oddFB = 0;
-        if (casaFreebet === '1') oddFB = odd1;
-        if (casaFreebet === 'X') oddFB = oddX;
-        if (casaFreebet === '2') oddFB = odd2;
-
-        const ganhoFreebetPure = (tipoFreebet === 'SNR') ? valorFreebet * (oddFB - 1) : valorFreebet * oddFB;
-
-        let rAlvo = 0;
-        let c1_proprio = 0, cX_proprio = 0, c2_proprio = 0;
-
-        if (!temAporteProprio) {
-            // Extração pura de Freebet (Stake em dinheiro 0 na seleção com freebet)
-            rAlvo = ganhoFreebetPure;
-
-            if (casaFreebet === '1') {
-                c1_proprio = 0;
-                cX_proprio = numVias === 3 ? (rAlvo / oddX) : 0;
-                c2_proprio = rAlvo / odd2;
-            } else if (casaFreebet === 'X' && numVias === 3) {
-                c1_proprio = rAlvo / odd1;
-                cX_proprio = 0;
-                c2_proprio = rAlvo / odd2;
-            } else if (casaFreebet === '2') {
-                c1_proprio = rAlvo / odd1;
-                cX_proprio = numVias === 3 ? (rAlvo / oddX) : 0;
-                c2_proprio = 0;
+            const hasValues = rowsData.some(r => (r.valor && r.valor > 0) || (parseFloat(r.freebet) > 0));
+            if (hasValues) {
+                equalizarPorCasaTravada();
             }
-        } else {
-            // Com aporte em dinheiro próprio
-            const ganhoLiquidoFB = (tipoFreebet === 'SNR') ? valorFreebet * (1 - (1 / oddFB)) : valorFreebet;
-            rAlvo = (investimentoAdicional + ganhoLiquidoFB) / S;
 
-            c1_proprio = (casaFreebet === '1') ? Math.max(0, (rAlvo - ganhoFreebetPure) / odd1) : rAlvo / odd1;
-            cX_proprio = numVias === 3 ? ((casaFreebet === 'X') ? Math.max(0, (rAlvo - ganhoFreebetPure) / oddX) : rAlvo / oddX) : 0;
-            c2_proprio = (casaFreebet === '2') ? Math.max(0, (rAlvo - ganhoFreebetPure) / odd2) : rAlvo / odd2;
+            calcular();
         }
 
-        const totalDinheiroProprio = c1_proprio + cX_proprio + c2_proprio;
-        const lucroLiquidoReais = rAlvo - totalDinheiroProprio;
-        const taxaExtracaoPct = (lucroLiquidoReais / valorFreebet) * 100;
-
-        document.getElementById('colApostaHeader').innerText = 'Aposta Recomendada';
-        document.getElementById('colRetornoHeader').innerText = 'Retorno Bruto (R$)';
-
-        document.getElementById('aposta1').innerText = (casaFreebet === '1') 
-            ? `R$ ${c1_proprio.toFixed(2)} [Próprio] + R$ ${valorFreebet.toFixed(2)} [Freebet]` 
-            : `R$ ${c1_proprio.toFixed(2)}`;
-
-        if (numVias === 3) {
-            document.getElementById('apostaX').innerText = (casaFreebet === 'X') 
-                ? `R$ ${cX_proprio.toFixed(2)} [Próprio] + R$ ${valorFreebet.toFixed(2)} [Freebet]` 
-                : `R$ ${cX_proprio.toFixed(2)}`;
+        function updateRowField(id, field, value) {
+            const row = rowsData.find(r => r.id === id);
+            if (row) {
+                row[field] = value;
+                if (field === 'comissao' || field === 'freebet' || field === 'aumento') {
+                    const hasValues = rowsData.some(r => (r.valor && r.valor > 0) || (parseFloat(r.freebet) > 0));
+                    if (hasValues) equalizarPorCasaTravada();
+                }
+                calcular();
+            }
         }
 
-        document.getElementById('aposta2').innerText = (casaFreebet === '2') 
-            ? `R$ ${c2_proprio.toFixed(2)} [Próprio] + R$ ${valorFreebet.toFixed(2)} [Freebet]` 
-            : `R$ ${c2_proprio.toFixed(2)}`;
+        function toggleLockRow(id) {
+            rowsData.forEach(r => r.locked = (r.id === id));
+            const hasValues = rowsData.some(r => (r.valor && r.valor > 0) || (parseFloat(r.freebet) > 0));
+            if (hasValues) equalizarPorCasaTravada();
+            renderRows();
+            showToast(`🔒 Casa fixada como base de cálculo!`);
+        }
 
-        document.getElementById('retorno1').innerText = `R$ ${rAlvo.toFixed(2)}`;
-        if (numVias === 3) document.getElementById('retornoX').innerText = `R$ ${rAlvo.toFixed(2)}`;
-        document.getElementById('retorno2').innerText = `R$ ${rAlvo.toFixed(2)}`;
+        function toggleTipoAposta(id) {
+            const row = rowsData.find(r => r.id === id);
+            if (row) {
+                row.tipo = row.tipo === 'Back' ? 'Lay' : 'Back';
+                renderRows();
+            }
+        }
 
-        document.getElementById('cardAporte').innerText = `R$ ${totalDinheiroProprio.toFixed(2)}`;
-        document.getElementById('cardLucroLabel').innerText = 'Taxa de Extração';
-        document.getElementById('cardLucro').innerText = `${taxaExtracaoPct.toFixed(1)}%`;
-
-        const statusBox = document.getElementById('statusBox');
-        const conditionBadge = document.getElementById('conditionBadge');
-        const statusTitle = document.getElementById('statusTitle');
-        const statusDesc = document.getElementById('statusDesc');
-        const lucroLiquidoDisplay = document.getElementById('lucroLiquidoDisplay');
-
-        statusBox.className = 'status-box success';
-        conditionBadge.innerText = `FREEBET APLICADA (${tipoFreebet})`;
-        statusTitle.innerText = `Lucro Garantido: R$ ${lucroLiquidoReais.toFixed(2)}`;
-        statusDesc.innerText = `Você investe R$ ${totalDinheiroProprio.toFixed(2)} em dinheiro próprio de cobertura e converte a Freebet em R$ ${lucroLiquidoReais.toFixed(2)} limpos (${taxaExtracaoPct.toFixed(1)}% de extração).`;
-
-        lucroLiquidoDisplay.innerText = `+ R$ ${lucroLiquidoReais.toFixed(2)} (${taxaExtracaoPct.toFixed(1)}% da FB)`;
-        lucroLiquidoDisplay.style.color = 'var(--success-text)';
-    }
-
-    function atualizarStatus(S, temAporte, investimento) {
-        const statusBox = document.getElementById('statusBox');
-        const conditionBadge = document.getElementById('conditionBadge');
-        const statusTitle = document.getElementById('statusTitle');
-        const statusDesc = document.getElementById('statusDesc');
-        const lucroLiquidoDisplay = document.getElementById('lucroLiquidoDisplay');
-        const cardLucro = document.getElementById('cardLucro');
-
-        const somaPorcentagem = (S * 100).toFixed(2);
-
-        if (S < 1) {
-            const percentualLucro = ((1 / S) - 1) * 100;
-            statusBox.className = 'status-box success';
-            conditionBadge.innerText = `SOMA = ${somaPorcentagem}% (< 100%)`;
-            statusTitle.innerText = 'Existe Arbitragem (Surebet)!';
-            statusDesc.innerText = `Dá para distribuir o dinheiro e garantir lucro matemático de ${percentualLucro.toFixed(2)}%.`;
-
-            if (temAporte) {
-                const lucroReais = (investimento / S) - investimento;
-                lucroLiquidoDisplay.innerText = `+ R$ ${lucroReais.toFixed(2)} (+${percentualLucro.toFixed(2)}%)`;
+        function arredondarLinha(id) {
+            const row = rowsData.find(r => r.id === id);
+            if (row && row.valor > 0) {
+                row.valor = Math.round(row.valor);
+                row.hasWarning = true;
+                equalizarPorCasaTravada();
+                renderRows();
+                showToast(`✂️ Valor da linha arredondado para R$ ${row.valor.toFixed(2)}!`);
             } else {
-                lucroLiquidoDisplay.innerText = `+${percentualLucro.toFixed(2)}% de Lucro`;
+                showToast(`ℹ️ Insira um valor na casa antes de arredondar.`);
             }
-            cardLucro.innerText = `+${percentualLucro.toFixed(2)}%`;
-            cardLucro.style.color = 'var(--success-text)';
-            lucroLiquidoDisplay.style.color = 'var(--success-text)';
+        }
 
-        } else if (Math.abs(S - 1) < 0.0001) {
-            statusBox.className = 'status-box neutral';
-            conditionBadge.innerText = `SOMA = ${somaPorcentagem}% (= 100%)`;
-            statusTitle.innerText = 'Você Empata';
-            statusDesc.innerText = 'Sem lucro nem prejuízo (Retorno zero).';
+        function definirParceiro(id) {
+            const nome = prompt('Nome da conta / parceiro para esta aposta:', 'Conta Principal');
+            if (nome) {
+                showToast(`👤 Vinculado a: ${nome}`);
+            }
+        }
 
-            lucroLiquidoDisplay.innerText = '0.00%';
-            cardLucro.innerText = '0.00%';
-            cardLucro.style.color = 'var(--neutral-text)';
-            lucroLiquidoDisplay.style.color = 'var(--neutral-text)';
+        function openBookieLink(bookieName) {
+            const search = encodeURIComponent(bookieName.replace('Ex: ', ''));
+            window.open(`https://www.google.com/search?q=${search}+apostas`, '_blank');
+        }
 
-        } else {
-            const percentualPrejuizo = (1 - (1 / S)) * 100;
-            statusBox.className = 'status-box danger';
-            conditionBadge.innerText = `SOMA = ${somaPorcentagem}% (> 100%)`;
-            statusTitle.innerText = 'Não Existe Arbitragem Tradicional';
-            statusDesc.innerText = 'As odds atuais contêm a margem de lucro da casa de apostas (vig).';
+        function onValorInput(id, val) {
+            const raw = val.trim();
+            const numVal = parseFloat(val);
+            const row = rowsData.find(r => r.id === id);
 
-            if (temAporte) {
-                const prejuizoReais = investimento - (investimento / S);
-                lucroLiquidoDisplay.innerText = `- R$ ${prejuizoReais.toFixed(2)} (-${percentualPrejuizo.toFixed(2)}%)`;
+            if (row) {
+                if (raw === '' || isNaN(numVal) || numVal <= 0) {
+                    row.valor = 0;
+                    row.hasWarning = false;
+                } else {
+                    row.valor = numVal;
+                    // Fixa esta casa como base
+                    rowsData.forEach(r => r.locked = (r.id === id));
+                    equalizarPorCasaTravada();
+                    rowsData.forEach(r => {
+                        if (r.id !== id && r.valor > 0) r.hasWarning = true;
+                    });
+                }
+                calcular();
+            }
+        }
+
+        function adicionarLinha() {
+            const newId = rowsData.length ? Math.max(...rowsData.map(r => r.id)) + 1 : 1;
+            const hasValues = rowsData.some(r => (r.valor && r.valor > 0) || (parseFloat(r.freebet) > 0));
+
+            rowsData.push({
+                id: newId,
+                bookie: 'Ex: Bet365',
+                valor: 0,
+                odd: 2.000,
+                tipo: 'Back',
+                comissao: '',
+                comissaoMode: '%',
+                freebet: '',
+                freebetMode: 'R$',
+                freebetType: 'SNR',
+                aumento: '',
+                aumentoMode: '%',
+                locked: false,
+                hasWarning: false
+            });
+
+            if (hasValues) equalizarPorCasaTravada();
+            renderRows();
+            showToast('➕ Nova via adicionada à calculadora!');
+        }
+
+        function removerLinha(id) {
+            if (rowsData.length <= 2) {
+                showToast('⚠️ A calculadora precisa de pelo menos 2 vias.');
+                return;
+            }
+            rowsData = rowsData.filter(r => r.id !== id);
+            if (!rowsData.some(r => r.locked)) {
+                rowsData[0].locked = true;
+            }
+            const hasValues = rowsData.some(r => (r.valor && r.valor > 0) || (parseFloat(r.freebet) > 0));
+            if (hasValues) equalizarPorCasaTravada();
+            renderRows();
+            showToast('🗑️ Via removida!');
+        }
+
+        function getOddEfetiva(row) {
+            let odd = row.odd || 0;
+            if (odd < 1) return 0;
+
+            const com = parseFloat(row.comissao) || 0;
+            const aum = parseFloat(row.aumento) || 0;
+
+            // 1. Aumento (Boost na cotação)
+            if (aum > 0) {
+                if (row.aumentoMode === '%') {
+                    odd = 1 + (odd - 1) * (1 + aum / 100);
+                } else if (row.valor > 0) {
+                    odd += (aum / row.valor);
+                }
+            }
+
+            // 2. Comissão da exchange / casa
+            if (com > 0) {
+                if (row.comissaoMode === '%') {
+                    odd = 1 + (odd - 1) * (1 - com / 100);
+                } else if (row.valor > 0) {
+                    odd = Math.max(1, odd - (com / row.valor));
+                }
+            }
+
+            return odd;
+        }
+
+        function getRowFreebetValInBRL(row) {
+            const fbVal = parseFloat(row.freebet) || 0;
+            if (fbVal <= 0) return 0;
+            if (row.freebetMode === '%') {
+                return (row.valor || 0) * (fbVal / 100);
+            }
+            return fbVal;
+        }
+
+        function getGanhoFreebetRow(row, oddEf) {
+            const fbQuantia = getRowFreebetValInBRL(row);
+            if (fbQuantia <= 0) return 0;
+
+            // Freebet padrão SNR (Stake Not Returned): ganha apenas o lucro (odd - 1)
+            if (row.freebetType === 'SR') {
+                return fbQuantia * oddEf;
             } else {
-                lucroLiquidoDisplay.innerText = `-${percentualPrejuizo.toFixed(2)}% de Margem`;
+                return fbQuantia * Math.max(0, oddEf - 1);
             }
-            cardLucro.innerText = `-${percentualPrejuizo.toFixed(2)}%`;
-            cardLucro.style.color = 'var(--danger-text)';
-            lucroLiquidoDisplay.style.color = 'var(--danger-text)';
         }
-    }
 
-    function copiarResumo() {
-        const soma = document.getElementById('cardSoma').innerText;
-        const aporte = document.getElementById('cardAporte').innerText;
-        const lucro = document.getElementById('cardLucro').innerText;
-        const status = document.getElementById('statusTitle').innerText;
-        
-        let texto = `📊 *Resumo da Operação (Arbitragem/Freebet)*\n`;
-        texto += `• Status: ${status}\n`;
-        texto += `• Soma Prob.: ${soma}\n`;
-        texto += `• Dinheiro Próprio Total: ${aporte}\n`;
-        texto += `• Resultado: ${lucro}\n\n`;
-        texto += `📌 *Distribuição de Apostas:*\n`;
-        texto += `• Opção 1: ${document.getElementById('aposta1').innerText} (Odd ${document.getElementById('odd1Display').innerText}) -> Retorno: ${document.getElementById('retorno1').innerText}\n`;
-        if (numVias === 3) {
-            texto += `• Empate (X): ${document.getElementById('apostaX').innerText} (Odd ${document.getElementById('oddXDisplay').innerText}) -> Retorno: ${document.getElementById('retornoX').innerText}\n`;
+        function equalizarPorCasaTravada() {
+            let lockedRow = rowsData.find(r => r.locked) || rowsData[0];
+            if (!lockedRow) return;
+
+            const oddEfetivaLocked = getOddEfetiva(lockedRow);
+            if (oddEfetivaLocked < 1) return;
+
+            const ganhoFBLocked = getGanhoFreebetRow(lockedRow, oddEfetivaLocked);
+            const valorLocked = lockedRow.valor || 0;
+
+            // Se nem tiver valor e nem tiver freebet na casa travada, não força stakes nas outras
+            if (valorLocked <= 0 && ganhoFBLocked <= 0) {
+                return;
+            }
+
+            // Retorno total alvo que a casa travada produzirá
+            const retornoAlvo = (valorLocked * oddEfetivaLocked) + ganhoFBLocked;
+
+            rowsData.forEach(r => {
+                if (r.id !== lockedRow.id) {
+                    const oddEfetiva = getOddEfetiva(r);
+                    const ganhoFB = getGanhoFreebetRow(r, oddEfetiva);
+
+                    if (oddEfetiva >= 1) {
+                        let stakeNecessaria = (retornoAlvo - ganhoFB) / oddEfetiva;
+                        r.valor = Math.max(0, parseFloat(stakeNecessaria.toFixed(2)));
+                        r.hasWarning = true;
+                    } else {
+                        r.valor = 0;
+                    }
+
+                    // Atualiza o input de valor no DOM sem perder foco
+                    const valInput = document.getElementById(`inputValor-${r.id}`);
+                    if (valInput && document.activeElement !== valInput) {
+                        valInput.value = r.valor > 0 ? r.valor.toFixed(2) : '';
+                    }
+                    const warnIcon = document.getElementById(`warnIcon-${r.id}`);
+                    if (warnIcon) warnIcon.classList.toggle('show', r.hasWarning);
+                }
+            });
         }
-        texto += `• Opção 2: ${document.getElementById('aposta2').innerText} (Odd ${document.getElementById('odd2Display').innerText}) -> Retorno: ${document.getElementById('retorno2').innerText}\n`;
 
-        navigator.clipboard.writeText(texto).then(() => {
-            showToast('✅ Resumo copiado para a área de transferência!');
-        }).catch(() => {
-            showToast('❌ Erro ao copiar resumo.');
-        });
-    }
+        function calcular() {
+            let totalInvestidoDinheiro = 0;
+            let somaProbabilidades = 0;
+            let todasOddsValidas = true;
+            let totalFreebets = 0;
 
-    // Inicialização
-    calcular();
-</script>
+            rowsData.forEach(r => {
+                const oddEf = getOddEfetiva(r);
+                if (oddEf < 1) {
+                    todasOddsValidas = false;
+                } else {
+                    somaProbabilidades += (1 / oddEf);
+                }
+                totalInvestidoDinheiro += (r.valor || 0);
+                const fbVal = parseFloat(r.freebet) || 0;
+                if (fbVal > 0) totalFreebets += fbVal;
+
+                const oddSubEl = document.getElementById(`oddSub-${r.id}`);
+                if (oddSubEl) {
+                    if (r.odd >= 1) {
+                        const implied = ((1 / oddEf) * 100).toFixed(1);
+                        const efTxt = Math.abs(oddEf - r.odd) > 0.005 ? ` (Ef: ${oddEf.toFixed(3)})` : '';
+                        oddSubEl.innerText = `${r.odd.toFixed(3)}${efTxt} | ${implied}%`;
+                    } else {
+                        oddSubEl.innerText = `${r.odd || '-'} (0.0%)`;
+                    }
+                }
+            });
+
+            const temApostasAtivas = totalInvestidoDinheiro > 0 || totalFreebets > 0;
+
+            let isFBExtractionLucrativa = false;
+            let fbLucroGarantido = 0;
+            let fbTaxaConversao = 0;
+            let fbInvestimentoCobertura = 0;
+
+            if (todasOddsValidas && totalFreebets > 0) {
+                rowsData.forEach(fbRow => {
+                    const fbVal = parseFloat(fbRow.freebet) || 0;
+                    if (fbVal <= 0) return;
+
+                    const oddEfFB = getOddEfetiva(fbRow);
+                    if (oddEfFB < 1) return;
+
+                    const retornoFB = fbRow.freebetType === 'SR' ? fbVal * oddEfFB : fbVal * (oddEfFB - 1);
+                    let somaCobertura = 0;
+                    rowsData.forEach(outraRow => {
+                        if (outraRow.id === fbRow.id) return;
+                        const oddEfOutra = getOddEfetiva(outraRow);
+                        if (oddEfOutra >= 1) somaCobertura += (1 / oddEfOutra);
+                    });
+
+                    const custoCobertura = retornoFB * somaCobertura;
+                    const lucroFB = retornoFB - custoCobertura;
+                    const taxaConv = (lucroFB / fbVal) * 100;
+
+                    if (lucroFB > 0.001) {
+                        isFBExtractionLucrativa = true;
+                        fbLucroGarantido += lucroFB;
+                        fbTaxaConversao = taxaConv;
+                        fbInvestimentoCobertura += custoCobertura;
+                    }
+                });
+            }
+
+            const resultados = rowsData.map(r => {
+                const oddEf = getOddEfetiva(r);
+                const ganhoFB = getGanhoFreebetRow(r, oddEf);
+                const valorBase = r.valor || 0;
+                let retornoBruto = 0;
+                if (temApostasAtivas) {
+                    let lucroBase = (oddEf - 1) * valorBase;
+                    retornoBruto = valorBase + lucroBase + ganhoFB;
+                }
+                const lucroLiquido = temApostasAtivas ? (retornoBruto - totalInvestidoDinheiro) : 0;
+                return { id: r.id, retorno: retornoBruto, lucro: lucroLiquido };
+            });
+            lastResultados = resultados;
+
+            let lucroGarantidoPercent = '0.00';
+            let margemCasaPercent = '0.00';
+            let isSurebetMatematica = false;
+
+            if (todasOddsValidas && somaProbabilidades > 0) {
+                if (somaProbabilidades < 0.9999) {
+                    isSurebetMatematica = true;
+                    lucroGarantidoPercent = (((1 / somaProbabilidades) - 1) * 100).toFixed(2);
+                } else {
+                    margemCasaPercent = ((somaProbabilidades - 1) * 100).toFixed(2);
+                }
+            }
+
+            resultados.forEach((res, i) => {
+                const r = rowsData[i];
+                const pillEl = document.getElementById(`pillResult-${r.id}`);
+                const stakeSubEl = document.getElementById(`stakeSub-${r.id}`);
+
+                if (pillEl) {
+                    if (temApostasAtivas) {
+                        pillEl.innerText = res.lucro >= 0 ? `+R$ ${res.lucro.toFixed(2)}` : `-R$ ${Math.abs(res.lucro).toFixed(2)}`;
+                        pillEl.className = 'profit-pill ' + (res.lucro >= 0 ? 'positive' : 'negative');
+                    } else if (todasOddsValidas) {
+                        if (isSurebetMatematica) {
+                            pillEl.innerText = `+${lucroGarantidoPercent}%`;
+                            pillEl.className = 'profit-pill positive';
+                        } else if (isFBExtractionLucrativa) {
+                            pillEl.innerText = `+R$ ${fbLucroGarantido.toFixed(2)}`;
+                            pillEl.className = 'profit-pill positive';
+                        } else {
+                            pillEl.innerText = `-${margemCasaPercent}%`;
+                            pillEl.className = 'profit-pill negative';
+                        }
+                    } else {
+                        pillEl.innerText = `-`;
+                        pillEl.className = 'profit-pill neutral';
+                    }
+                }
+
+                if (stakeSubEl) {
+                    const vProprio = (r.valor && r.valor > 0) ? r.valor : 0;
+                    const vFB = getRowFreebetValInBRL(r);
+
+                    if (vProprio > 0 && vFB > 0) {
+                        stakeSubEl.innerText = `Stake: R$ ${vProprio.toFixed(2)} (+ FB R$ ${vFB.toFixed(2)})`;
+                    } else if (vProprio > 0) {
+                        stakeSubEl.innerText = `Stake: R$ ${vProprio.toFixed(2)}`;
+                    } else if (vFB > 0) {
+                        stakeSubEl.innerText = `Stake: FB R$ ${vFB.toFixed(2)}`;
+                    } else if (temApostasAtivas) {
+                        stakeSubEl.innerText = `Stake: R$ 0.00`;
+                    } else if (isFBExtractionLucrativa) {
+                        stakeSubEl.innerText = `Cobertura necessária`;
+                    } else {
+                        stakeSubEl.innerText = `Stake: Opcional`;
+                    }
+                }
+            });
+
+            const summaryTbody = document.getElementById('summaryTableBody');
+            if (summaryTbody) {
+                summaryTbody.innerHTML = '';
+                rowsData.forEach((r, i) => {
+                    const res = resultados[i];
+                    const tr = document.createElement('tr');
+                    let resTexto = '-';
+                    let resCor = 'var(--text-muted)';
+                    let retTexto = (temApostasAtivas && res && res.retorno > 0) ? `R$ ${res.retorno.toFixed(2)}` : '-';
+
+                    if (temApostasAtivas) {
+                        resTexto = res.lucro >= 0 ? `+R$ ${res.lucro.toFixed(2)}` : `-R$ ${Math.abs(res.lucro).toFixed(2)}`;
+                        resCor = res.lucro >= 0 ? 'var(--green-profit)' : 'var(--red-loss)';
+                    } else if (todasOddsValidas) {
+                        if (isSurebetMatematica) {
+                            resTexto = `+${lucroGarantidoPercent}%`;
+                            resCor = 'var(--green-profit)';
+                        } else if (isFBExtractionLucrativa) {
+                            resTexto = `+R$ ${fbLucroGarantido.toFixed(2)}`;
+                            resCor = 'var(--purple-fb)';
+                        } else {
+                            resTexto = `-${margemCasaPercent}%`;
+                            resCor = 'var(--red-loss)';
+                        }
+                    }
+
+                    const vProprio = (r.valor && r.valor > 0) ? r.valor : 0;
+                    const vFB = getRowFreebetValInBRL(r);
+
+                    let valTexto = '-';
+                    if (vProprio > 0 && vFB > 0) {
+                        valTexto = `<span style="color: #ffffff; font-weight: 600;">R$ ${vProprio.toFixed(2)}</span> <span style="color: var(--purple-fb); font-size: 0.82rem;">+ FB R$ ${vFB.toFixed(2)}</span>`;
+                    } else if (vProprio > 0) {
+                        valTexto = `R$ ${vProprio.toFixed(2)}`;
+                    } else if (vFB > 0) {
+                        valTexto = `<span style="color: var(--purple-fb); font-weight: 600;">FB R$ ${vFB.toFixed(2)}</span>`;
+                    }
+
+                    tr.innerHTML = `<td>${r.bookie || 'Casa ' + r.id}</td>
+                        <td>${valTexto}</td>
+                        <td>${r.odd > 0 ? r.odd.toFixed(2) : '-'}</td>
+                        <td style="color: var(--text-muted); text-transform: lowercase;">${r.tipo.toLowerCase()}</td>
+                        <td style="color: var(--gold-primary); font-weight: 600;">${retTexto}</td>
+                        <td style="color: ${resCor}; font-weight: 700;">${resTexto}</td>`;
+                    summaryTbody.appendChild(tr);
+                });
+            }
+
+            const statusBox = document.getElementById('arbitrageStatusBox');
+            const statusIcon = document.getElementById('arbitrageStatusIcon');
+            const statusText = document.getElementById('arbitrageStatusText');
+            const statusExtra = document.getElementById('arbitrageStatusExtra');
+            const sumDiagText = document.getElementById('sumDiagText');
+            const sumRoiEl = document.getElementById('sumRoi');
+            const sumFreebetLine = document.getElementById('sumFreebetLine');
+            const sumFreebetVal = document.getElementById('sumFreebetVal');
+
+            const menorLucro = temApostasAtivas ? Math.min(...resultados.map(r => r.lucro)) : 0;
+
+            if (!todasOddsValidas || rowsData.some(r => !r.odd || r.odd < 1)) {
+                statusBox.className = 'arbitrage-status-banner neutral';
+                statusIcon.innerText = '🟡';
+                statusText.innerText = 'Insira as Odds de todas as casas';
+                statusExtra.innerText = 'Aguardando Odds';
+                sumDiagText.innerText = '🟡 Aguardando Odds Válidas';
+                sumDiagText.style.color = 'var(--gold-primary)';
+                sumRoiEl.innerText = '0.00%';
+                sumRoiEl.style.color = 'var(--text-muted)';
+                document.getElementById('chipRoiDisplay').innerText = '0.00%';
+                sumFreebetLine.style.display = 'none';
+            } else if (temApostasAtivas && menorLucro < -0.005) {
+                // Operação com valor de aposta inserido gerando prejuízo
+                const roiPerc = ((menorLucro / (totalInvestidoDinheiro || 1)) * 100).toFixed(2);
+                statusBox.className = 'arbitrage-status-banner no-surebet';
+                statusIcon.innerText = '🔴';
+                statusText.innerText = 'Operação com Prejuízo Estimado';
+                statusExtra.innerText = `-R$ ${Math.abs(menorLucro).toFixed(2)} Prejuízo`;
+                sumDiagText.innerText = `🔴 Prejuízo Estimado (-R$ ${Math.abs(menorLucro).toFixed(2)})`;
+                sumDiagText.style.color = 'var(--red-loss)';
+                sumRoiEl.innerText = `-R$ ${Math.abs(menorLucro).toFixed(2)} (${roiPerc}%)`;
+                sumRoiEl.style.color = 'var(--red-loss)';
+                document.getElementById('chipRoiDisplay').innerText = `-R$ ${Math.abs(menorLucro).toFixed(2)}`;
+                sumFreebetLine.style.display = totalFreebets > 0 ? 'flex' : 'none';
+                if (totalFreebets > 0) {
+                    sumFreebetVal.innerText = `+R$ ${fbLucroGarantido.toFixed(2)} FB não cobriu o prejuízo total`;
+                }
+            } else if (isSurebetMatematica && totalFreebets > 0) {
+                // Surebet pura + Freebet: melhor dos mundos
+                const valRoiTxt = temApostasAtivas ? `+R$ ${menorLucro.toFixed(2)} (${lucroGarantidoPercent}%)` : `${lucroGarantidoPercent}%`;
+                statusBox.className = 'arbitrage-status-banner surebet';
+                statusIcon.innerText = '🟢';
+                statusText.innerText = 'Existe Arbitragem + Extração de Freebet!';
+                statusExtra.innerText = `+${lucroGarantidoPercent}% Odds | 🎁 +R$ ${fbLucroGarantido.toFixed(2)} FB`;
+                sumDiagText.innerText = `🟢 Existe Arbitragem (+${lucroGarantidoPercent}%)`;
+                sumDiagText.style.color = 'var(--green-profit)';
+                sumRoiEl.innerText = valRoiTxt;
+                sumRoiEl.style.color = 'var(--green-profit)';
+                document.getElementById('chipRoiDisplay').innerText = temApostasAtivas ? `+R$ ${menorLucro.toFixed(2)}` : `${lucroGarantidoPercent}%`;
+                sumFreebetLine.style.display = 'flex';
+                sumFreebetVal.innerText = `+R$ ${fbLucroGarantido.toFixed(2)} garantido (conv. ${fbTaxaConversao.toFixed(1)}%)`;
+
+            } else if (isSurebetMatematica) {
+                // Surebet pura sem freebet
+                const valRoiTxt = temApostasAtivas ? `+R$ ${menorLucro.toFixed(2)} (${lucroGarantidoPercent}%)` : `${lucroGarantidoPercent}%`;
+                statusBox.className = 'arbitrage-status-banner surebet';
+                statusIcon.innerText = '🟢';
+                statusText.innerText = 'Existe Arbitragem (Surebet Detectada)';
+                statusExtra.innerText = `+${lucroGarantidoPercent}% Lucro Garantido`;
+                sumDiagText.innerText = `🟢 Existe Arbitragem (+${lucroGarantidoPercent}%)`;
+                sumDiagText.style.color = 'var(--green-profit)';
+                sumRoiEl.innerText = valRoiTxt;
+                sumRoiEl.style.color = 'var(--green-profit)';
+                document.getElementById('chipRoiDisplay').innerText = temApostasAtivas ? `+R$ ${menorLucro.toFixed(2)}` : `${lucroGarantidoPercent}%`;
+                sumFreebetLine.style.display = 'none';
+
+            } else if (isFBExtractionLucrativa) {
+                // SEM surebet pura, MAS a extração da freebet gera lucro garantido
+                statusBox.className = 'arbitrage-status-banner surebet';
+                statusIcon.innerText = '🟢';
+                statusText.innerText = 'Extração de Freebet com Lucro Garantido!';
+                statusExtra.innerText = `+R$ ${fbLucroGarantido.toFixed(2)} Garantido (conv. ${fbTaxaConversao.toFixed(1)}%)`;
+                sumDiagText.innerText = `🟢 Extração Lucrativa (+R$ ${fbLucroGarantido.toFixed(2)})`;
+                sumDiagText.style.color = 'var(--green-profit)';
+                sumRoiEl.innerText = `+R$ ${fbLucroGarantido.toFixed(2)} (${fbTaxaConversao.toFixed(1)}% conv.)`;
+                sumRoiEl.style.color = 'var(--green-profit)';
+                document.getElementById('chipRoiDisplay').innerText = `+R$ ${fbLucroGarantido.toFixed(2)}`;
+                sumFreebetLine.style.display = 'flex';
+                sumFreebetVal.innerText = `+R$ ${fbLucroGarantido.toFixed(2)} garantido (conv. ${fbTaxaConversao.toFixed(1)}%) | Cobertura: R$ ${fbInvestimentoCobertura.toFixed(2)}`;
+
+            } else {
+                // Sem surebet e sem extração lucrativa de freebet
+                const temFB = totalFreebets > 0;
+                statusBox.className = temFB ? 'arbitrage-status-banner freebet' : 'arbitrage-status-banner no-surebet';
+                statusIcon.innerText = temFB ? '🟠' : '🔴';
+                statusText.innerText = temFB
+                    ? 'Sem Arbitragem | Extração de Freebet Negativa'
+                    : 'Não Existe Arbitragem';
+                statusExtra.innerText = temFB
+                    ? `Margem: ${margemCasaPercent}% | Freebet não cobre as coberturas`
+                    : `Margem da Casa: ${margemCasaPercent}%`;
+                sumDiagText.innerText = `🔴 Não Existe Arbitragem (Margem ${margemCasaPercent}%)`;
+                sumDiagText.style.color = 'var(--red-loss)';
+                sumRoiEl.innerText = `-${margemCasaPercent}% (Margem)`;
+                sumRoiEl.style.color = 'var(--red-loss)';
+                document.getElementById('chipRoiDisplay').innerText = `-${margemCasaPercent}%`;
+                sumFreebetLine.style.display = 'none';
+            }
+
+            // Atualizar Totais
+            const sumTotalInvestEl = document.getElementById('sumTotalInvest');
+            const sumTotalFreebetLine = document.getElementById('sumTotalFreebetLine');
+            const sumTotalFreebetVal = document.getElementById('sumTotalFreebetVal');
+            const sumTotalCombinedLine = document.getElementById('sumTotalCombinedLine');
+            const sumTotalCombinedVal = document.getElementById('sumTotalCombinedVal');
+
+            if (sumTotalInvestEl) {
+                sumTotalInvestEl.innerText = totalInvestidoDinheiro > 0 ? `R$ ${totalInvestidoDinheiro.toFixed(2)}` : 'R$ 0.00 (Opcional)';
+            }
+
+            if (totalFreebets > 0) {
+                if (sumTotalFreebetLine) {
+                    sumTotalFreebetLine.style.display = 'flex';
+                    sumTotalFreebetVal.innerText = `R$ ${totalFreebets.toFixed(2)}`;
+                }
+                if (sumTotalCombinedLine) {
+                    sumTotalCombinedLine.style.display = 'flex';
+                    const totalCombined = totalInvestidoDinheiro + totalFreebets;
+                    sumTotalCombinedVal.innerText = `R$ ${totalCombined.toFixed(2)}`;
+                }
+                const chipTotalDisplay = document.getElementById('chipTotalDisplay');
+                if (chipTotalDisplay) {
+                    chipTotalDisplay.innerText = totalInvestidoDinheiro > 0 
+                        ? `R$ ${totalInvestidoDinheiro.toFixed(2)} (+ R$ ${totalFreebets.toFixed(2)} FB)` 
+                        : `R$ ${totalFreebets.toFixed(2)} FB`;
+                }
+            } else {
+                if (sumTotalFreebetLine) sumTotalFreebetLine.style.display = 'none';
+                if (sumTotalCombinedLine) sumTotalCombinedLine.style.display = 'none';
+                const chipTotalDisplay = document.getElementById('chipTotalDisplay');
+                if (chipTotalDisplay) {
+                    chipTotalDisplay.innerText = totalInvestidoDinheiro > 0 ? `R$ ${totalInvestidoDinheiro.toFixed(2)}` : `R$ 0.00`;
+                }
+            }
+        }
+
+        function abrirModalTotal() {
+            let totalAtual = rowsData.reduce((acc, r) => acc + (r.valor || 0), 0);
+            document.getElementById('modalTotalInput').value = totalAtual > 0 ? totalAtual.toFixed(2) : '';
+            document.getElementById('modalTotal').classList.add('open');
+            setTimeout(() => document.getElementById('modalTotalInput').focus(), 100);
+        }
+
+        function fecharModalTotal(e) {
+            if (e && e.target !== e.currentTarget && !e.target.classList.contains('btn-cancel')) return;
+            document.getElementById('modalTotal').classList.remove('open');
+        }
+
+        function limparTotalEFechar() {
+            rowsData.forEach(r => {
+                r.valor = 0;
+                r.hasWarning = false;
+            });
+            fecharModalTotal();
+            renderRows();
+            showToast('🧹 Aportes limpos! Calculando puramente por Odds.');
+        }
+
+        function confirmarAporteTotal() {
+            const raw = document.getElementById('modalTotalInput').value.trim();
+            const total = parseFloat(raw);
+
+            if (raw === '' || isNaN(total) || total <= 0) {
+                limparTotalEFechar();
+                return;
+            }
+
+            let somaInversas = 0;
+            let somaKFB = 0;
+
+            rowsData.forEach(r => {
+                const oddEf = getOddEfetiva(r);
+                if (oddEf >= 1) {
+                    somaInversas += (1 / oddEf);
+                    const ganhoFB = getGanhoFreebetRow(r, oddEf);
+                    somaKFB += (ganhoFB / oddEf);
+                }
+            });
+
+            if (somaInversas > 0) {
+                // Retorno total alvo igualitário considerando o aporte total em dinheiro próprio + os ganhos de freebet
+                const retornoAlvo = (total + somaKFB) / somaInversas;
+
+                rowsData.forEach(r => {
+                    const oddEf = getOddEfetiva(r);
+                    if (oddEf >= 1) {
+                        const ganhoFB = getGanhoFreebetRow(r, oddEf);
+                        const stakeNecessaria = Math.max(0, (retornoAlvo - ganhoFB) / oddEf);
+                        r.valor = parseFloat(stakeNecessaria.toFixed(2));
+                        r.hasWarning = true;
+                    } else {
+                        r.valor = 0;
+                    }
+                });
+            }
+
+            fecharModalTotal();
+            renderRows();
+            showToast(`💵 Total de R$ ${total.toFixed(2)} distribuído proporcionalmente!`);
+        }
+
+        function limparCampos() {
+            rowsData.forEach((r, i) => {
+                r.valor = 0;
+                r.comissao = '';
+                r.freebet = '';
+                r.aumento = '';
+                r.hasWarning = false;
+                r.locked = (i === 0);
+            });
+            document.getElementById('eventName').value = '';
+            renderRows();
+            showToast('🧹 Valores, Freebets e ajustes limpos!');
+        }
+
+        function copiarResumo() {
+            const ev = document.getElementById('eventName').value.trim();
+            const totalInvestText = document.getElementById('sumTotalInvest').innerText;
+            const roi = document.getElementById('sumRoi').innerText;
+            const status = document.getElementById('sumDiagText').innerText;
+
+            let totalFreebets = 0;
+            rowsData.forEach(r => {
+                totalFreebets += getRowFreebetValInBRL(r);
+            });
+
+            let txt = `📊 *Bet Tracker — Resumo da Operação*\n`;
+            if (ev) txt += `⚽ *Evento:* ${ev}\n`;
+            txt += `• *Diagnóstico:* ${status}\n`;
+            txt += `• *Valor Investido (Dinheiro Próprio):* ${totalInvestText}\n`;
+            if (totalFreebets > 0) {
+                const totalInvestNum = rowsData.reduce((acc, r) => acc + (r.valor || 0), 0);
+                txt += `• *Total Freebets:* R$ ${totalFreebets.toFixed(2)}\n`;
+                txt += `• *Total Geral Mobilizado (Próprio + FB):* R$ ${(totalInvestNum + totalFreebets).toFixed(2)}\n`;
+            }
+            txt += `• *ROI / Lucro:* ${roi}\n\n`;
+            txt += `📌 *Cotações e Detalhes por Casa:*\n`;
+
+            rowsData.forEach((r, i) => {
+                const res = lastResultados[i];
+                const vProprio = (r.valor && r.valor > 0) ? r.valor : 0;
+                const vFB = getRowFreebetValInBRL(r);
+
+                let valTxt = '';
+                if (vProprio > 0 && vFB > 0) {
+                    valTxt = `R$ ${vProprio.toFixed(2)} (Próprio) + FB R$ ${vFB.toFixed(2)} [Total: R$ ${(vProprio + vFB).toFixed(2)}]`;
+                } else if (vProprio > 0) {
+                    valTxt = `R$ ${vProprio.toFixed(2)}`;
+                } else if (vFB > 0) {
+                    valTxt = `FB R$ ${vFB.toFixed(2)}`;
+                } else {
+                    valTxt = `Opcional`;
+                }
+
+                const comTxt = r.comissao ? ` | Com: ${r.comissao}${r.comissaoMode}` : '';
+                const aumTxt = r.aumento ? ` | Aum: ${r.aumento}${r.aumentoMode}` : '';
+                const retTxt = (res && res.retorno > 0) ? ` ➔ Retorno: R$ ${res.retorno.toFixed(2)}` : '';
+                txt += `• ${r.bookie}: ${valTxt} @ ${r.odd > 0 ? r.odd.toFixed(3) : '-'}${comTxt}${aumTxt} (${r.tipo})${retTxt}\n`;
+            });
+
+            navigator.clipboard.writeText(txt).then(() => {
+                showToast('✅ Resumo copiado para a área de transferência!');
+            }).catch(() => {
+                showToast('❌ Erro ao copiar.');
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function salvarComoImagem() {
+            showToast('📸 Capturando imagem da calculadora...');
+            const container = document.querySelector('.app-container');
+            if (!container || typeof html2canvas === 'undefined') {
+                showToast('❌ Biblioteca de captura indisponível.');
+                return;
+            }
+            html2canvas(container, {
+                backgroundColor: '#0d0e12',
+                scale: 2,
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                const evName = document.getElementById('eventName')?.value.trim();
+                const fileName = evName 
+                    ? `calculadora-${evName.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-')}.png` 
+                    : 'calculadora-arbitragem.png';
+                link.download = fileName;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                showToast('✅ Imagem salva no seu computador!');
+            }).catch(err => {
+                console.error(err);
+                showToast('❌ Erro ao salvar a imagem.');
+            });
+        }
+
+        // Dynamic Typing Effect for Right Card Subtitle
+        const words = ["Profissionais", "Punters", "Traders", "Investidores"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById("typingText");
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+
+            if (isDeleting) {
+                typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 70 : 130;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                speed = 1800; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                speed = 400;
+            }
+
+            setTimeout(typeEffect, speed);
+        }
+
+        // Inicialização
+        renderRows();
+        typeEffect();
+    </script>
 
 </body>
+
 </html>
