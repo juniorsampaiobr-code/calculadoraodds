@@ -1016,51 +1016,213 @@
             color: #000;
         }
 
-        /* Responsive */
-        @media (max-height: 700px), (max-width: 940px) {
+        /* Responsive Base & Layout Otimizado */
+        .mobile-label {
+            display: none;
+        }
+
+        .mobile-only-remove {
+            display: none;
+        }
+
+        .mobile-sticky-summary {
+            display: none;
+        }
+
+        @media (min-width: 769px) {
+            .mobile-card-header,
+            .mobile-grid-3,
+            .mobile-card-footer {
+                display: contents;
+            }
+        }
+
+        @media (max-width: 768px) {
             html, body {
                 height: auto;
                 min-height: 100vh;
+                overflow-x: hidden;
                 overflow-y: auto;
             }
 
             body {
                 align-items: flex-start;
-                padding: 16px 12px;
+                padding: 8px 8px 75px 8px;
             }
 
             .app-container {
                 max-height: none;
+                gap: 8px;
+            }
+
+            .brand-header {
+                padding: 4px 2px;
+            }
+
+            .brand-logo {
+                font-size: 1.15rem;
+            }
+
+            .main-card {
+                padding: 12px 10px;
+                border-radius: 14px;
+            }
+
+            .strategy-switcher {
+                width: 100%;
+                gap: 6px;
+            }
+
+            .strategy-btn {
+                flex: 1;
+                text-align: center;
+                padding: 7px 8px;
+                font-size: 0.76rem;
+            }
+
+            .top-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding: 8px 10px;
+                border-radius: 14px;
+            }
+
+            .event-input-wrapper {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .toolbar-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .total-chip {
+                font-size: 0.78rem;
+                padding: 4px 6px;
+            }
+
+            .row-header {
+                display: none !important;
             }
 
             .rows-container {
                 max-height: none;
+                overflow-y: visible;
+                gap: 10px;
+                padding-right: 0;
             }
 
-            .row-header {
+            /* Mobile Bet Card */
+            .bet-row {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                background: var(--card-sub-bg);
+                border: 1px solid var(--card-border);
+                border-radius: 14px;
+                padding: 12px;
+                margin-bottom: 2px;
+            }
+
+            .bet-row.locked {
+                border: 1px solid var(--gold-border);
+                border-left: 4px solid var(--gold-primary);
+            }
+
+            .mobile-card-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+                padding-bottom: 8px;
+            }
+
+            .mobile-grid-3 {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 8px;
+                align-items: start;
+            }
+
+            .mobile-card-footer {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-top: 8px;
+                border-top: 1px solid rgba(255, 255, 255, 0.07);
+            }
+
+            .mobile-label {
+                display: block;
+                font-size: 0.65rem;
+                font-weight: 700;
+                color: var(--text-muted);
+                margin-bottom: 4px;
+                text-transform: uppercase;
+                letter-spacing: 0.03em;
+            }
+
+            .mobile-only-remove {
+                display: inline-flex;
+            }
+
+            .desktop-only-remove {
                 display: none;
             }
 
-            .bet-row {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-            }
-
-            .col-bookie {
-                grid-column: span 2;
-            }
-
             .col-outcome {
-                grid-column: span 2;
-                align-items: flex-start;
+                align-items: flex-end;
             }
 
             .outcome-pill-wrapper {
-                justify-content: flex-start;
+                justify-content: flex-end;
             }
 
             .bottom-grid {
                 grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .summary-card,
+            .action-info-card {
+                padding: 12px;
+                border-radius: 14px;
+            }
+
+            .summary-table {
+                font-size: 0.72rem;
+            }
+
+            .summary-table th,
+            .summary-table td {
+                padding: 5px 2px;
+            }
+
+            .toast {
+                bottom: 75px;
+                width: 90%;
+                text-align: center;
+            }
+
+            /* Sticky Bottom Footer no Mobile */
+            .mobile-sticky-summary {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 990;
+                background: rgba(21, 22, 28, 0.96);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-top: 1px solid var(--gold-border);
+                padding: 10px 16px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                box-shadow: 0 -6px 24px rgba(0,0,0,0.6);
             }
         }
     </style>
@@ -1249,6 +1411,17 @@
         </div>
     </div>
 
+    <!-- Sticky Bottom Footer no Mobile -->
+    <div class="mobile-sticky-summary" id="mobileStickySummary">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+            <span id="mobileStickyDiag" style="font-size: 0.75rem; font-weight: 800; color: var(--green-profit);">🟢 Surebet (+6.66%)</span>
+            <span id="mobileStickyTotal" style="font-size: 0.7rem; color: var(--text-muted);">Investido: R$ 129.69</span>
+        </div>
+        <button type="button" class="planilhar-btn" onclick="copiarResumo()" style="padding: 6px 12px; font-size: 0.78rem;">
+            📋 Planilhar
+        </button>
+    </div>
+
     <div id="toast" class="toast">Resumo copiado para a área de transferência!</div>
 
     <script>
@@ -1275,9 +1448,9 @@
                 const valorFormatado = (row.valor && row.valor > 0) ? row.valor.toFixed(2) : '';
 
                 rowEl.innerHTML = `
-                <!-- Coluna Casa de Aposta (Sem ícone de presente) -->
-                <div class="col-bookie">
-                    <div class="bookie-input-wrap">
+                <!-- Coluna Casa de Aposta + Ações Micro -->
+                <div class="mobile-card-header col-bookie">
+                    <div class="bookie-input-wrap" style="flex: 1;">
                         <input type="text" value="${row.bookie}" placeholder="Ex: Bet365" oninput="updateRowField(${row.id}, 'bookie', this.value)">
                         <span class="link-icon" onclick="openBookieLink('${row.bookie}')" title="Link da Casa">🔗</span>
                     </div>
@@ -1285,70 +1458,83 @@
                         <button type="button" class="micro-action-btn ${row.locked ? 'active' : ''}" onclick="toggleLockRow(${row.id})" title="${row.locked ? 'Casa Fixada (Base de Cálculo)' : 'Fixar esta Casa e Balancear as Outras'}">🔒</button>
                         <button type="button" class="micro-action-btn" onclick="arredondarLinha(${row.id})" title="Arredondar Aposta">✂️</button>
                         <button type="button" class="micro-action-btn" onclick="definirParceiro(${row.id})" title="Identificação de Conta / Parceria">👤</button>
+                        ${rowsData.length > 2 ? `<button type="button" class="btn-remove-row mobile-only-remove" onclick="removerLinha(${row.id})" title="Remover via">⛔</button>` : ''}
                     </div>
                 </div>
 
-                <!-- Coluna Valor (Dinheiro Próprio - Opcional) -->
-                <div class="col-valor">
-                    <div class="valor-input-box">
-                        <input type="number" id="inputValor-${row.id}" class="pill-input ${row.locked && row.valor > 0 ? 'highlight-gold' : ''}" value="${valorFormatado}" placeholder="Opcional" step="0.01" min="0" oninput="onValorInput(${row.id}, this.value)">
-                        <span id="warnIcon-${row.id}" class="valor-warning-icon ${row.hasWarning ? 'show' : ''}" title="Aposta ajustada proporcionalmente">⚠️</span>
+                <!-- Entradas Principais (Valor, ODD, Tipo) -->
+                <div class="mobile-grid-3">
+                    <!-- Coluna Valor (Dinheiro Próprio - Opcional) -->
+                    <div class="col-valor">
+                        <span class="mobile-label">Valor (R$)</span>
+                        <div class="valor-input-box">
+                            <input type="number" inputmode="decimal" id="inputValor-${row.id}" class="pill-input ${row.locked && row.valor > 0 ? 'highlight-gold' : ''}" value="${valorFormatado}" placeholder="Opcional" step="0.01" min="0" oninput="onValorInput(${row.id}, this.value)">
+                            <span id="warnIcon-${row.id}" class="valor-warning-icon ${row.hasWarning ? 'show' : ''}" title="Aposta ajustada proporcionalmente">⚠️</span>
+                        </div>
+                    </div>
+
+                    <!-- Coluna ODD -->
+                    <div class="col-odd">
+                        <span class="mobile-label">ODD</span>
+                        <input type="number" inputmode="decimal" id="inputOdd-${row.id}" class="pill-input" value="${row.odd > 0 ? row.odd : ''}" placeholder="1.00" step="0.001" min="1" oninput="onOddInput(${row.id}, this.value)">
+                        <div class="odd-subtext" id="oddSub-${row.id}">${row.odd > 0 ? row.odd.toFixed(3) : '-'}</div>
+                    </div>
+
+                    <!-- Coluna Tipo (Back/Lay) -->
+                    <div class="col-tipo">
+                        <span class="mobile-label">Tipo</span>
+                        <span class="badge-type" onclick="toggleTipoAposta(${row.id})" title="Clique para alternar Back/Lay">${row.tipo}</span>
                     </div>
                 </div>
 
-                <!-- Coluna ODD -->
-                <div class="col-odd">
-                    <input type="number" id="inputOdd-${row.id}" class="pill-input" value="${row.odd > 0 ? row.odd : ''}" placeholder="1.00" step="0.001" min="1" oninput="onOddInput(${row.id}, this.value)">
-                    <div class="odd-subtext" id="oddSub-${row.id}">${row.odd > 0 ? row.odd.toFixed(3) : '-'}</div>
-                </div>
+                <!-- Ajustes Avançados (Comissão, Freebet, Aumento) -->
+                <div class="mobile-grid-3">
+                    <!-- Coluna Comissão com seletor % e $ -->
+                    <div class="col-mini">
+                        <span class="mobile-label">Comissão</span>
+                        <div class="mini-input-wrap">
+                            <input type="number" inputmode="decimal" id="comInput-${row.id}" class="pill-input" placeholder="${row.comissaoMode === 'R$' ? 'R$' : '%'}" value="${row.comissao}" step="any" min="0" oninput="updateRowField(${row.id}, 'comissao', this.value)">
+                        </div>
+                        <div class="mini-toggle-group">
+                            <button type="button" class="mini-tgl ${row.comissaoMode === '%' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'comissaoMode', '%')" title="Comissão em porcentagem (%)">%</button>
+                            <button type="button" class="mini-tgl ${row.comissaoMode === 'R$' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'comissaoMode', 'R$')" title="Comissão em valor fixo ($)">$</button>
+                        </div>
+                    </div>
 
-                <!-- Coluna Tipo (Back/Lay) -->
-                <div>
-                    <span class="badge-type" onclick="toggleTipoAposta(${row.id})" title="Clique para alternar Back/Lay">${row.tipo}</span>
-                </div>
+                    <!-- Coluna Freebets com seletor $ e % -->
+                    <div class="col-mini">
+                        <span class="mobile-label">Freebet</span>
+                        <div class="mini-input-wrap">
+                            <input type="number" inputmode="decimal" id="fbInput-${row.id}" class="pill-input ${row.freebet > 0 ? 'fb-highlight' : ''}" placeholder="${row.freebetMode === '%' ? '%' : 'R$'}" value="${row.freebet}" step="any" min="0" oninput="updateRowField(${row.id}, 'freebet', this.value)" title="Valor da Freebet">
+                        </div>
+                        <div class="mini-toggle-group">
+                            <button type="button" class="mini-tgl ${row.freebetMode === 'R$' ? 'active-fb' : ''}" onclick="setFieldMode(${row.id}, 'freebetMode', 'R$')" title="Freebet em valor fixo ($)">$</button>
+                            <button type="button" class="mini-tgl ${row.freebetMode === '%' ? 'active-fb' : ''}" onclick="setFieldMode(${row.id}, 'freebetMode', '%')" title="Freebet em porcentagem da aposta (%)">%</button>
+                        </div>
+                    </div>
 
-                <!-- Coluna Comissão com seletor % e $ -->
-                <div class="col-mini">
-                    <div class="mini-input-wrap">
-                        <input type="number" id="comInput-${row.id}" class="pill-input" placeholder="${row.comissaoMode === 'R$' ? 'R$' : '%'}" value="${row.comissao}" step="any" min="0" oninput="updateRowField(${row.id}, 'comissao', this.value)">
-                    </div>
-                    <div class="mini-toggle-group">
-                        <button type="button" class="mini-tgl ${row.comissaoMode === '%' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'comissaoMode', '%')" title="Comissão em porcentagem (%)">%</button>
-                        <button type="button" class="mini-tgl ${row.comissaoMode === 'R$' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'comissaoMode', 'R$')" title="Comissão em valor fixo ($)">$</button>
-                    </div>
-                </div>
-
-                <!-- Coluna Freebets (Bônus/Grátis) com seletor $ e % -->
-                <div class="col-mini">
-                    <div class="mini-input-wrap">
-                        <input type="number" id="fbInput-${row.id}" class="pill-input ${row.freebet > 0 ? 'fb-highlight' : ''}" placeholder="${row.freebetMode === '%' ? '%' : 'R$'}" value="${row.freebet}" step="any" min="0" oninput="updateRowField(${row.id}, 'freebet', this.value)" title="Valor da Freebet (Não consome seu dinheiro próprio)">
-                    </div>
-                    <div class="mini-toggle-group">
-                        <button type="button" class="mini-tgl ${row.freebetMode === 'R$' ? 'active-fb' : ''}" onclick="setFieldMode(${row.id}, 'freebetMode', 'R$')" title="Freebet em valor fixo ($)">$</button>
-                        <button type="button" class="mini-tgl ${row.freebetMode === '%' ? 'active-fb' : ''}" onclick="setFieldMode(${row.id}, 'freebetMode', '%')" title="Freebet em porcentagem da aposta (%)">%</button>
-                    </div>
-                </div>
-
-                <!-- Coluna Aumento com seletor % e $ -->
-                <div class="col-mini">
-                    <div class="mini-input-wrap">
-                        <input type="number" id="aumInput-${row.id}" class="pill-input" placeholder="${row.aumentoMode === 'R$' ? 'R$' : '%'}" value="${row.aumento}" step="any" min="0" oninput="updateRowField(${row.id}, 'aumento', this.value)">
-                    </div>
-                    <div class="mini-toggle-group">
-                        <button type="button" class="mini-tgl ${row.aumentoMode === '%' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'aumentoMode', '%')" title="Aumento/Boost em porcentagem (%)">%</button>
-                        <button type="button" class="mini-tgl ${row.aumentoMode === 'R$' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'aumentoMode', 'R$')" title="Aumento/Boost em valor fixo ($)">$</button>
+                    <!-- Coluna Aumento com seletor % e $ -->
+                    <div class="col-mini">
+                        <span class="mobile-label">Aumento</span>
+                        <div class="mini-input-wrap">
+                            <input type="number" inputmode="decimal" id="aumInput-${row.id}" class="pill-input" placeholder="${row.aumentoMode === 'R$' ? 'R$' : '%'}" value="${row.aumento}" step="any" min="0" oninput="updateRowField(${row.id}, 'aumento', this.value)">
+                        </div>
+                        <div class="mini-toggle-group">
+                            <button type="button" class="mini-tgl ${row.aumentoMode === '%' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'aumentoMode', '%')" title="Aumento/Boost em porcentagem (%)">%</button>
+                            <button type="button" class="mini-tgl ${row.aumentoMode === 'R$' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'aumentoMode', 'R$')" title="Aumento/Boost em valor fixo ($)">$</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Coluna Resultado / Stake / Delete -->
-                <div class="col-outcome">
+                <div class="mobile-card-footer col-outcome">
+                    <div class="outcome-subtext-line">
+                        <span id="stakeSub-${row.id}">Stake: ${(row.valor && row.valor > 0) ? row.valor.toFixed(2) : 'Opcional'}</span>
+                        ${rowsData.length > 2 ? `<button type="button" class="btn-remove-row desktop-only-remove" onclick="removerLinha(${row.id})" title="Remover via">⛔</button>` : ''}
+                    </div>
                     <div class="outcome-pill-wrapper">
                         ${isFirst ? '<button type="button" class="edit-outcome-btn" onclick="abrirModalTotal()" title="Editar aporte">✏️</button>' : ''}
                         <div class="profit-pill" id="pillResult-${row.id}">-</div>
-                    </div>
-                    <div class="outcome-subtext-line">
-                        <span id="stakeSub-${row.id}">Stake: ${(row.valor && row.valor > 0) ? row.valor.toFixed(2) : 'Opcional'}</span>
-                        ${rowsData.length > 2 ? `<button type="button" class="btn-remove-row" onclick="removerLinha(${row.id})" title="Remover via">⛔</button>` : ''}
                     </div>
                 </div>
             `;
@@ -1924,6 +2110,17 @@
                 if (chipTotalDisplay) {
                     chipTotalDisplay.innerText = totalInvestidoDinheiro > 0 ? `R$ ${totalInvestidoDinheiro.toFixed(2)}` : `R$ 0.00`;
                 }
+            }
+
+            // Atualizar Mobile Sticky Footer
+            const mobileStickyDiag = document.getElementById('mobileStickyDiag');
+            const mobileStickyTotal = document.getElementById('mobileStickyTotal');
+            if (mobileStickyDiag && statusText && statusExtra) {
+                mobileStickyDiag.innerText = `${statusIcon.innerText} ${statusExtra.innerText}`;
+                mobileStickyDiag.style.color = (statusBox && statusBox.classList.contains('surebet')) ? 'var(--green-profit)' : (statusBox && statusBox.classList.contains('no-surebet')) ? 'var(--red-loss)' : 'var(--gold-primary)';
+            }
+            if (mobileStickyTotal) {
+                mobileStickyTotal.innerText = `Investido: ${totalInvestidoDinheiro > 0 ? 'R$ ' + totalInvestidoDinheiro.toFixed(2) : 'R$ 0.00'}${totalFreebets > 0 ? ' (+ FB R$ ' + totalFreebets.toFixed(2) + ')' : ''}`;
             }
         }
 
