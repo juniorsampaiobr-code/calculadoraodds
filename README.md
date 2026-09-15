@@ -6,13 +6,17 @@ Uma aplicação web moderna, responsiva e completa para cálculo de arbitragem e
 
 ## 🚀 Funcionalidades
 
-- **Arbitragem 2 Vias**: Cálculo balanceado e otimização de stakes para mercados binários (Ex: Ambos Marcam, Mais/Menos Gols, Moneyline de Basquete/Tênis).
-- **Arbitragem 3 Vias**: Cálculo de cobertura completa para mercados 1X2 (Casa / Empate / Fora).
+- **Estratégia de Matched Betting**:
+  - Cálculo de **Back / Lay** (Bolsas como Betfair Exchange) com cálculo automático de **Stake de Lay**, **Comissão** e **Responsabilidade (Liability)**.
+  - Modos de **Aposta de Qualificação (Qualifying Bet)** com perda mínima calculada e retenção.
+  - Modos de **Extração de Freebet (SNR - Stake Not Returned e SR - Stake Returned)** com lucro garantido e taxa de conversão.
+- **Estratégia de Arbitragem (Surebets)**:
+  - **Arbitragem 2 Vias**: Cálculo balanceado para mercados binários (Ambos Marcam, Over/Under, etc.).
+  - **Arbitragem 3 Vias**: Cálculo de cobertura completa para mercados 1X2 (Casa / Empate / Fora).
 - **Aporte Flexível (Junto ou Separado)**:
   - **Modo Total (Junto)**: Digite o investimento total e as stakes ideais são calculadas automaticamente.
   - **Modo Por Casa (Separado)**: Digite valores individuais em cada casa, visualize o lucro líquido de cada cenário e utilize o assistente de equalização ("Fixar Casa").
-- **Extração de Freebet (SNR / SR)**: Maximização de conversão e cálculo de garantia para apostas grátis com e sem aporte próprio.
-- **Detecção Automática de Lucro**: Identificação visual de oportunidades lucrativas, margens da casa e retorno garantido.
+- **Detecção Automática de Lucro & Diagnóstico**: Identificação visual instantânea de oportunidades lucrativas, retenção de bônus e margens da casa.
 - **Interface Moderna e Responsiva**: Design escuro (dark mode), intuitivo e adaptável para desktop e mobile.
 
 ## 🛠️ Tecnologias

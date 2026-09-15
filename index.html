@@ -139,6 +139,248 @@
             box-shadow: 0 0 12px rgba(250, 204, 21, 0.15);
         }
 
+        /* Matched Betting Stages Nav & Sub-Header */
+        .mb-stages-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .mb-stage-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: var(--pill-radius);
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .mb-stage-btn:hover {
+            border-color: rgba(250, 204, 21, 0.4);
+            color: var(--text-main);
+        }
+
+        .mb-stage-btn.active {
+            background: rgba(250, 204, 21, 0.08);
+            border-color: var(--gold-primary);
+            color: #ffffff;
+            box-shadow: 0 0 14px rgba(250, 204, 21, 0.15);
+        }
+
+        .mb-stage-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--card-border);
+            color: var(--text-main);
+            font-size: 0.68rem;
+            font-weight: 800;
+        }
+
+        .mb-stage-btn.active .mb-stage-badge {
+            background: var(--gold-primary);
+            color: #000000;
+        }
+
+        .mb-stage-tag {
+            font-size: 0.68rem;
+            padding: 2px 7px;
+            border-radius: var(--pill-radius);
+            font-weight: 800;
+        }
+
+        .mb-stage-tag.loss {
+            background: rgba(239, 68, 68, 0.18);
+            color: var(--red-loss);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .mb-stage-tag.profit {
+            background: rgba(34, 197, 94, 0.18);
+            color: var(--green-profit);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .mb-stage-tag.neutral {
+            background: rgba(250, 204, 21, 0.15);
+            color: var(--gold-primary);
+        }
+
+        .mb-stage-connector {
+            color: var(--text-submuted);
+            font-size: 0.8rem;
+            user-select: none;
+        }
+
+        /* Stage Notice & Bonus Input */
+        .mb-stage-notice {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: rgba(25, 27, 34, 0.85);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 6px 12px;
+            margin-bottom: 8px;
+            font-size: 0.76rem;
+            flex-wrap: wrap;
+        }
+
+        .mb-notice-content {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .mb-notice-content strong {
+            color: var(--gold-primary);
+        }
+
+        .mb-bonus-link-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.74rem;
+            color: var(--purple-fb);
+            font-weight: 700;
+            flex-wrap: wrap;
+        }
+
+        .mb-bonus-link-wrap input {
+            width: 80px;
+            background: var(--input-bg);
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.78rem;
+            border-radius: var(--pill-radius);
+            padding: 3px 8px;
+            text-align: center;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .mb-bonus-link-wrap input:focus {
+            border-color: var(--purple-fb);
+            box-shadow: 0 0 8px rgba(192, 132, 252, 0.3);
+        }
+
+        .mb-bookie-select {
+            background: var(--input-bg);
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.76rem;
+            border-radius: var(--pill-radius);
+            padding: 3px 10px 3px 8px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            max-width: 56px;
+        }
+
+        .mb-bookie-select:focus,
+        .mb-bookie-select:hover {
+            border-color: var(--purple-fb);
+            box-shadow: 0 0 8px rgba(192, 132, 252, 0.3);
+        }
+
+        .mb-bookie-select option {
+            background: var(--card-bg);
+            color: var(--text-main);
+        }
+
+        /* Consolidated Matched Betting Summary Box */
+        .mb-consolidated-box {
+            background: linear-gradient(135deg, rgba(21, 22, 28, 0.95), rgba(30, 32, 44, 0.95));
+            border: 1px solid var(--gold-border);
+            border-radius: 14px;
+            padding: 8px 12px;
+            margin-top: 8px;
+        }
+
+        .mb-consolidated-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 4px;
+        }
+
+        .mb-consolidated-total {
+            color: var(--green-profit);
+            font-size: 0.88rem;
+            font-weight: 900;
+        }
+
+        .mb-consolidated-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.2fr;
+            gap: 6px;
+        }
+
+        .mb-step-box {
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 5px 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .mb-step-box.highlight {
+            border-color: rgba(34, 197, 94, 0.4);
+            background: rgba(34, 197, 94, 0.08);
+        }
+
+        .mb-step-box .step-lbl {
+            font-size: 0.65rem;
+            color: var(--text-submuted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .mb-step-box .step-val {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--red-loss);
+        }
+
+        .mb-step-box .step-val.profit {
+            color: var(--purple-fb);
+        }
+
+        .mb-step-box .step-val.final {
+            color: var(--green-profit);
+            font-size: 0.88rem;
+        }
+
+        .mb-step-box .step-sub {
+            font-size: 0.62rem;
+            color: var(--text-muted);
+        }
+
         /* Quick Search / Total Toolbar */
         .top-toolbar {
             display: flex;
@@ -233,6 +475,91 @@
             transform: scale(1.1);
         }
 
+        /* ── Clear Dropdown ────────────────────────────────── */
+        .clear-dropdown-wrap {
+            position: relative;
+            display: inline-flex;
+        }
+
+        .clear-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            background: var(--card-bg, #1e1e2e);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+            z-index: 9999;
+            min-width: 230px;
+            overflow: hidden;
+            animation: dropdownFadeIn 0.18s ease;
+        }
+
+        @keyframes dropdownFadeIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .clear-dropdown-menu.open {
+            display: block;
+        }
+
+        .clear-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 16px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-main, #e0e0e0);
+            transition: background 0.15s;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+        }
+
+        .clear-dropdown-item:hover {
+            background: rgba(255,255,255,0.07);
+        }
+
+        .clear-dropdown-item .cdi-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .clear-dropdown-item .cdi-label {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .clear-dropdown-item .cdi-title {
+            font-weight: 600;
+            font-size: 0.83rem;
+        }
+
+        .clear-dropdown-item .cdi-sub {
+            font-size: 0.73rem;
+            color: var(--text-muted, #888);
+        }
+
+        .clear-dropdown-item.danger .cdi-title {
+            color: #ff6b6b;
+        }
+
+        .clear-dropdown-item.soft .cdi-title {
+            color: #7ecfff;
+        }
+
+        .clear-dropdown-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+            margin: 0;
+        }
+
         /* Rows Table Layout */
         .rows-container {
             display: flex;
@@ -303,6 +630,24 @@
             position: relative;
             display: flex;
             align-items: center;
+            gap: 6px;
+        }
+
+        .bookie-number-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 28px;
+            padding: 0 4px;
+            background: rgba(250, 204, 21, 0.12);
+            border: 1px solid rgba(250, 204, 21, 0.35);
+            color: var(--gold-primary);
+            font-size: 0.75rem;
+            font-weight: 800;
+            border-radius: var(--pill-radius);
+            flex-shrink: 0;
+            user-select: none;
         }
 
         .bookie-input-wrap input {
@@ -310,7 +655,7 @@
             background: var(--input-bg);
             border: 1px solid var(--input-border);
             border-radius: var(--pill-radius);
-            padding: 7px 32px 7px 14px;
+            padding: 7px 32px 7px 12px;
             color: var(--text-main);
             font-size: 0.85rem;
             font-weight: 600;
@@ -457,16 +802,29 @@
             padding: 7px 8px;
             border-radius: var(--pill-radius);
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
             text-align: center;
             user-select: none;
             cursor: pointer;
             transition: all 0.2s;
+            letter-spacing: 0.02em;
         }
 
         .badge-type:hover {
             border-color: var(--gold-primary);
             color: var(--text-main);
+        }
+
+        .badge-type.back {
+            border-color: rgba(56, 189, 248, 0.35);
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        .badge-type.lay {
+            border-color: rgba(244, 63, 94, 0.45);
+            color: #fb7185;
+            background: rgba(244, 63, 94, 0.12);
         }
 
         /* Mini Adjustment Inputs (Comissão, Freebets, Aumento) */
@@ -1242,8 +1600,39 @@
             <div class="strategy-switcher">
                 <button type="button" id="btnStratArbitragem" class="strategy-btn active"
                     onclick="setEstrategia('arbitragem')">Arbitragem</button>
-                <button type="button" id="btnStratProtecao" class="strategy-btn"
-                    onclick="setEstrategia('protecao')">Proteção de Duplo</button>
+                <button type="button" id="btnStratMatchedBetting" class="strategy-btn"
+                    onclick="setEstrategia('matched-betting')">Matched Betting</button>
+            </div>
+
+            <!-- Matched Betting Stages Nav (Visível apenas em Matched Betting) -->
+            <div id="mbStagesNav" class="mb-stages-nav" style="display: none;">
+                <button type="button" id="btnMbEtapa1" class="mb-stage-btn active" onclick="setMbEtapa(1)">
+                    <span class="mb-stage-badge">1</span>
+                    <span class="mb-stage-title">Etapa 1: Qualificação (Dinheiro Real)</span>
+                    <span class="mb-stage-tag loss" id="mbEtapa1MiniTag">-R$ 0.00</span>
+                </button>
+                <div class="mb-stage-connector">➔</div>
+                <button type="button" id="btnMbEtapa2" class="mb-stage-btn" onclick="setMbEtapa(2)">
+                    <span class="mb-stage-badge">2</span>
+                    <span class="mb-stage-title">Etapa 2: Extração da Freebet</span>
+                    <span class="mb-stage-tag profit" id="mbEtapa2MiniTag">+R$ 0.00</span>
+                </button>
+            </div>
+
+            <!-- Etapa Context Notice Bar -->
+            <div id="mbStageNotice" class="mb-stage-notice" style="display: none;">
+                <div class="mb-notice-content">
+                    <span id="mbNoticeIcon">💡</span>
+                    <span id="mbNoticeText"><strong>Etapa 1 (Qualificação):</strong> Aposte com dinheiro próprio para liberar a Freebet com a menor perda possível.</span>
+                </div>
+                <div class="mb-bonus-link-wrap" id="mbBonusLinkWrap">
+                    <span>🎁 Freebet Esperada:</span>
+                    <input type="number" id="inputExpectedBonus" value="" step="5" min="1" oninput="onExpectedBonusInput(this.value)" placeholder="R$ 0.00" title="Valor da Freebet que você vai receber após a Etapa 1">
+                    <span style="color: var(--text-muted); font-size: 0.74rem; font-weight: 600;">na casa:</span>
+                    <select id="selectExpectedBonusBookie" class="mb-bookie-select" onchange="onExpectedBonusBookieChange(this.value)" title="Selecione de qual casa de apostas será a Freebet">
+                    </select>
+                    <span id="mbBonusPrevisionBadge" style="display:none; background: rgba(34, 197, 94, 0.15); color: var(--green-profit); border: 1px solid rgba(34, 197, 94, 0.35); padding: 2px 8px; border-radius: var(--pill-radius); font-size: 0.72rem; font-weight: 800; white-space: nowrap;"></span>
+                </div>
             </div>
 
             <!-- Top Search / Total Toolbar -->
@@ -1256,16 +1645,36 @@
                     <div class="total-chip" onclick="abrirModalTotal()"
                         title="Clique para definir o aporte total conjunto (Opcional)">
                         <span class="chip-pencil">✏️</span>
-                        <span class="chip-value" id="chipTotalDisplay">R$ 129.69</span>
+                        <span class="chip-value" id="chipTotalDisplay">R$ 0.00</span>
                         <span style="color: var(--text-submuted); margin: 0 2px;">|</span>
-                        <span class="chip-roi" id="chipRoiDisplay">6.66%</span>
+                        <span class="chip-roi" id="chipRoiDisplay">0.00%</span>
                     </div>
                     <button type="button" class="icon-btn" onclick="abrirModalTotal()"
                         title="Definir Aporte Total Conjunto">⚙️</button>
                     <button type="button" class="icon-btn" onclick="salvarComoImagem()"
                         title="Salvar Imagem da Calculadora">💾</button>
-                    <button type="button" class="icon-btn" onclick="limparCampos()"
-                        title="Limpar Valores / Resetar">🗑️</button>
+                    <div class="clear-dropdown-wrap" id="clearDropdownWrap">
+                        <button type="button" class="icon-btn" id="btnClearDropdown"
+                            onclick="toggleClearDropdown(event)"
+                            title="Limpar / Resetar">🗑️</button>
+                        <div class="clear-dropdown-menu" id="clearDropdownMenu">
+                            <button class="clear-dropdown-item danger" onclick="limparCampos(); fecharClearDropdown()">
+                                <span class="cdi-icon">🗑️</span>
+                                <span class="cdi-label">
+                                    <span class="cdi-title">Limpar Tudo</span>
+                                    <span class="cdi-sub">Remove casas, odds, valores e freebet</span>
+                                </span>
+                            </button>
+                            <div class="clear-dropdown-divider"></div>
+                            <button class="clear-dropdown-item soft" onclick="limparSomenteValores(); fecharClearDropdown()">
+                                <span class="cdi-icon">🔢</span>
+                                <span class="cdi-label">
+                                    <span class="cdi-title">Limpar Valores e Freebet</span>
+                                    <span class="cdi-sub">Mantém casas e odds, zera stakes e freebets</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1313,12 +1722,12 @@
                 </div>
 
                 <!-- Upgrade: Diagnóstico Instantâneo de Arbitragem & Freebets -->
-                <div id="arbitrageStatusBox" class="arbitrage-status-banner surebet">
+                <div id="arbitrageStatusBox" class="arbitrage-status-banner neutral">
                     <div class="status-badge-text">
-                        <span id="arbitrageStatusIcon">🟢</span>
-                        <span id="arbitrageStatusText">Existe Arbitragem (Surebet Detectada)</span>
+                        <span id="arbitrageStatusIcon">🟡</span>
+                        <span id="arbitrageStatusText">Insira as Odds de todas as casas</span>
                     </div>
-                    <span id="arbitrageStatusExtra" class="status-extra-pill">+6.66% Lucro Garantido</span>
+                    <span id="arbitrageStatusExtra" class="status-extra-pill">Aguardando Odds</span>
                 </div>
 
                 <table class="summary-table">
@@ -1341,11 +1750,11 @@
 
                 <div class="summary-total-line">
                     <span>Status da Arbitragem:</span>
-                    <span class="val" id="sumDiagText" style="color: var(--green-profit);">🟢 Existe Arbitragem</span>
+                    <span class="val" id="sumDiagText" style="color: var(--text-muted);">🟡 Aguardando Odds Válidas</span>
                 </div>
                 <div class="summary-total-line">
                     <span>Valor Investido (Dinheiro Próprio):</span>
-                    <span class="val" id="sumTotalInvest">R$ 129.69</span>
+                    <span class="val" id="sumTotalInvest">R$ 0.00</span>
                 </div>
                 <div class="summary-total-line" id="sumTotalFreebetLine" style="display:none;">
                     <span>🎁 Total de Freebets:</span>
@@ -1357,12 +1766,36 @@
                 </div>
                 <div class="summary-total-line">
                     <span>ROI / Lucro Estimado:</span>
-                    <span class="val highlight" id="sumRoi">6.66%</span>
+                    <span class="val highlight" id="sumRoi">0.00%</span>
                 </div>
                 <div class="summary-total-line" id="sumFreebetLine" style="display:none;">
-                    <span>🎁 Extração Freebet (Lucro FB):</span>
-                    <span class="val" id="sumFreebetVal" style="color: var(--purple-fb); font-size: 0.88rem;">+R$
-                        0.00</span>
+                    <span id="sumFreebetLabel">🎁 Extração Freebet (Lucro FB):</span>
+                    <span class="val" id="sumFreebetVal" style="color: var(--purple-fb); font-size: 0.88rem;">+R$ 0.00</span>
+                </div>
+
+                <!-- Painel Consolidado de Matched Betting (Etapa 1 + Etapa 2) -->
+                <div id="mbConsolidatedCard" class="mb-consolidated-box" style="display: none;">
+                    <div class="mb-consolidated-header">
+                        <span>🎯 Balanço Geral da Operação</span>
+                        <span class="mb-consolidated-total" id="mbTotalConsolidatedProfit">+R$ 0.00</span>
+                    </div>
+                    <div class="mb-consolidated-grid">
+                        <div class="mb-step-box">
+                            <span class="step-lbl">1️⃣ Qualificação</span>
+                            <span class="step-val" id="mbStep1ResultVal">-R$ 0.00</span>
+                            <span class="step-sub" id="mbStep1ResultSub">Liberando bônus</span>
+                        </div>
+                        <div class="mb-step-box">
+                            <span class="step-lbl">2️⃣ Freebet SNR</span>
+                            <span class="step-val profit" id="mbStep2ResultVal">+R$ 0.00</span>
+                            <span class="step-sub" id="mbStep2ResultSub">Extração bônus</span>
+                        </div>
+                        <div class="mb-step-box highlight">
+                            <span class="step-lbl">🏆 Lucro Final</span>
+                            <span class="step-val final" id="mbStepFinalVal">+R$ 0.00</span>
+                            <span class="step-sub" id="mbStepFinalSub">Lucro Líquido Real</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1418,8 +1851,8 @@
     <!-- Sticky Bottom Footer no Mobile -->
     <div class="mobile-sticky-summary" id="mobileStickySummary">
         <div style="display: flex; flex-direction: column; gap: 2px;">
-            <span id="mobileStickyDiag" style="font-size: 0.75rem; font-weight: 800; color: var(--green-profit);">🟢 Surebet (+6.66%)</span>
-            <span id="mobileStickyTotal" style="font-size: 0.7rem; color: var(--text-muted);">Investido: R$ 129.69</span>
+            <span id="mobileStickyDiag" style="font-size: 0.75rem; font-weight: 800; color: var(--gold-primary);">🟡 Aguardando Odds</span>
+            <span id="mobileStickyTotal" style="font-size: 0.7rem; color: var(--text-muted);">Investido: R$ 0.00</span>
         </div>
         <button type="button" class="planilhar-btn" onclick="copiarResumo()" style="padding: 6px 12px; font-size: 0.78rem;">
             📋 Planilhar
@@ -1429,15 +1862,40 @@
     <div id="toast" class="toast">Resumo copiado para a área de transferência!</div>
 
     <script>
-        // Initial State matching reference screenshot
+        // Initial State
         let rowsData = [
-            { id: 1, bookie: 'Ex: Bet365', valor: 20.00, odd: 6.250, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: true, hasWarning: false },
-            { id: 2, bookie: 'Ex: Bet365', valor: 32.05, odd: 3.900, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: false, hasWarning: true },
-            { id: 3, bookie: 'Ex: Bet365', valor: 77.64, odd: 1.610, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: false, hasWarning: true }
+            { id: 1, bookie: '', valor: 0, odd: 0, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: true, hasWarning: false },
+            { id: 2, bookie: '', valor: 0, odd: 0, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: false, hasWarning: false }
         ];
 
-        let currentStrategy = 'arbitragem'; // 'arbitragem' or 'protecao'
+        let currentStrategy = 'arbitragem'; // 'arbitragem' or 'matched-betting'
         let lastResultados = [];
+
+        // Matched Betting State for Etapa 1 (Qualificação) and Etapa 2 (Extração de Freebet)
+        let mbState = {
+            etapaAtiva: 1,
+            freebetEsperada: 0,
+            freebetBookieIndex: 1,
+            freebetBookie: '',
+            etapa1: {
+                rows: [
+                    { id: 1, bookie: '', valor: 0, odd: 0, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: true, hasWarning: false },
+                    { id: 2, bookie: '', valor: 0, odd: 0, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: false, hasWarning: false }
+                ]
+            },
+            etapa2: {
+                rows: [
+                    { id: 1, bookie: '', valor: 0, odd: 0, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: true, hasWarning: false },
+                    { id: 2, bookie: '', valor: 0, odd: 0, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: false, hasWarning: false }
+                ]
+            }
+        };
+
+        // Arbitrage backup state
+        let arbStateRows = [
+            { id: 1, bookie: '', valor: 0, odd: 0, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: true, hasWarning: false },
+            { id: 2, bookie: '', valor: 0, odd: 0, tipo: 'Back', comissao: '', comissaoMode: '%', freebet: '', freebetMode: 'R$', freebetType: 'SNR', aumento: '', aumentoMode: '%', locked: false, hasWarning: false }
+        ];
 
         function renderRows() {
             const container = document.getElementById('rowsContainer');
@@ -1452,9 +1910,10 @@
                 const valorFormatado = (row.valor && row.valor > 0) ? row.valor.toFixed(2) : '';
 
                 rowEl.innerHTML = `
-                <!-- Coluna Casa de Aposta -->
+                <!-- Coluna Casa de Aposta (Numerada) -->
                 <div class="col-bookie">
                     <div class="bookie-input-wrap">
+                        <span class="bookie-number-badge" title="Casa ${index + 1}">#${index + 1}</span>
                         <input type="text" value="${row.bookie}" placeholder="Ex: Bet365" oninput="updateRowField(${row.id}, 'bookie', this.value)">
                         <span class="link-icon" onclick="openBookieLink('${row.bookie}')" title="Link da Casa">🔗</span>
                     </div>
@@ -1467,16 +1926,16 @@
 
                 <!-- Coluna Valor (Dinheiro Próprio - Opcional) -->
                 <div class="col-valor">
-                    <span class="mobile-label">Valor (R$)</span>
+                    <span class="mobile-label">${row.tipo === 'Lay' ? 'Stake Lay (R$)' : 'Valor (R$)'}</span>
                     <div class="valor-input-box">
-                        <input type="number" inputmode="decimal" id="inputValor-${row.id}" class="pill-input ${row.locked && row.valor > 0 ? 'highlight-gold' : ''}" value="${valorFormatado}" placeholder="Opcional" step="0.01" min="0" oninput="onValorInput(${row.id}, this.value)">
+                        <input type="number" inputmode="decimal" id="inputValor-${row.id}" class="pill-input ${row.locked && row.valor > 0 ? 'highlight-gold' : ''}" value="${valorFormatado}" placeholder="${row.tipo === 'Lay' ? 'Stake Lay' : 'Opcional'}" step="0.01" min="0" oninput="onValorInput(${row.id}, this.value)">
                         <span id="warnIcon-${row.id}" class="valor-warning-icon ${row.hasWarning ? 'show' : ''}" title="Aposta ajustada proporcionalmente">⚠️</span>
                     </div>
                 </div>
 
                 <!-- Coluna ODD -->
                 <div class="col-odd">
-                    <span class="mobile-label">ODD</span>
+                    <span class="mobile-label">${row.tipo === 'Lay' ? 'ODD Lay' : 'ODD'}</span>
                     <input type="number" inputmode="decimal" id="inputOdd-${row.id}" class="pill-input" value="${row.odd > 0 ? row.odd : ''}" placeholder="1.00" step="0.001" min="1" oninput="onOddInput(${row.id}, this.value)">
                     <div class="odd-subtext" id="oddSub-${row.id}">${row.odd > 0 ? row.odd.toFixed(3) : '-'}</div>
                 </div>
@@ -1484,7 +1943,7 @@
                 <!-- Coluna Tipo (Back/Lay) -->
                 <div class="col-tipo">
                     <span class="mobile-label">Tipo</span>
-                    <span class="badge-type" onclick="toggleTipoAposta(${row.id})" title="Clique para alternar Back/Lay">${row.tipo}</span>
+                    <span class="badge-type ${row.tipo.toLowerCase()}" onclick="toggleTipoAposta(${row.id})" title="Clique para alternar Back / Lay">${row.tipo}</span>
                 </div>
 
                 <!-- Coluna Comissão com seletor % e $ -->
@@ -1539,20 +1998,188 @@
                 container.appendChild(rowEl);
             });
 
+            if (currentStrategy === 'matched-betting') {
+                updateBonusBookieOptions();
+            }
+
             calcular();
         }
 
         function setEstrategia(est) {
             currentStrategy = est;
             document.getElementById('btnStratArbitragem').classList.toggle('active', est === 'arbitragem');
-            document.getElementById('btnStratProtecao').classList.toggle('active', est === 'protecao');
+            document.getElementById('btnStratMatchedBetting').classList.toggle('active', est === 'matched-betting');
 
-            if (est === 'protecao' && rowsData.length > 2) {
-                showToast('🛡️ Modo Proteção de Duplo ativado!');
+            const stagesNav = document.getElementById('mbStagesNav');
+            const stageNotice = document.getElementById('mbStageNotice');
+            const consolidatedCard = document.getElementById('mbConsolidatedCard');
+
+            if (est === 'matched-betting') {
+                if (stagesNav) stagesNav.style.display = 'flex';
+                if (stageNotice) stageNotice.style.display = 'flex';
+                if (consolidatedCard) consolidatedCard.style.display = 'block';
+
+                const bonusInput = document.getElementById('inputExpectedBonus');
+                if (bonusInput && mbState.freebetEsperada) {
+                    bonusInput.value = mbState.freebetEsperada.toFixed(2);
+                }
+
+                // Carrega a etapa ativa do Matched Betting
+                setMbEtapa(mbState.etapaAtiva || 1);
+                updateBonusBookieOptions();
+                showToast('🎯 Modo Matched Betting ativado (Etapas 1 e 2)!');
             } else {
+                if (stagesNav) stagesNav.style.display = 'none';
+                if (stageNotice) stageNotice.style.display = 'none';
+                if (consolidatedCard) consolidatedCard.style.display = 'none';
+
+                // Salva estado de MB se estiver saindo
+                if (mbState.etapaAtiva === 1) {
+                    mbState.etapa1.rows = JSON.parse(JSON.stringify(rowsData));
+                } else {
+                    mbState.etapa2.rows = JSON.parse(JSON.stringify(rowsData));
+                }
+
+                rowsData = JSON.parse(JSON.stringify(arbStateRows));
+                equalizarPorCasaTravada();
+                renderRows();
                 showToast('⚡ Modo Arbitragem ativado!');
             }
-            calcular();
+        }
+
+        function setMbEtapa(num) {
+            // Salva a etapa anterior
+            if (mbState.etapaAtiva === 1) {
+                mbState.etapa1.rows = JSON.parse(JSON.stringify(rowsData));
+            } else {
+                mbState.etapa2.rows = JSON.parse(JSON.stringify(rowsData));
+            }
+
+            mbState.etapaAtiva = num;
+            const btn1 = document.getElementById('btnMbEtapa1');
+            const btn2 = document.getElementById('btnMbEtapa2');
+            if (btn1) btn1.classList.toggle('active', num === 1);
+            if (btn2) btn2.classList.toggle('active', num === 2);
+
+            const noticeIcon = document.getElementById('mbNoticeIcon');
+            const noticeText = document.getElementById('mbNoticeText');
+
+            if (num === 1) {
+                if (noticeIcon) noticeIcon.innerText = '💡';
+                if (noticeText) noticeText.innerHTML = '<strong>Etapa 1 (Qualificação):</strong> Aposte dinheiro real na Casa e faça a cobertura (Lay na Betfair ou Back) para liberar a Freebet com a menor perda possível.';
+            } else {
+                if (noticeIcon) noticeIcon.innerText = '🎁';
+                if (noticeText) noticeText.innerHTML = `<strong>Etapa 2 (Extração da Freebet):</strong> Coloque a Freebet ganha na Casa ${mbState.freebetBookieIndex || 1} (${mbState.freebetBookie || 'Back'}) e cubra na Betfair/Exchange para transformar seu bônus em lucro líquido real no bolso.`;
+            }
+
+            // Garante sincronização da Freebet e Casa na Etapa 2
+            if (num === 2 && mbState.etapa2 && mbState.etapa2.rows) {
+                const backRow = mbState.etapa2.rows.find(r => r.tipo === 'Back') || mbState.etapa2.rows[0];
+                if (backRow) {
+                    if (mbState.freebetBookie) backRow.bookie = mbState.freebetBookie;
+                    if (mbState.freebetEsperada > 0) backRow.freebet = mbState.freebetEsperada.toFixed(2);
+                }
+            }
+
+            rowsData = JSON.parse(JSON.stringify(mbState['etapa' + num].rows));
+            equalizarPorCasaTravada();
+            renderRows();
+            updateBonusBookieOptions();
+        }
+
+        function onExpectedBonusInput(val) {
+            const num = parseFloat(val) || 0;
+            mbState.freebetEsperada = num;
+
+            // Sincroniza o valor e a casa da Freebet na Etapa 2
+            if (mbState.etapa2 && mbState.etapa2.rows) {
+                const backRow = mbState.etapa2.rows.find(r => r.tipo === 'Back') || mbState.etapa2.rows[0];
+                if (backRow) {
+                    backRow.freebet = num > 0 ? num.toFixed(2) : '';
+                    if (mbState.freebetBookie) backRow.bookie = mbState.freebetBookie;
+                }
+            }
+
+            const badge = document.getElementById('mbBonusPrevisionBadge');
+            if (badge) {
+                if (num > 0) {
+                    badge.style.display = 'inline-flex';
+                    badge.innerText = `➔ Extração Est. (70%): +R$ ${(num * 0.70).toFixed(2)}`;
+                } else {
+                    badge.style.display = 'none';
+                }
+            }
+
+            if (currentStrategy === 'matched-betting' && mbState.etapaAtiva === 2) {
+                const backRow = rowsData.find(r => r.tipo === 'Back') || rowsData[0];
+                if (backRow) {
+                    backRow.freebet = num > 0 ? num.toFixed(2) : '';
+                    if (mbState.freebetBookie) backRow.bookie = mbState.freebetBookie;
+                }
+                equalizarPorCasaTravada();
+            }
+            renderRows();
+        }
+
+        function onExpectedBonusBookieChange(val) {
+            const num = parseInt(val, 10) || 1;
+            mbState.freebetBookieIndex = num;
+
+            const sourceRows = (currentStrategy === 'matched-betting' && mbState.etapaAtiva === 1)
+                ? rowsData
+                : (mbState.etapa1 && mbState.etapa1.rows ? mbState.etapa1.rows : []);
+
+            const targetRow = sourceRows[num - 1] || sourceRows[0];
+            const bookieName = targetRow ? ((targetRow.bookie || '').trim() || `Casa ${num}`) : 'Bet365';
+            mbState.freebetBookie = bookieName;
+
+            // Sincroniza a casa da Freebet na Etapa 2
+            if (mbState.etapa2 && mbState.etapa2.rows) {
+                const backRow = mbState.etapa2.rows.find(r => r.tipo === 'Back') || mbState.etapa2.rows[0];
+                if (backRow) {
+                    backRow.bookie = bookieName;
+                }
+            }
+
+            if (currentStrategy === 'matched-betting' && mbState.etapaAtiva === 2) {
+                const backRow = rowsData.find(r => r.tipo === 'Back') || rowsData[0];
+                if (backRow) {
+                    backRow.bookie = bookieName;
+                }
+            }
+            renderRows();
+            showToast(`🎁 Freebet vinculada à Casa ${num} (${bookieName})`);
+        }
+
+        function updateBonusBookieOptions() {
+            const sel = document.getElementById('selectExpectedBonusBookie');
+            if (!sel) return;
+
+            const sourceRows = (currentStrategy === 'matched-betting' && mbState.etapaAtiva === 1)
+                ? rowsData
+                : (mbState.etapa1 && mbState.etapa1.rows ? mbState.etapa1.rows : []);
+
+            if (!mbState.freebetBookieIndex || mbState.freebetBookieIndex < 1 || mbState.freebetBookieIndex > sourceRows.length) {
+                mbState.freebetBookieIndex = 1;
+            }
+
+            const activeRow = sourceRows[mbState.freebetBookieIndex - 1] || sourceRows[0];
+            if (activeRow) {
+                mbState.freebetBookie = (activeRow.bookie || '').trim() || `Casa ${mbState.freebetBookieIndex}`;
+            }
+
+            sel.innerHTML = '';
+            sourceRows.forEach((r, idx) => {
+                const num = idx + 1;
+                const opt = document.createElement('option');
+                opt.value = num;
+                const bookieName = (r.bookie || '').trim() || `Casa ${num}`;
+                opt.textContent = `${num}`;
+                if (num === mbState.freebetBookieIndex) {
+                    opt.selected = true;
+                }
+                sel.appendChild(opt);
+            });
         }
 
         function setFieldMode(id, fieldMode, mode) {
@@ -1583,7 +2210,15 @@
         function updateRowField(id, field, value) {
             const row = rowsData.find(r => r.id === id);
             if (row) {
+                const oldBookie = row.bookie;
                 row[field] = value;
+                if (field === 'bookie' && currentStrategy === 'matched-betting') {
+                    const rowIdx = rowsData.findIndex(r => r.id === id);
+                    if (rowIdx !== -1 && (rowIdx + 1) === mbState.freebetBookieIndex) {
+                        mbState.freebetBookie = value;
+                    }
+                    updateBonusBookieOptions();
+                }
                 if (field === 'comissao' || field === 'freebet' || field === 'aumento') {
                     const hasValues = rowsData.some(r => (r.valor && r.valor > 0) || (parseFloat(r.freebet) > 0));
                     if (hasValues) equalizarPorCasaTravada();
@@ -1604,6 +2239,11 @@
             const row = rowsData.find(r => r.id === id);
             if (row) {
                 row.tipo = row.tipo === 'Back' ? 'Lay' : 'Back';
+                if (row.tipo === 'Lay' && !row.comissao) {
+                    row.comissao = '5'; // Comissão padrão Betfair
+                }
+                const hasValues = rowsData.some(r => (r.valor && r.valor > 0) || (parseFloat(r.freebet) > 0));
+                if (hasValues) equalizarPorCasaTravada();
                 renderRows();
             }
         }
@@ -1644,7 +2284,6 @@
                     row.hasWarning = false;
                 } else {
                     row.valor = numVal;
-                    // Fixa esta casa como base
                     rowsData.forEach(r => r.locked = (r.id === id));
                     equalizarPorCasaTravada();
                     rowsData.forEach(r => {
@@ -1661,9 +2300,9 @@
 
             rowsData.push({
                 id: newId,
-                bookie: 'Ex: Bet365',
+                bookie: '',
                 valor: 0,
-                odd: 2.000,
+                odd: 0,
                 tipo: 'Back',
                 comissao: '',
                 comissaoMode: '%',
@@ -1678,7 +2317,7 @@
 
             if (hasValues) equalizarPorCasaTravada();
             renderRows();
-            showToast('➕ Nova via adicionada à calculadora!');
+            showToast('➕ Nova via adicionada!');
         }
 
         function removerLinha(id) {
@@ -1696,11 +2335,22 @@
             showToast('🗑️ Via removida!');
         }
 
+        function getLayCommissionRate(row) {
+            if (row.tipo !== 'Lay') return 0;
+            const com = parseFloat(row.comissao) || 0;
+            if (com <= 0) return 0;
+            if (row.comissaoMode === '%') {
+                return com / 100;
+            } else if (row.valor > 0) {
+                return com / row.valor;
+            }
+            return 0;
+        }
+
         function getOddEfetiva(row) {
             let odd = row.odd || 0;
             if (odd < 1) return 0;
 
-            const com = parseFloat(row.comissao) || 0;
             const aum = parseFloat(row.aumento) || 0;
 
             // 1. Aumento (Boost na cotação)
@@ -1712,12 +2362,15 @@
                 }
             }
 
-            // 2. Comissão da exchange / casa
-            if (com > 0) {
-                if (row.comissaoMode === '%') {
-                    odd = 1 + (odd - 1) * (1 - com / 100);
-                } else if (row.valor > 0) {
-                    odd = Math.max(1, odd - (com / row.valor));
+            // 2. Comissão para apostas Back
+            if (row.tipo !== 'Lay') {
+                const com = parseFloat(row.comissao) || 0;
+                if (com > 0) {
+                    if (row.comissaoMode === '%') {
+                        odd = 1 + (odd - 1) * (1 - com / 100);
+                    } else if (row.valor > 0) {
+                        odd = Math.max(1, odd - (com / row.valor));
+                    }
                 }
             }
 
@@ -1737,7 +2390,6 @@
             const fbQuantia = getRowFreebetValInBRL(row);
             if (fbQuantia <= 0) return 0;
 
-            // Freebet padrão SNR (Stake Not Returned): ganha apenas o lucro (odd - 1)
             if (row.freebetType === 'SR') {
                 return fbQuantia * oddEf;
             } else {
@@ -1749,34 +2401,46 @@
             let lockedRow = rowsData.find(r => r.locked) || rowsData[0];
             if (!lockedRow) return;
 
-            const oddEfetivaLocked = getOddEfetiva(lockedRow);
-            if (oddEfetivaLocked < 1) return;
-
-            const ganhoFBLocked = getGanhoFreebetRow(lockedRow, oddEfetivaLocked);
             const valorLocked = lockedRow.valor || 0;
+            let retornoAlvo = 0;
 
-            // Se nem tiver valor e nem tiver freebet na casa travada, não força stakes nas outras
-            if (valorLocked <= 0 && ganhoFBLocked <= 0) {
-                return;
+            if (lockedRow.tipo === 'Lay') {
+                const cLocked = getLayCommissionRate(lockedRow);
+                const oddLocked = lockedRow.odd || 0;
+                if (oddLocked < 1 || valorLocked <= 0) return;
+                retornoAlvo = valorLocked * (oddLocked - cLocked);
+            } else {
+                const oddEfetivaLocked = getOddEfetiva(lockedRow);
+                if (oddEfetivaLocked < 1) return;
+                const ganhoFBLocked = getGanhoFreebetRow(lockedRow, oddEfetivaLocked);
+                if (valorLocked <= 0 && ganhoFBLocked <= 0) return;
+                retornoAlvo = (valorLocked * oddEfetivaLocked) + ganhoFBLocked;
             }
-
-            // Retorno total alvo que a casa travada produzirá
-            const retornoAlvo = (valorLocked * oddEfetivaLocked) + ganhoFBLocked;
 
             rowsData.forEach(r => {
                 if (r.id !== lockedRow.id) {
-                    const oddEfetiva = getOddEfetiva(r);
-                    const ganhoFB = getGanhoFreebetRow(r, oddEfetiva);
-
-                    if (oddEfetiva >= 1) {
-                        let stakeNecessaria = (retornoAlvo - ganhoFB) / oddEfetiva;
-                        r.valor = Math.max(0, parseFloat(stakeNecessaria.toFixed(2)));
-                        r.hasWarning = true;
+                    if (r.tipo === 'Lay') {
+                        const cLay = getLayCommissionRate(r);
+                        const oddLay = r.odd || 0;
+                        if (oddLay >= 1 && (oddLay - cLay) > 0) {
+                            let stakeLay = retornoAlvo / (oddLay - cLay);
+                            r.valor = Math.max(0, parseFloat(stakeLay.toFixed(2)));
+                            r.hasWarning = true;
+                        } else {
+                            r.valor = 0;
+                        }
                     } else {
-                        r.valor = 0;
+                        const oddEf = getOddEfetiva(r);
+                        const ganhoFB = getGanhoFreebetRow(r, oddEf);
+                        if (oddEf >= 1) {
+                            let stakeNecessaria = (retornoAlvo - ganhoFB) / oddEf;
+                            r.valor = Math.max(0, parseFloat(stakeNecessaria.toFixed(2)));
+                            r.hasWarning = true;
+                        } else {
+                            r.valor = 0;
+                        }
                     }
 
-                    // Atualiza o input de valor no DOM sem perder foco
                     const valInput = document.getElementById(`inputValor-${r.id}`);
                     if (valInput && document.activeElement !== valInput) {
                         valInput.value = r.valor > 0 ? r.valor.toFixed(2) : '';
@@ -1787,84 +2451,64 @@
             });
         }
 
-        function calcular() {
+        // Função pura para calcular métricas de um conjunto de linhas
+        function computeStageMetrics(rows) {
             let totalInvestidoDinheiro = 0;
-            let somaProbabilidades = 0;
-            let todasOddsValidas = true;
             let totalFreebets = 0;
+            let todasOddsValidas = true;
+            let somaProbabilidades = 0;
 
-            rowsData.forEach(r => {
+            rows.forEach(r => {
                 const oddEf = getOddEfetiva(r);
-                if (oddEf < 1) {
+                if (r.odd < 1) {
                     todasOddsValidas = false;
                 } else {
-                    somaProbabilidades += (1 / oddEf);
-                }
-                totalInvestidoDinheiro += (r.valor || 0);
-                const fbVal = parseFloat(r.freebet) || 0;
-                if (fbVal > 0) totalFreebets += fbVal;
-
-                const oddSubEl = document.getElementById(`oddSub-${r.id}`);
-                if (oddSubEl) {
-                    if (r.odd >= 1) {
-                        const implied = ((1 / oddEf) * 100).toFixed(1);
-                        const efTxt = Math.abs(oddEf - r.odd) > 0.005 ? ` (Ef: ${oddEf.toFixed(3)})` : '';
-                        oddSubEl.innerText = `${r.odd.toFixed(3)}${efTxt} | ${implied}%`;
+                    if (r.tipo === 'Lay') {
+                        const cLay = getLayCommissionRate(r);
+                        somaProbabilidades += (1 / Math.max(1, r.odd - cLay));
                     } else {
-                        oddSubEl.innerText = `${r.odd || '-'} (0.0%)`;
+                        somaProbabilidades += (1 / oddEf);
                     }
+                }
+
+                if (r.tipo === 'Lay') {
+                    const stakeLay = r.valor || 0;
+                    const liability = stakeLay * Math.max(0, r.odd - 1);
+                    totalInvestidoDinheiro += liability;
+                } else {
+                    totalInvestidoDinheiro += (r.valor || 0);
+                    const fbVal = getRowFreebetValInBRL(r);
+                    if (fbVal > 0) totalFreebets += fbVal;
                 }
             });
 
-            const temApostasAtivas = totalInvestidoDinheiro > 0 || totalFreebets > 0;
+            const temApostasAtivas = rows.some(r => (r.valor && r.valor > 0) || (parseFloat(r.freebet) > 0));
 
-            let isFBExtractionLucrativa = false;
-            let fbLucroGarantido = 0;
-            let fbTaxaConversao = 0;
-            let fbInvestimentoCobertura = 0;
-
-            if (todasOddsValidas && totalFreebets > 0) {
-                rowsData.forEach(fbRow => {
-                    const fbVal = parseFloat(fbRow.freebet) || 0;
-                    if (fbVal <= 0) return;
-
-                    const oddEfFB = getOddEfetiva(fbRow);
-                    if (oddEfFB < 1) return;
-
-                    const retornoFB = fbRow.freebetType === 'SR' ? fbVal * oddEfFB : fbVal * (oddEfFB - 1);
-                    let somaCobertura = 0;
-                    rowsData.forEach(outraRow => {
-                        if (outraRow.id === fbRow.id) return;
-                        const oddEfOutra = getOddEfetiva(outraRow);
-                        if (oddEfOutra >= 1) somaCobertura += (1 / oddEfOutra);
-                    });
-
-                    const custoCobertura = retornoFB * somaCobertura;
-                    const lucroFB = retornoFB - custoCobertura;
-                    const taxaConv = (lucroFB / fbVal) * 100;
-
-                    if (lucroFB > 0.001) {
-                        isFBExtractionLucrativa = true;
-                        fbLucroGarantido += lucroFB;
-                        fbTaxaConversao = taxaConv;
-                        fbInvestimentoCobertura += custoCobertura;
-                    }
-                });
-            }
-
-            const resultados = rowsData.map(r => {
+            const resultados = rows.map(r => {
                 const oddEf = getOddEfetiva(r);
                 const ganhoFB = getGanhoFreebetRow(r, oddEf);
                 const valorBase = r.valor || 0;
                 let retornoBruto = 0;
+                let lucroLiquido = 0;
+
                 if (temApostasAtivas) {
-                    let lucroBase = (oddEf - 1) * valorBase;
-                    retornoBruto = valorBase + lucroBase + ganhoFB;
+                    if (r.tipo === 'Lay') {
+                        const cLay = getLayCommissionRate(r);
+                        const ganhoExchange = valorBase * (1 - cLay);
+                        const liability = valorBase * Math.max(0, r.odd - 1);
+                        retornoBruto = liability + ganhoExchange;
+                        lucroLiquido = retornoBruto - totalInvestidoDinheiro;
+                    } else {
+                        retornoBruto = (valorBase * oddEf) + ganhoFB;
+                        lucroLiquido = retornoBruto - totalInvestidoDinheiro;
+                    }
                 }
-                const lucroLiquido = temApostasAtivas ? (retornoBruto - totalInvestidoDinheiro) : 0;
                 return { id: r.id, retorno: retornoBruto, lucro: lucroLiquido };
             });
-            lastResultados = resultados;
+
+            const menorLucro = temApostasAtivas ? Math.min(...resultados.map(r => r.lucro)) : 0;
+            const maiorLucro = temApostasAtivas ? Math.max(...resultados.map(r => r.lucro)) : 0;
+            const lucroMedio = (menorLucro + maiorLucro) / 2;
 
             let lucroGarantidoPercent = '0.00';
             let margemCasaPercent = '0.00';
@@ -1879,6 +2523,63 @@
                 }
             }
 
+            return {
+                totalInvestidoDinheiro,
+                totalFreebets,
+                todasOddsValidas,
+                temApostasAtivas,
+                resultados,
+                menorLucro,
+                maiorLucro,
+                lucroMedio,
+                lucroGarantidoPercent,
+                margemCasaPercent,
+                isSurebetMatematica
+            };
+        }
+
+        function calcular() {
+            // Sincroniza dados atuais com o estado correspondente
+            if (currentStrategy === 'matched-betting') {
+                if (mbState.etapaAtiva === 1) {
+                    mbState.etapa1.rows = JSON.parse(JSON.stringify(rowsData));
+                } else {
+                    mbState.etapa2.rows = JSON.parse(JSON.stringify(rowsData));
+                }
+            } else {
+                arbStateRows = JSON.parse(JSON.stringify(rowsData));
+            }
+
+            const metrics = computeStageMetrics(rowsData);
+            lastResultados = metrics.resultados;
+
+            const totalInvestidoDinheiro = metrics.totalInvestidoDinheiro;
+            const totalFreebets = metrics.totalFreebets;
+            const todasOddsValidas = metrics.todasOddsValidas;
+            const temApostasAtivas = metrics.temApostasAtivas;
+            const resultados = metrics.resultados;
+            const menorLucro = metrics.menorLucro;
+            const lucroMedio = metrics.lucroMedio;
+            const lucroGarantidoPercent = metrics.lucroGarantidoPercent;
+            const margemCasaPercent = metrics.margemCasaPercent;
+            const isSurebetMatematica = metrics.isSurebetMatematica;
+
+            // Atualiza subtextos de Odds
+            rowsData.forEach(r => {
+                const oddEf = getOddEfetiva(r);
+                const oddSubEl = document.getElementById(`oddSub-${r.id}`);
+                if (oddSubEl) {
+                    if (r.odd >= 1) {
+                        const implied = ((1 / (r.tipo === 'Lay' ? r.odd : oddEf)) * 100).toFixed(1);
+                        const efTxt = (r.tipo !== 'Lay' && Math.abs(oddEf - r.odd) > 0.005) ? ` (Ef: ${oddEf.toFixed(3)})` : '';
+                        oddSubEl.innerText = `${r.odd.toFixed(3)}${efTxt} | ${implied}%`;
+                    } else {
+                        oddSubEl.innerText = `${r.odd || '-'} (0.0%)`;
+                    }
+                }
+            });
+
+            // Atualização dos Pills de Resultado e Subtextos de Stake
             resultados.forEach((res, i) => {
                 const r = rowsData[i];
                 const pillEl = document.getElementById(`pillResult-${r.id}`);
@@ -1891,9 +2592,6 @@
                     } else if (todasOddsValidas) {
                         if (isSurebetMatematica) {
                             pillEl.innerText = `+${lucroGarantidoPercent}%`;
-                            pillEl.className = 'profit-pill positive';
-                        } else if (isFBExtractionLucrativa) {
-                            pillEl.innerText = `+R$ ${fbLucroGarantido.toFixed(2)}`;
                             pillEl.className = 'profit-pill positive';
                         } else {
                             pillEl.innerText = `-${margemCasaPercent}%`;
@@ -1909,22 +2607,28 @@
                     const vProprio = (r.valor && r.valor > 0) ? r.valor : 0;
                     const vFB = getRowFreebetValInBRL(r);
 
-                    if (vProprio > 0 && vFB > 0) {
-                        stakeSubEl.innerText = `Stake: R$ ${vProprio.toFixed(2)} (+ FB R$ ${vFB.toFixed(2)})`;
-                    } else if (vProprio > 0) {
-                        stakeSubEl.innerText = `Stake: R$ ${vProprio.toFixed(2)}`;
-                    } else if (vFB > 0) {
-                        stakeSubEl.innerText = `Stake: FB R$ ${vFB.toFixed(2)}`;
-                    } else if (temApostasAtivas) {
-                        stakeSubEl.innerText = `Stake: R$ 0.00`;
-                    } else if (isFBExtractionLucrativa) {
-                        stakeSubEl.innerText = `Cobertura necessária`;
+                    if (r.tipo === 'Lay') {
+                        const liability = vProprio * Math.max(0, r.odd - 1);
+                        stakeSubEl.innerText = vProprio > 0 
+                            ? `Stake Lay: R$ ${vProprio.toFixed(2)} (Resp: R$ ${liability.toFixed(2)})`
+                            : `Stake Lay: Opcional`;
                     } else {
-                        stakeSubEl.innerText = `Stake: Opcional`;
+                        if (vProprio > 0 && vFB > 0) {
+                            stakeSubEl.innerText = `Stake: R$ ${vProprio.toFixed(2)} (+ FB R$ ${vFB.toFixed(2)})`;
+                        } else if (vProprio > 0) {
+                            stakeSubEl.innerText = `Stake: R$ ${vProprio.toFixed(2)}`;
+                        } else if (vFB > 0) {
+                            stakeSubEl.innerText = `Stake: FB R$ ${vFB.toFixed(2)}`;
+                        } else if (temApostasAtivas) {
+                            stakeSubEl.innerText = `Stake: R$ 0.00`;
+                        } else {
+                            stakeSubEl.innerText = `Stake: Opcional`;
+                        }
                     }
                 }
             });
 
+            // Preenchimento da Tabela de Resumo
             const summaryTbody = document.getElementById('summaryTableBody');
             if (summaryTbody) {
                 summaryTbody.innerHTML = '';
@@ -1942,9 +2646,6 @@
                         if (isSurebetMatematica) {
                             resTexto = `+${lucroGarantidoPercent}%`;
                             resCor = 'var(--green-profit)';
-                        } else if (isFBExtractionLucrativa) {
-                            resTexto = `+R$ ${fbLucroGarantido.toFixed(2)}`;
-                            resCor = 'var(--purple-fb)';
                         } else {
                             resTexto = `-${margemCasaPercent}%`;
                             resCor = 'var(--red-loss)';
@@ -1955,24 +2656,38 @@
                     const vFB = getRowFreebetValInBRL(r);
 
                     let valTexto = '-';
-                    if (vProprio > 0 && vFB > 0) {
-                        valTexto = `<span style="color: #ffffff; font-weight: 600;">R$ ${vProprio.toFixed(2)}</span> <span style="color: var(--purple-fb); font-size: 0.82rem;">+ FB R$ ${vFB.toFixed(2)}</span>`;
-                    } else if (vProprio > 0) {
-                        valTexto = `R$ ${vProprio.toFixed(2)}`;
-                    } else if (vFB > 0) {
-                        valTexto = `<span style="color: var(--purple-fb); font-weight: 600;">FB R$ ${vFB.toFixed(2)}</span>`;
+                    if (r.tipo === 'Lay') {
+                        const liability = vProprio * Math.max(0, r.odd - 1);
+                        valTexto = vProprio > 0 
+                            ? `<span>R$ ${vProprio.toFixed(2)}</span> <span style="font-size:0.7rem; color:var(--text-submuted);">(Resp: R$ ${liability.toFixed(2)})</span>` 
+                            : '-';
+                    } else {
+                        if (vProprio > 0 && vFB > 0) {
+                            valTexto = `<span style="color: #ffffff; font-weight: 600;">R$ ${vProprio.toFixed(2)}</span> <span style="color: var(--purple-fb); font-size: 0.82rem;">+ FB R$ ${vFB.toFixed(2)}</span>`;
+                        } else if (vProprio > 0) {
+                            valTexto = `R$ ${vProprio.toFixed(2)}`;
+                        } else if (vFB > 0) {
+                            valTexto = `<span style="color: var(--purple-fb); font-weight: 600;">FB R$ ${vFB.toFixed(2)}</span>`;
+                        }
                     }
 
-                    tr.innerHTML = `<td>${r.bookie || 'Casa ' + r.id}</td>
+                    // Identifica se é a casa que libera a Freebet no Matched Betting Etapa 1
+                    let bookieExtra = '';
+                    if (currentStrategy === 'matched-betting' && mbState.etapaAtiva === 1 && mbState.freebetEsperada > 0 && (i + 1) === (mbState.freebetBookieIndex || 1)) {
+                        bookieExtra = ` <span title="Esta aposta libera a Freebet de R$ ${mbState.freebetEsperada.toFixed(2)}" style="background: rgba(192, 132, 252, 0.15); color: var(--purple-fb); border: 1px solid rgba(192, 132, 252, 0.3); padding: 1px 6px; border-radius: 9999px; font-size: 0.68rem; font-weight: 700; margin-left: 4px; white-space: nowrap;">🎁 +R$ ${mbState.freebetEsperada.toFixed(2)} FB</span>`;
+                    }
+
+                    tr.innerHTML = `<td><span style="color:var(--gold-primary); font-weight:700; font-size:0.75rem; margin-right:4px;">#${i + 1}</span> ${(r.bookie || 'Casa ' + (i + 1))}${bookieExtra}</td>
                         <td>${valTexto}</td>
                         <td>${r.odd > 0 ? r.odd.toFixed(2) : '-'}</td>
-                        <td style="color: var(--text-muted); text-transform: lowercase;">${r.tipo.toLowerCase()}</td>
+                        <td><span class="badge-type ${r.tipo.toLowerCase()}" style="padding: 2px 6px; font-size: 0.72rem;">${r.tipo.toLowerCase()}</span></td>
                         <td style="color: var(--gold-primary); font-weight: 600;">${retTexto}</td>
                         <td style="color: ${resCor}; font-weight: 700;">${resTexto}</td>`;
                     summaryTbody.appendChild(tr);
                 });
             }
 
+            // Diagnósticos e Banners
             const statusBox = document.getElementById('arbitrageStatusBox');
             const statusIcon = document.getElementById('arbitrageStatusIcon');
             const statusText = document.getElementById('arbitrageStatusText');
@@ -1981,54 +2696,238 @@
             const sumRoiEl = document.getElementById('sumRoi');
             const sumFreebetLine = document.getElementById('sumFreebetLine');
             const sumFreebetVal = document.getElementById('sumFreebetVal');
-
-            const menorLucro = temApostasAtivas ? Math.min(...resultados.map(r => r.lucro)) : 0;
+            const sumFreebetLabel = document.getElementById('sumFreebetLabel');
+            const targetBookieName = mbState.freebetBookie || `Casa ${mbState.freebetBookieIndex || 1}`;
+            const fbEsperadaVal = mbState.freebetEsperada || 0;
 
             if (!todasOddsValidas || rowsData.some(r => !r.odd || r.odd < 1)) {
-                statusBox.className = 'arbitrage-status-banner neutral';
-                statusIcon.innerText = '🟡';
-                statusText.innerText = 'Insira as Odds de todas as casas';
-                statusExtra.innerText = 'Aguardando Odds';
-                sumDiagText.innerText = '🟡 Aguardando Odds Válidas';
-                sumDiagText.style.color = 'var(--gold-primary)';
-                sumRoiEl.innerText = '0.00%';
-                sumRoiEl.style.color = 'var(--text-muted)';
-                document.getElementById('chipRoiDisplay').innerText = '0.00%';
-                sumFreebetLine.style.display = 'none';
+                if (currentStrategy === 'matched-betting' && mbState.etapaAtiva === 1 && fbEsperadaVal > 0) {
+                    const fbExtracaoEst = fbEsperadaVal * 0.70;
+                    statusBox.className = 'arbitrage-status-banner neutral';
+                    statusIcon.innerText = '🎁';
+                    statusText.innerText = `Etapa 1: Insira as Odds ➔ Previsão de Extração da Freebet: +R$ ${fbExtracaoEst.toFixed(2)} (70% de R$ ${fbEsperadaVal.toFixed(2)} na ${targetBookieName})`;
+                    statusExtra.innerText = `🎁 Previsão: +R$ ${fbExtracaoEst.toFixed(2)} FB`;
+                    sumDiagText.innerHTML = `🟡 Aguardando Odds ➔ <span style="color: var(--green-profit); font-weight: 800;">🎁 Previsão de Extração: +R$ ${fbExtracaoEst.toFixed(2)}</span> <span style="color: var(--purple-fb); font-weight: 600; font-size: 0.8rem;">(70% de R$ ${fbEsperadaVal.toFixed(2)} na ${targetBookieName})</span>`;
+                    sumDiagText.style.color = 'var(--gold-primary)';
+                    sumRoiEl.innerHTML = `<span style="color: var(--green-profit); font-weight: 800;">+R$ ${fbExtracaoEst.toFixed(2)}</span> <span style="color: var(--purple-fb); font-weight: 600; font-size: 0.82rem;">(Previsão com Freebet R$ ${fbEsperadaVal.toFixed(2)})</span>`;
+                    document.getElementById('chipRoiDisplay').innerText = `🎁 +R$ ${fbExtracaoEst.toFixed(2)} (Prev.)`;
+                    sumFreebetLine.style.display = 'flex';
+                    if (sumFreebetLabel) sumFreebetLabel.innerText = '🎁 Freebet a Receber & Previsão:';
+                    sumFreebetVal.innerHTML = `<span style="color: var(--purple-fb); font-weight: 700;">R$ ${fbEsperadaVal.toFixed(2)} (${targetBookieName})</span> ➔ <span style="color: var(--green-profit); font-weight: 800;">Previsão de Lucro: +R$ ${fbExtracaoEst.toFixed(2)}</span>`;
+                } else {
+                    statusBox.className = 'arbitrage-status-banner neutral';
+                    statusIcon.innerText = '🟡';
+                    statusText.innerText = 'Insira as Odds de todas as casas';
+                    statusExtra.innerText = 'Aguardando Odds';
+                    sumDiagText.innerText = '🟡 Aguardando Odds Válidas';
+                    sumDiagText.style.color = 'var(--gold-primary)';
+                    sumRoiEl.innerText = '0.00%';
+                    sumRoiEl.style.color = 'var(--text-muted)';
+                    document.getElementById('chipRoiDisplay').innerText = '0.00%';
+                    sumFreebetLine.style.display = 'none';
+                }
+            } else if (currentStrategy === 'matched-betting') {
+                if (mbState.etapaAtiva === 1) {
+                    // Etapa 1: Qualificação
+                    const baseCalc = totalInvestidoDinheiro || 1;
+                    const retencao = ((baseCalc + lucroMedio) / baseCalc) * 100;
+                    const fbExtracaoEst = fbEsperadaVal * 0.70;
+
+                    if (fbEsperadaVal > 0) {
+                        // Previsão de Lucro Líquido Real com a Freebet Esperada
+                        let custoQualif = 0;
+                        let lucroFinalPrevisto = 0;
+
+                        if (temApostasAtivas) {
+                            custoQualif = lucroMedio;
+                            lucroFinalPrevisto = custoQualif + fbExtracaoEst;
+                        } else {
+                            const baseStakeQualif = fbEsperadaVal;
+                            custoQualif = isSurebetMatematica 
+                                ? +(baseStakeQualif * (parseFloat(lucroGarantidoPercent) / 100))
+                                : -(baseStakeQualif * (parseFloat(margemCasaPercent) / 100));
+                            lucroFinalPrevisto = custoQualif + fbExtracaoEst;
+                        }
+
+                        const retencaoLiquida = ((lucroFinalPrevisto / fbEsperadaVal) * 100).toFixed(1);
+
+                        sumFreebetLine.style.display = 'flex';
+                        if (sumFreebetLabel) sumFreebetLabel.innerText = '🎁 Freebet a Receber & Previsão:';
+                        sumFreebetVal.innerHTML = `<span style="color: var(--purple-fb); font-weight: 700;">R$ ${fbEsperadaVal.toFixed(2)} (${targetBookieName})</span> <span style="color: var(--text-muted); font-size: 0.75rem;">(Extração SNR 70%: <strong style="color: var(--purple-fb);">+R$ ${fbExtracaoEst.toFixed(2)}</strong>)</span> ➔ <strong style="color: var(--green-profit); font-weight: 800; font-size: 0.88rem;">Lucro Final Previsto: ${lucroFinalPrevisto >= 0 ? '+' : ''}R$ ${lucroFinalPrevisto.toFixed(2)}</strong>`;
+
+                        if (lucroFinalPrevisto > 0.005) {
+                            statusBox.className = 'arbitrage-status-banner surebet';
+                            statusIcon.innerText = '🎁';
+                            const custoTxt = temApostasAtivas 
+                                ? (custoQualif >= 0 ? `+R$ ${custoQualif.toFixed(2)} (Lucro)` : `-R$ ${Math.abs(custoQualif).toFixed(2)} Custo`)
+                                : (isSurebetMatematica ? `+${lucroGarantidoPercent}%` : `-${margemCasaPercent}% Custo Est.`);
+
+                            statusText.innerText = `Etapa 1: Qualificação (${custoTxt}) ➔ 💰 Previsão de Lucro Final: +R$ ${lucroFinalPrevisto.toFixed(2)} (${retencaoLiquida}% da FB de R$ ${fbEsperadaVal.toFixed(2)} na ${targetBookieName})`;
+                            statusExtra.innerText = `🎁 Previsão: +R$ ${lucroFinalPrevisto.toFixed(2)} Lucro Final`;
+                            
+                            const custoBadgeHtml = temApostasAtivas
+                                ? `<span style="color: ${custoQualif >= 0 ? 'var(--green-profit)' : 'var(--red-loss)'}; font-weight: 700;">${custoQualif >= 0 ? '+' : '-'}R$ ${Math.abs(custoQualif).toFixed(2)}</span>`
+                                : `<span style="color: ${isSurebetMatematica ? 'var(--green-profit)' : 'var(--red-loss)'}; font-weight: 700;">${custoQualif >= 0 ? '+' : '-'}R$ ${Math.abs(custoQualif).toFixed(2)} (${custoTxt})</span>`;
+
+                            sumDiagText.innerHTML = `🎯 Qualificação: ${custoBadgeHtml} ➔ <span style="color: var(--green-profit); font-weight: 800; font-size: 1.05em;">💰 Previsão Lucro Líquido: +R$ ${lucroFinalPrevisto.toFixed(2)}</span> <span style="color: var(--purple-fb); font-size: 0.8rem; font-weight: 600;">(com Freebet R$ ${fbEsperadaVal.toFixed(2)} na ${targetBookieName})</span>`;
+                            sumRoiEl.innerHTML = `<span style="color: var(--green-profit); font-weight: 800;">+R$ ${lucroFinalPrevisto.toFixed(2)}</span> <span style="color: var(--purple-fb); font-weight: 600; font-size: 0.82rem;">(Previsão Líquida com FB R$ ${fbEsperadaVal.toFixed(2)})</span>`;
+                            document.getElementById('chipRoiDisplay').innerText = `+R$ ${lucroFinalPrevisto.toFixed(2)} (Prev.)`;
+                        } else {
+                            statusBox.className = 'arbitrage-status-banner no-surebet';
+                            statusIcon.innerText = '🔴';
+                            statusText.innerText = `Etapa 1: Custo de -R$ ${Math.abs(custoQualif).toFixed(2)} ➔ Previsão de Resultado: -R$ ${Math.abs(lucroFinalPrevisto).toFixed(2)}`;
+                            statusExtra.innerText = `Previsão: -R$ ${Math.abs(lucroFinalPrevisto).toFixed(2)}`;
+                            sumDiagText.innerHTML = `🔴 Qualificação: <span style="color: var(--red-loss); font-weight: 700;">-R$ ${Math.abs(custoQualif).toFixed(2)}</span> ➔ <span style="color: var(--red-loss); font-weight: 800;">Previsão de Resultado: -R$ ${Math.abs(lucroFinalPrevisto).toFixed(2)}</span>`;
+                            sumRoiEl.innerHTML = `<span style="color: var(--red-loss); font-weight: 800;">-R$ ${Math.abs(lucroFinalPrevisto).toFixed(2)}</span>`;
+                            document.getElementById('chipRoiDisplay').innerText = `-R$ ${Math.abs(lucroFinalPrevisto).toFixed(2)}`;
+                        }
+                    } else {
+                        // Sem Freebet Esperada informada (fbEsperadaVal === 0)
+                        sumFreebetLine.style.display = 'none';
+
+                        if (temApostasAtivas && lucroMedio > 0.005) {
+                            // Qualificação com lucro com stakes inseridas
+                            statusBox.className = 'arbitrage-status-banner surebet';
+                            statusIcon.innerText = '🟢';
+                            statusText.innerText = 'Etapa 1: Qualificação com Lucro Garantido!';
+                            statusExtra.innerText = `+R$ ${lucroMedio.toFixed(2)} Lucro na Etapa 1`;
+                            sumDiagText.innerText = `🟢 Etapa 1: Qualificação Lucrativa (+R$ ${lucroMedio.toFixed(2)})`;
+                            sumDiagText.style.color = 'var(--green-profit)';
+                            sumRoiEl.innerText = `+R$ ${lucroMedio.toFixed(2)} (+${((lucroMedio/baseCalc)*100).toFixed(2)}%)`;
+                            sumRoiEl.style.color = 'var(--green-profit)';
+                            document.getElementById('chipRoiDisplay').innerText = `+R$ ${lucroMedio.toFixed(2)}`;
+                        } else if (temApostasAtivas && lucroMedio <= 0.005) {
+                            // Custo / Prejuízo na qualificação com stakes inseridas
+                            statusBox.className = 'arbitrage-status-banner no-surebet';
+                            statusIcon.innerText = '🔴';
+                            statusText.innerText = `Etapa 1: Custo de Qualificação (-R$ ${Math.abs(lucroMedio).toFixed(2)})`;
+                            statusExtra.innerText = `-R$ ${Math.abs(lucroMedio).toFixed(2)} Custo de Qualificação`;
+                            sumDiagText.innerText = `🔴 Etapa 1: Custo / Perda de -R$ ${Math.abs(lucroMedio).toFixed(2)}`;
+                            sumDiagText.style.color = 'var(--red-loss)';
+                            sumRoiEl.innerText = `-R$ ${Math.abs(lucroMedio).toFixed(2)} (${retencao.toFixed(1)}% Retenção)`;
+                            sumRoiEl.style.color = 'var(--red-loss)';
+                            document.getElementById('chipRoiDisplay').innerText = `-R$ ${Math.abs(lucroMedio).toFixed(2)}`;
+                        } else if (!temApostasAtivas && isSurebetMatematica) {
+                            // Sem stakes inseridas, mas odds formam surebet lucrativa na etapa 1
+                            statusBox.className = 'arbitrage-status-banner surebet';
+                            statusIcon.innerText = '🟢';
+                            statusText.innerText = `Etapa 1: Qualificação Lucrativa (+${lucroGarantidoPercent}% Surebet)`;
+                            statusExtra.innerText = `+${lucroGarantidoPercent}% Lucro Garantido`;
+                            sumDiagText.innerText = `🟢 Etapa 1: Qualificação com Lucro (+${lucroGarantidoPercent}%)`;
+                            sumDiagText.style.color = 'var(--green-profit)';
+                            sumRoiEl.innerText = `+${lucroGarantidoPercent}%`;
+                            sumRoiEl.style.color = 'var(--green-profit)';
+                            document.getElementById('chipRoiDisplay').innerText = `+${lucroGarantidoPercent}%`;
+                        } else {
+                            // Sem stakes e sem surebet (com margem da casa / custo de qualificação estimado)
+                            statusBox.className = 'arbitrage-status-banner no-surebet';
+                            statusIcon.innerText = '🔴';
+                            statusText.innerText = `Etapa 1: Custo de Qualificação (-${margemCasaPercent}% Margem)`;
+                            statusExtra.innerText = `-${margemCasaPercent}% Custo de Qualificação`;
+                            sumDiagText.innerText = `🔴 Etapa 1: Custo Estimado (-${margemCasaPercent}%)`;
+                            sumDiagText.style.color = 'var(--red-loss)';
+                            sumRoiEl.innerText = `-${margemCasaPercent}%`;
+                            sumRoiEl.style.color = 'var(--red-loss)';
+                            document.getElementById('chipRoiDisplay').innerText = `-${margemCasaPercent}%`;
+                        }
+                    }
+                } else {
+                    // Etapa 2: Extração de Freebet
+                    const retencao = totalFreebets > 0 ? ((lucroMedio / totalFreebets) * 100) : 0;
+                    if (temApostasAtivas && lucroMedio > 0.005) {
+                        statusBox.className = 'arbitrage-status-banner surebet';
+                        statusIcon.innerText = '🎁';
+                        statusText.innerText = `Etapa 2: Extração da Freebet (${retencao.toFixed(1)}% Retenção)`;
+                        statusExtra.innerText = `+R$ ${lucroMedio.toFixed(2)} Lucro Garantido`;
+                        sumDiagText.innerText = `🎁 Etapa 2: Lucro da Freebet (+R$ ${lucroMedio.toFixed(2)})`;
+                        sumDiagText.style.color = 'var(--green-profit)';
+                        sumRoiEl.innerText = `+R$ ${lucroMedio.toFixed(2)} (${retencao.toFixed(1)}% Retenção)`;
+                        sumRoiEl.style.color = 'var(--green-profit)';
+                        document.getElementById('chipRoiDisplay').innerText = `+R$ ${lucroMedio.toFixed(2)}`;
+                        sumFreebetLine.style.display = 'flex';
+                        if (sumFreebetLabel) sumFreebetLabel.innerText = '🎁 Extração Freebet (Lucro FB):';
+                        sumFreebetVal.innerText = `+R$ ${lucroMedio.toFixed(2)} de extração em R$ ${totalFreebets.toFixed(2)} de Freebet`;
+                    } else if (temApostasAtivas && lucroMedio <= 0.005) {
+                        statusBox.className = 'arbitrage-status-banner no-surebet';
+                        statusIcon.innerText = '🔴';
+                        statusText.innerText = `Etapa 2: Prejuízo na Extração (-R$ ${Math.abs(lucroMedio).toFixed(2)})`;
+                        statusExtra.innerText = `-R$ ${Math.abs(lucroMedio).toFixed(2)} Prejuízo`;
+                        sumDiagText.innerText = `🔴 Etapa 2: Prejuízo de -R$ ${Math.abs(lucroMedio).toFixed(2)}`;
+                        sumDiagText.style.color = 'var(--red-loss)';
+                        sumRoiEl.innerText = `-R$ ${Math.abs(lucroMedio).toFixed(2)}`;
+                        sumRoiEl.style.color = 'var(--red-loss)';
+                        document.getElementById('chipRoiDisplay').innerText = `-R$ ${Math.abs(lucroMedio).toFixed(2)}`;
+                        sumFreebetLine.style.display = 'flex';
+                        if (sumFreebetLabel) sumFreebetLabel.innerText = '🎁 Freebet Aplicada:';
+                        sumFreebetVal.innerText = `R$ ${totalFreebets.toFixed(2)}`;
+                    } else if (isSurebetMatematica) {
+                        statusBox.className = 'arbitrage-status-banner surebet';
+                        statusIcon.innerText = '🎁';
+                        statusText.innerText = `Etapa 2: Extração de Freebet (+${lucroGarantidoPercent}% Surebet)`;
+                        statusExtra.innerText = `+${lucroGarantidoPercent}% Lucro`;
+                        sumDiagText.innerText = `🎁 Etapa 2: Lucro (+${lucroGarantidoPercent}%)`;
+                        sumDiagText.style.color = 'var(--green-profit)';
+                        sumRoiEl.innerText = `+${lucroGarantidoPercent}%`;
+                        sumRoiEl.style.color = 'var(--green-profit)';
+                        document.getElementById('chipRoiDisplay').innerText = `+${lucroGarantidoPercent}%`;
+                    } else {
+                        statusBox.className = 'arbitrage-status-banner no-surebet';
+                        statusIcon.innerText = '🔴';
+                        statusText.innerText = `Etapa 2: Margem da Casa (-${margemCasaPercent}%)`;
+                        statusExtra.innerText = `Margem da Casa: ${margemCasaPercent}%`;
+                        sumDiagText.innerText = `🔴 Etapa 2: Sem Arbitragem (Margem ${margemCasaPercent}%)`;
+                        sumDiagText.style.color = 'var(--red-loss)';
+                        sumRoiEl.innerText = `-${margemCasaPercent}%`;
+                        sumRoiEl.style.color = 'var(--red-loss)';
+                        document.getElementById('chipRoiDisplay').innerText = `-${margemCasaPercent}%`;
+                    }
+                }
+            } else if (temApostasAtivas && menorLucro >= -0.005) {
+                // Modo Arbitragem / Extração de Freebet com Lucro Garantido
+                statusBox.className = 'arbitrage-status-banner surebet';
+                statusIcon.innerText = totalFreebets > 0 ? '🎁' : '🟢';
+
+                if (totalFreebets > 0) {
+                    const retencao = (menorLucro / totalFreebets) * 100;
+                    const roiProprioTxt = totalInvestidoDinheiro > 0 ? ` | +${((menorLucro / totalInvestidoDinheiro) * 100).toFixed(1)}% ROI` : '';
+                    statusText.innerText = 'Existe Arbitragem com Freebet (Lucro Garantido)';
+                    statusExtra.innerText = `+R$ ${menorLucro.toFixed(2)} Lucro Garantido`;
+                    sumDiagText.innerHTML = `🟢 Arbitragem / Freebet: <span style="color: var(--green-profit); font-weight: 700;">+R$ ${menorLucro.toFixed(2)}</span> <span style="color: var(--purple-fb); font-size: 0.8rem;">(${retencao.toFixed(1)}% Retenção)</span>`;
+                    sumRoiEl.innerHTML = `<span style="color: var(--green-profit); font-weight: 700;">+R$ ${menorLucro.toFixed(2)}</span> <span style="color: var(--purple-fb); font-weight: 600; font-size: 0.82rem;">(${retencao.toFixed(1)}% Extração FB${roiProprioTxt})</span>`;
+                    document.getElementById('chipRoiDisplay').innerText = `+R$ ${menorLucro.toFixed(2)}`;
+                    sumFreebetLine.style.display = 'flex';
+                    if (sumFreebetLabel) sumFreebetLabel.innerText = '🎁 Extração Freebet (Lucro FB):';
+                    if (sumFreebetVal) sumFreebetVal.innerHTML = `<span style="color: var(--purple-fb); font-weight: 700;">+R$ ${menorLucro.toFixed(2)}</span> <span style="font-size: 0.75rem; color: var(--text-muted);">(${retencao.toFixed(1)}% de conversão em R$ ${totalFreebets.toFixed(2)} Freebet)</span>`;
+                } else {
+                    const roiPerc = totalInvestidoDinheiro > 0 ? ((menorLucro / totalInvestidoDinheiro) * 100).toFixed(2) : lucroGarantidoPercent;
+                    statusText.innerText = 'Existe Arbitragem (Surebet Detectada)';
+                    statusExtra.innerText = `+R$ ${menorLucro.toFixed(2)} Lucro Garantido`;
+                    sumDiagText.innerHTML = `🟢 Existe Arbitragem: <span style="color: var(--green-profit); font-weight: 700;">+R$ ${menorLucro.toFixed(2)}</span> (+${roiPerc}%)`;
+                    sumRoiEl.innerHTML = `<span style="color: var(--green-profit); font-weight: 700;">+R$ ${menorLucro.toFixed(2)}</span> <span style="color: var(--green-profit); font-size: 0.82rem;">(+${roiPerc}%)</span>`;
+                    document.getElementById('chipRoiDisplay').innerText = `+R$ ${menorLucro.toFixed(2)}`;
+                    sumFreebetLine.style.display = 'none';
+                }
             } else if (temApostasAtivas && menorLucro < -0.005) {
-                // Operação com valor de aposta inserido gerando prejuízo
+                // Modo Arbitragem com prejuízo
                 const roiPerc = ((menorLucro / (totalInvestidoDinheiro || 1)) * 100).toFixed(2);
                 statusBox.className = 'arbitrage-status-banner no-surebet';
                 statusIcon.innerText = '🔴';
                 statusText.innerText = 'Operação com Prejuízo Estimado';
                 statusExtra.innerText = `-R$ ${Math.abs(menorLucro).toFixed(2)} Prejuízo`;
-                sumDiagText.innerText = `🔴 Prejuízo Estimado (-R$ ${Math.abs(menorLucro).toFixed(2)})`;
+                sumDiagText.innerHTML = `🔴 Prejuízo Estimado: <span style="color: var(--red-loss); font-weight: 700;">-R$ ${Math.abs(menorLucro).toFixed(2)}</span> (${roiPerc}%)`;
                 sumDiagText.style.color = 'var(--red-loss)';
-                sumRoiEl.innerText = `-R$ ${Math.abs(menorLucro).toFixed(2)} (${roiPerc}%)`;
+                sumRoiEl.innerHTML = `<span style="color: var(--red-loss); font-weight: 700;">-R$ ${Math.abs(menorLucro).toFixed(2)}</span> <span style="color: var(--red-loss); font-size: 0.82rem;">(${roiPerc}%)</span>`;
                 sumRoiEl.style.color = 'var(--red-loss)';
                 document.getElementById('chipRoiDisplay').innerText = `-R$ ${Math.abs(menorLucro).toFixed(2)}`;
-                sumFreebetLine.style.display = totalFreebets > 0 ? 'flex' : 'none';
                 if (totalFreebets > 0) {
-                    sumFreebetVal.innerText = `+R$ ${fbLucroGarantido.toFixed(2)} FB não cobriu o prejuízo total`;
+                    sumFreebetLine.style.display = 'flex';
+                    if (sumFreebetLabel) sumFreebetLabel.innerText = '🎁 Freebet Aplicada:';
+                    if (sumFreebetVal) sumFreebetVal.innerText = `R$ ${totalFreebets.toFixed(2)}`;
+                } else {
+                    sumFreebetLine.style.display = 'none';
                 }
-            } else if (isSurebetMatematica && totalFreebets > 0) {
-                // Surebet pura + Freebet: melhor dos mundos
-                const valRoiTxt = temApostasAtivas ? `+R$ ${menorLucro.toFixed(2)} (${lucroGarantidoPercent}%)` : `${lucroGarantidoPercent}%`;
-                statusBox.className = 'arbitrage-status-banner surebet';
-                statusIcon.innerText = '🟢';
-                statusText.innerText = 'Existe Arbitragem + Extração de Freebet!';
-                statusExtra.innerText = `+${lucroGarantidoPercent}% Odds | 🎁 +R$ ${fbLucroGarantido.toFixed(2)} FB`;
-                sumDiagText.innerText = `🟢 Existe Arbitragem (+${lucroGarantidoPercent}%)`;
-                sumDiagText.style.color = 'var(--green-profit)';
-                sumRoiEl.innerText = valRoiTxt;
-                sumRoiEl.style.color = 'var(--green-profit)';
-                document.getElementById('chipRoiDisplay').innerText = temApostasAtivas ? `+R$ ${menorLucro.toFixed(2)}` : `${lucroGarantidoPercent}%`;
-                sumFreebetLine.style.display = 'flex';
-                sumFreebetVal.innerText = `+R$ ${fbLucroGarantido.toFixed(2)} garantido (conv. ${fbTaxaConversao.toFixed(1)}%)`;
-
             } else if (isSurebetMatematica) {
-                // Surebet pura sem freebet
-                const valRoiTxt = temApostasAtivas ? `+R$ ${menorLucro.toFixed(2)} (${lucroGarantidoPercent}%)` : `${lucroGarantidoPercent}%`;
+                const valRoiTxt = temApostasAtivas ? `+R$ ${menorLucro.toFixed(2)} (+${lucroGarantidoPercent}%)` : `+${lucroGarantidoPercent}%`;
                 statusBox.className = 'arbitrage-status-banner surebet';
                 statusIcon.innerText = '🟢';
                 statusText.innerText = 'Existe Arbitragem (Surebet Detectada)';
@@ -2037,34 +2936,13 @@
                 sumDiagText.style.color = 'var(--green-profit)';
                 sumRoiEl.innerText = valRoiTxt;
                 sumRoiEl.style.color = 'var(--green-profit)';
-                document.getElementById('chipRoiDisplay').innerText = temApostasAtivas ? `+R$ ${menorLucro.toFixed(2)}` : `${lucroGarantidoPercent}%`;
+                document.getElementById('chipRoiDisplay').innerText = temApostasAtivas ? `+R$ ${menorLucro.toFixed(2)}` : `+${lucroGarantidoPercent}%`;
                 sumFreebetLine.style.display = 'none';
-
-            } else if (isFBExtractionLucrativa) {
-                // SEM surebet pura, MAS a extração da freebet gera lucro garantido
-                statusBox.className = 'arbitrage-status-banner surebet';
-                statusIcon.innerText = '🟢';
-                statusText.innerText = 'Extração de Freebet com Lucro Garantido!';
-                statusExtra.innerText = `+R$ ${fbLucroGarantido.toFixed(2)} Garantido (conv. ${fbTaxaConversao.toFixed(1)}%)`;
-                sumDiagText.innerText = `🟢 Extração Lucrativa (+R$ ${fbLucroGarantido.toFixed(2)})`;
-                sumDiagText.style.color = 'var(--green-profit)';
-                sumRoiEl.innerText = `+R$ ${fbLucroGarantido.toFixed(2)} (${fbTaxaConversao.toFixed(1)}% conv.)`;
-                sumRoiEl.style.color = 'var(--green-profit)';
-                document.getElementById('chipRoiDisplay').innerText = `+R$ ${fbLucroGarantido.toFixed(2)}`;
-                sumFreebetLine.style.display = 'flex';
-                sumFreebetVal.innerText = `+R$ ${fbLucroGarantido.toFixed(2)} garantido (conv. ${fbTaxaConversao.toFixed(1)}%) | Cobertura: R$ ${fbInvestimentoCobertura.toFixed(2)}`;
-
             } else {
-                // Sem surebet e sem extração lucrativa de freebet
-                const temFB = totalFreebets > 0;
-                statusBox.className = temFB ? 'arbitrage-status-banner freebet' : 'arbitrage-status-banner no-surebet';
-                statusIcon.innerText = temFB ? '🟠' : '🔴';
-                statusText.innerText = temFB
-                    ? 'Sem Arbitragem | Extração de Freebet Negativa'
-                    : 'Não Existe Arbitragem';
-                statusExtra.innerText = temFB
-                    ? `Margem: ${margemCasaPercent}% | Freebet não cobre as coberturas`
-                    : `Margem da Casa: ${margemCasaPercent}%`;
+                statusBox.className = 'arbitrage-status-banner no-surebet';
+                statusIcon.innerText = '🔴';
+                statusText.innerText = 'Não Existe Arbitragem';
+                statusExtra.innerText = `Margem da Casa: ${margemCasaPercent}%`;
                 sumDiagText.innerText = `🔴 Não Existe Arbitragem (Margem ${margemCasaPercent}%)`;
                 sumDiagText.style.color = 'var(--red-loss)';
                 sumRoiEl.innerText = `-${margemCasaPercent}% (Margem)`;
@@ -2073,7 +2951,7 @@
                 sumFreebetLine.style.display = 'none';
             }
 
-            // Atualizar Totais
+            // Atualização dos Totais
             const sumTotalInvestEl = document.getElementById('sumTotalInvest');
             const sumTotalFreebetLine = document.getElementById('sumTotalFreebetLine');
             const sumTotalFreebetVal = document.getElementById('sumTotalFreebetVal');
@@ -2109,6 +2987,170 @@
                 }
             }
 
+            // Cálculo e Atualização do Painel Consolidado de Matched Betting (Etapa 1 + 2)
+            if (currentStrategy === 'matched-betting') {
+                const s1 = computeStageMetrics(mbState.etapa1.rows);
+                const s2 = computeStageMetrics(mbState.etapa2.rows);
+
+                const lucroS1 = s1.lucroMedio;
+                let lucroS2 = s2.lucroMedio;
+                let isS2Estimado = false;
+                if ((!lucroS2 || lucroS2 === 0) && fbEsperadaVal > 0) {
+                    lucroS2 = fbEsperadaVal * 0.70; // Estimativa padrão de 70% na extração SNR
+                    isS2Estimado = true;
+                }
+
+                const tag1 = document.getElementById('mbEtapa1MiniTag');
+                const tag2 = document.getElementById('mbEtapa2MiniTag');
+                if (tag1) {
+                    if (s1.temApostasAtivas) {
+                        if (lucroS1 > 0.005) {
+                            tag1.innerText = `+R$ ${lucroS1.toFixed(2)}`;
+                            tag1.className = 'mb-stage-tag profit';
+                        } else {
+                            tag1.innerText = `-R$ ${Math.abs(lucroS1).toFixed(2)}`;
+                            tag1.className = 'mb-stage-tag loss';
+                        }
+                    } else if (s1.todasOddsValidas) {
+                        if (s1.isSurebetMatematica) {
+                            tag1.innerText = `+${s1.lucroGarantidoPercent}%`;
+                            tag1.className = 'mb-stage-tag profit';
+                        } else {
+                            tag1.innerText = `-${s1.margemCasaPercent}%`;
+                            tag1.className = 'mb-stage-tag loss';
+                        }
+                    } else {
+                        tag1.innerText = `-R$ 0.00`;
+                        tag1.className = 'mb-stage-tag loss';
+                    }
+                }
+                if (tag2) {
+                    if (s2.temApostasAtivas) {
+                        if (lucroS2 > 0.005) {
+                            tag2.innerText = `+R$ ${lucroS2.toFixed(2)}`;
+                            tag2.className = 'mb-stage-tag profit';
+                        } else {
+                            tag2.innerText = `-R$ ${Math.abs(lucroS2).toFixed(2)}`;
+                            tag2.className = 'mb-stage-tag loss';
+                        }
+                    } else if (fbEsperadaVal > 0) {
+                        tag2.innerText = `+R$ ${(fbEsperadaVal * 0.70).toFixed(2)} (est.)`;
+                        tag2.className = 'mb-stage-tag profit';
+                    } else if (s2.todasOddsValidas) {
+                        if (s2.isSurebetMatematica) {
+                            tag2.innerText = `+${s2.lucroGarantidoPercent}%`;
+                            tag2.className = 'mb-stage-tag profit';
+                        } else {
+                            tag2.innerText = `-${s2.margemCasaPercent}%`;
+                            tag2.className = 'mb-stage-tag loss';
+                        }
+                    } else {
+                        tag2.innerText = `+R$ 0.00`;
+                        tag2.className = 'mb-stage-tag profit';
+                    }
+                }
+
+                const s1ValEl = document.getElementById('mbStep1ResultVal');
+                const s2ValEl = document.getElementById('mbStep2ResultVal');
+                const sFinalValEl = document.getElementById('mbStepFinalVal');
+                const totalProfitEl = document.getElementById('mbTotalConsolidatedProfit');
+
+                if (s1ValEl) {
+                    if (s1.temApostasAtivas) {
+                        s1ValEl.innerText = s1.lucroMedio > 0.005 ? `+R$ ${s1.lucroMedio.toFixed(2)}` : `-R$ ${Math.abs(s1.lucroMedio).toFixed(2)}`;
+                        s1ValEl.style.color = s1.lucroMedio > 0.005 ? 'var(--green-profit)' : 'var(--red-loss)';
+                    } else if (s1.todasOddsValidas) {
+                        s1ValEl.innerText = s1.isSurebetMatematica ? `+${s1.lucroGarantidoPercent}%` : `-${s1.margemCasaPercent}%`;
+                        s1ValEl.style.color = s1.isSurebetMatematica ? 'var(--green-profit)' : 'var(--red-loss)';
+                    } else {
+                        s1ValEl.innerText = `-R$ 0.00`;
+                        s1ValEl.style.color = 'var(--red-loss)';
+                    }
+                }
+                if (s2ValEl) {
+                    if (s2.temApostasAtivas) {
+                        s2ValEl.innerText = s2.lucroMedio > 0.005 ? `+R$ ${s2.lucroMedio.toFixed(2)}` : `-R$ ${Math.abs(s2.lucroMedio).toFixed(2)}`;
+                        s2ValEl.style.color = s2.lucroMedio > 0.005 ? 'var(--green-profit)' : 'var(--red-loss)';
+                    } else if (fbEsperadaVal > 0) {
+                        s2ValEl.innerText = `+R$ ${(fbEsperadaVal * 0.70).toFixed(2)}`;
+                        s2ValEl.style.color = 'var(--purple-fb)';
+                    } else if (s2.todasOddsValidas) {
+                        s2ValEl.innerText = s2.isSurebetMatematica ? `+${s2.lucroGarantidoPercent}%` : `-${s2.margemCasaPercent}%`;
+                        s2ValEl.style.color = s2.isSurebetMatematica ? 'var(--green-profit)' : 'var(--red-loss)';
+                    } else {
+                        s2ValEl.innerText = `+R$ 0.00`;
+                        s2ValEl.style.color = 'var(--purple-fb)';
+                    }
+                }
+
+                if (sFinalValEl || totalProfitEl) {
+                    if (s1.temApostasAtivas || s2.temApostasAtivas || fbEsperadaVal > 0) {
+                        const val1 = s1.temApostasAtivas 
+                            ? s1.lucroMedio 
+                            : (s1.todasOddsValidas && fbEsperadaVal > 0 
+                                ? (s1.isSurebetMatematica ? +(fbEsperadaVal * (parseFloat(s1.lucroGarantidoPercent)/100)) : -(fbEsperadaVal * (parseFloat(s1.margemCasaPercent)/100))) 
+                                : 0);
+                        const val2 = s2.temApostasAtivas && s2.lucroMedio > 0.005 ? s2.lucroMedio : (fbEsperadaVal > 0 ? fbEsperadaVal * 0.70 : 0);
+                        const finalTot = val1 + val2;
+                        if (finalTot > 0.005) {
+                            if (sFinalValEl) {
+                                sFinalValEl.innerText = `+R$ ${finalTot.toFixed(2)}`;
+                                sFinalValEl.style.color = 'var(--green-profit)';
+                            }
+                            if (totalProfitEl) {
+                                totalProfitEl.innerText = `+R$ ${finalTot.toFixed(2)} ${fbEsperadaVal > 0 ? 'Previsão de Lucro Real' : 'Lucro Real'}${isS2Estimado ? ' (Estimado)' : ''}`;
+                                totalProfitEl.style.color = 'var(--green-profit)';
+                            }
+                        } else if (finalTot < -0.005) {
+                            if (sFinalValEl) {
+                                sFinalValEl.innerText = `-R$ ${Math.abs(finalTot).toFixed(2)}`;
+                                sFinalValEl.style.color = 'var(--red-loss)';
+                            }
+                            if (totalProfitEl) {
+                                totalProfitEl.innerText = `-R$ ${Math.abs(finalTot).toFixed(2)} Custo Real${isS2Estimado ? ' (Estimado)' : ''}`;
+                                totalProfitEl.style.color = 'var(--red-loss)';
+                            }
+                        } else {
+                            if (sFinalValEl) {
+                                sFinalValEl.innerText = `R$ 0.00`;
+                                sFinalValEl.style.color = (s1.todasOddsValidas && !s1.isSurebetMatematica) ? 'var(--red-loss)' : 'var(--text-muted)';
+                            }
+                            if (totalProfitEl) {
+                                totalProfitEl.innerText = `R$ 0.00 Sem Lucro`;
+                                totalProfitEl.style.color = (s1.todasOddsValidas && !s1.isSurebetMatematica) ? 'var(--red-loss)' : 'var(--text-muted)';
+                            }
+                        }
+                    } else if (s1.todasOddsValidas && !s1.isSurebetMatematica) {
+                        if (sFinalValEl) {
+                            sFinalValEl.innerText = `-${s1.margemCasaPercent}%`;
+                            sFinalValEl.style.color = 'var(--red-loss)';
+                        }
+                        if (totalProfitEl) {
+                            totalProfitEl.innerText = `-${s1.margemCasaPercent}% Custo (Margem)`;
+                            totalProfitEl.style.color = 'var(--red-loss)';
+                        }
+                    } else if (s1.todasOddsValidas && s1.isSurebetMatematica) {
+                        if (sFinalValEl) {
+                            sFinalValEl.innerText = `+${s1.lucroGarantidoPercent}%`;
+                            sFinalValEl.style.color = 'var(--green-profit)';
+                        }
+                        if (totalProfitEl) {
+                            totalProfitEl.innerText = `+${s1.lucroGarantidoPercent}% Lucro Garantido`;
+                            totalProfitEl.style.color = 'var(--green-profit)';
+                        }
+                    } else {
+                        if (sFinalValEl) {
+                            sFinalValEl.innerText = `R$ 0.00`;
+                            sFinalValEl.style.color = 'var(--text-muted)';
+                        }
+                        if (totalProfitEl) {
+                            totalProfitEl.innerText = `R$ 0.00`;
+                            totalProfitEl.style.color = 'var(--text-muted)';
+                        }
+                    }
+                }
+            }
+
             // Atualizar Mobile Sticky Footer
             const mobileStickyDiag = document.getElementById('mobileStickyDiag');
             const mobileStickyTotal = document.getElementById('mobileStickyTotal');
@@ -2122,7 +3164,12 @@
         }
 
         function abrirModalTotal() {
-            let totalAtual = rowsData.reduce((acc, r) => acc + (r.valor || 0), 0);
+            let totalAtual = rowsData.reduce((acc, r) => {
+                if (r.tipo === 'Lay') {
+                    return acc + ((r.valor || 0) * Math.max(0, r.odd - 1));
+                }
+                return acc + (r.valor || 0);
+            }, 0);
             document.getElementById('modalTotalInput').value = totalAtual > 0 ? totalAtual.toFixed(2) : '';
             document.getElementById('modalTotal').classList.add('open');
             setTimeout(() => document.getElementById('modalTotalInput').focus(), 100);
@@ -2140,7 +3187,7 @@
             });
             fecharModalTotal();
             renderRows();
-            showToast('🧹 Aportes limpos! Calculando puramente por Odds.');
+            showToast('🧹 Aportes limpos!');
         }
 
         function confirmarAporteTotal() {
@@ -2156,27 +3203,47 @@
             let somaKFB = 0;
 
             rowsData.forEach(r => {
-                const oddEf = getOddEfetiva(r);
-                if (oddEf >= 1) {
-                    somaInversas += (1 / oddEf);
-                    const ganhoFB = getGanhoFreebetRow(r, oddEf);
-                    somaKFB += (ganhoFB / oddEf);
+                if (r.tipo === 'Lay') {
+                    const cLay = getLayCommissionRate(r);
+                    const oddLay = r.odd || 0;
+                    if (oddLay >= 1 && (oddLay - cLay) > 0) {
+                        const liabilityRatio = (oddLay - 1) / (oddLay - cLay);
+                        somaInversas += liabilityRatio;
+                    }
+                } else {
+                    const oddEf = getOddEfetiva(r);
+                    if (oddEf >= 1) {
+                        somaInversas += (1 / oddEf);
+                        const ganhoFB = getGanhoFreebetRow(r, oddEf);
+                        somaKFB += (ganhoFB / oddEf);
+                    }
                 }
             });
 
             if (somaInversas > 0) {
-                // Retorno total alvo igualitário considerando o aporte total em dinheiro próprio + os ganhos de freebet
                 const retornoAlvo = (total + somaKFB) / somaInversas;
 
                 rowsData.forEach(r => {
-                    const oddEf = getOddEfetiva(r);
-                    if (oddEf >= 1) {
-                        const ganhoFB = getGanhoFreebetRow(r, oddEf);
-                        const stakeNecessaria = Math.max(0, (retornoAlvo - ganhoFB) / oddEf);
-                        r.valor = parseFloat(stakeNecessaria.toFixed(2));
-                        r.hasWarning = true;
+                    if (r.tipo === 'Lay') {
+                        const cLay = getLayCommissionRate(r);
+                        const oddLay = r.odd || 0;
+                        if (oddLay >= 1 && (oddLay - cLay) > 0) {
+                            const stakeLay = retornoAlvo / (oddLay - cLay);
+                            r.valor = parseFloat(stakeLay.toFixed(2));
+                            r.hasWarning = true;
+                        } else {
+                            r.valor = 0;
+                        }
                     } else {
-                        r.valor = 0;
+                        const oddEf = getOddEfetiva(r);
+                        if (oddEf >= 1) {
+                            const ganhoFB = getGanhoFreebetRow(r, oddEf);
+                            const stakeNecessaria = Math.max(0, (retornoAlvo - ganhoFB) / oddEf);
+                            r.valor = parseFloat(stakeNecessaria.toFixed(2));
+                            r.hasWarning = true;
+                        } else {
+                            r.valor = 0;
+                        }
                     }
                 });
             }
@@ -2187,62 +3254,184 @@
         }
 
         function limparCampos() {
+            // Cria uma linha vazia padrão
+            const makeEmptyRow = (id, locked) => ({
+                id, bookie: '', valor: 0, odd: 0, tipo: 'Back',
+                comissao: '', comissaoMode: '%',
+                freebet: '', freebetMode: 'R$', freebetType: 'SNR',
+                aumento: '', aumentoMode: '%',
+                locked, hasWarning: false
+            });
+
+            // Reseta rowsData (linhas atualmente exibidas)
             rowsData.forEach((r, i) => {
                 r.valor = 0;
+                r.odd = 0;
+                r.bookie = '';
                 r.comissao = '';
                 r.freebet = '';
                 r.aumento = '';
                 r.hasWarning = false;
                 r.locked = (i === 0);
+                r.tipo = 'Back';
             });
+
+            // Reseta TAMBÉM as linhas salvas nas etapas do Matched Betting
+            mbState.etapa1.rows = [makeEmptyRow(1, true), makeEmptyRow(2, false)];
+            mbState.etapa2.rows = [makeEmptyRow(1, true), makeEmptyRow(2, false)];
+
             document.getElementById('eventName').value = '';
+            const bonusInput = document.getElementById('inputExpectedBonus');
+            if (bonusInput) bonusInput.value = '';
+            mbState.freebetEsperada = 0;
             renderRows();
-            showToast('🧹 Valores, Freebets e ajustes limpos!');
+            calcular();
+            showToast('🧹 Valores e ajustes limpos!');
+        }
+
+        // ── Clear Dropdown helpers ────────────────────────────────────────────
+        function toggleClearDropdown(e) {
+            e.stopPropagation();
+            const menu = document.getElementById('clearDropdownMenu');
+            menu.classList.toggle('open');
+        }
+
+        function fecharClearDropdown() {
+            const menu = document.getElementById('clearDropdownMenu');
+            if (menu) menu.classList.remove('open');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const wrap = document.getElementById('clearDropdownWrap');
+            if (wrap && !wrap.contains(e.target)) fecharClearDropdown();
+        });
+
+        function limparSomenteValores() {
+            const makeEmptyValorRow = (r) => ({
+                ...r,
+                valor: 0,
+                freebet: '',
+                aumento: '',
+                hasWarning: false
+            });
+
+            // Reseta apenas valor/freebet/aumento nas linhas exibidas
+            rowsData.forEach(r => {
+                r.valor = 0;
+                r.freebet = '';
+                r.aumento = '';
+                r.hasWarning = false;
+            });
+
+            // Reseta apenas valor/freebet/aumento nas etapas do MB (mantém bookie e odd)
+            mbState.etapa1.rows = mbState.etapa1.rows.map(r => makeEmptyValorRow(r));
+            mbState.etapa2.rows = mbState.etapa2.rows.map(r => makeEmptyValorRow(r));
+
+            const bonusInput = document.getElementById('inputExpectedBonus');
+            if (bonusInput) bonusInput.value = '';
+            mbState.freebetEsperada = 0;
+
+            renderRows();
+            calcular();
+            showToast('🔢 Valores e freebets zerados (casas e odds mantidas)!');
         }
 
         function copiarResumo() {
-            const ev = document.getElementById('eventName').value.trim();
+            const ev = (document.getElementById('eventName').value || '').trim();
+            if (currentStrategy === 'matched-betting') {
+                const s1 = computeStageMetrics(mbState.etapa1.rows);
+                const s2 = computeStageMetrics(mbState.etapa2.rows);
+                const valS1 = s1.temApostasAtivas ? s1.lucroMedio : (s1.todasOddsValidas && mbState.freebetEsperada > 0 ? (s1.isSurebetMatematica ? +(mbState.freebetEsperada * parseFloat(s1.lucroGarantidoPercent)/100) : -(mbState.freebetEsperada * parseFloat(s1.margemCasaPercent)/100)) : 0);
+                const isS2Est = !s2.temApostasAtivas || s2.lucroMedio <= 0.005;
+                const valS2 = (!isS2Est) ? s2.lucroMedio : (mbState.freebetEsperada > 0 ? mbState.freebetEsperada * 0.70 : 0);
+                const totalLucro = valS1 + valS2;
+
+                let txt = `🎯 *Bet Tracker — Planejamento Completo de Matched Betting*\n`;
+                if (ev) txt += `⚽ *Evento:* ${ev}\n`;
+                txt += `🎁 *Freebet Esperada:* R$ ${mbState.freebetEsperada.toFixed(2)} (na Casa ${mbState.freebetBookieIndex || 1} - ${mbState.freebetBookie || 'Bet365'})\n\n`;
+
+                txt += `━━━━━━━━━━━━━━━━━━━━━\n`;
+                txt += `1️⃣ *ETAPA 1: APOSTA DE QUALIFICAÇÃO (DINHEIRO REAL)*\n`;
+                let custoEtapa1Txt = '';
+                if (s1.temApostasAtivas) {
+                    custoEtapa1Txt = s1.lucroMedio > 0.005 ? `+R$ ${s1.lucroMedio.toFixed(2)} (Lucro)` : `-R$ ${Math.abs(s1.lucroMedio).toFixed(2)} (Custo de Qualificação)`;
+                } else if (s1.todasOddsValidas) {
+                    custoEtapa1Txt = s1.isSurebetMatematica ? `+${s1.lucroGarantidoPercent}% (Lucro)` : `-${s1.margemCasaPercent}% (Custo Estimado / Margem)`;
+                } else {
+                    custoEtapa1Txt = `-R$ 0.00`;
+                }
+                txt += `• *Custo / Perda Estimada:* ${custoEtapa1Txt}\n`;
+                mbState.etapa1.rows.forEach((r, i) => {
+                    if (r.tipo === 'Lay') {
+                        const liability = (r.valor || 0) * Math.max(0, r.odd - 1);
+                        txt += `  ➔ [Casa ${i + 1}] ${r.bookie} (LAY): Apostar R$ ${(r.valor||0).toFixed(2)} @ ${r.odd.toFixed(2)} [Resp: R$ ${liability.toFixed(2)}]\n`;
+                    } else {
+                        txt += `  ➔ [Casa ${i + 1}] ${r.bookie} (BACK): Apostar R$ ${(r.valor||0).toFixed(2)} @ ${r.odd.toFixed(2)}\n`;
+                    }
+                });
+
+                txt += `\n━━━━━━━━━━━━━━━━━━━━━\n`;
+                txt += `2️⃣ *ETAPA 2: EXTRAÇÃO DA FREEBET (LUCRO GARANTIDO)*\n`;
+                txt += `• *Lucro da Freebet:* +R$ ${valS2.toFixed(2)}${isS2Est && mbState.freebetEsperada > 0 ? ' (Estimativa SNR ~70%)' : ''}\n`;
+                mbState.etapa2.rows.forEach((r, i) => {
+                    if (r.tipo === 'Lay') {
+                        const liability = (r.valor || 0) * Math.max(0, r.odd - 1);
+                        txt += `  ➔ [Casa ${i + 1}] ${r.bookie} (LAY): Apostar R$ ${(r.valor||0).toFixed(2)} @ ${r.odd.toFixed(2)} [Resp: R$ ${liability.toFixed(2)}]\n`;
+                    } else {
+                        txt += `  ➔ [Casa ${i + 1}] ${r.bookie} (BACK): Usar Freebet de R$ ${parseFloat(r.freebet||0).toFixed(2)} @ ${r.odd.toFixed(2)}\n`;
+                    }
+                });
+
+                txt += `\n━━━━━━━━━━━━━━━━━━━━━\n`;
+                txt += `🏆 *BALANÇO FINAL (ETAPA 1 + 2)*\n`;
+                txt += `• *Lucro Líquido Real no Bolso:* ${totalLucro >= 0 ? '+' : ''}R$ ${totalLucro.toFixed(2)}${isS2Est && mbState.freebetEsperada > 0 ? ' (Previsão)' : ''}\n`;
+                txt += `• *Taxa de Conversão Líquida:* ${((totalLucro / (mbState.freebetEsperada || 1)) * 100).toFixed(1)}%\n`;
+
+                navigator.clipboard.writeText(txt).then(() => {
+                    showToast('✅ Planejamento das 2 Etapas copiado!');
+                }).catch(() => {
+                    showToast('❌ Erro ao copiar.');
+                });
+                return;
+            }
+
+            // Modo Arbitragem
             const totalInvestText = document.getElementById('sumTotalInvest').innerText;
             const roi = document.getElementById('sumRoi').innerText;
             const status = document.getElementById('sumDiagText').innerText;
+            const metrics = computeStageMetrics(rowsData);
 
-            let totalFreebets = 0;
-            rowsData.forEach(r => {
-                totalFreebets += getRowFreebetValInBRL(r);
-            });
-
-            let txt = `📊 *Bet Tracker — Resumo da Operação*\n`;
+            let txt = `📊 *Bet Tracker — Resumo da Operação (Arbitragem)*\n`;
             if (ev) txt += `⚽ *Evento:* ${ev}\n`;
             txt += `• *Diagnóstico:* ${status}\n`;
-            txt += `• *Valor Investido (Dinheiro Próprio):* ${totalInvestText}\n`;
-            if (totalFreebets > 0) {
-                const totalInvestNum = rowsData.reduce((acc, r) => acc + (r.valor || 0), 0);
-                txt += `• *Total Freebets:* R$ ${totalFreebets.toFixed(2)}\n`;
-                txt += `• *Total Geral Mobilizado (Próprio + FB):* R$ ${(totalInvestNum + totalFreebets).toFixed(2)}\n`;
+            txt += `• *Valor Investido:* ${totalInvestText}\n`;
+            if (metrics.totalFreebets > 0) {
+                txt += `• *Total de Freebets:* R$ ${metrics.totalFreebets.toFixed(2)}\n`;
+                txt += `• *Total Mobilizado:* R$ ${(metrics.totalInvestidoDinheiro + metrics.totalFreebets).toFixed(2)}\n`;
             }
             txt += `• *ROI / Lucro:* ${roi}\n\n`;
-            txt += `📌 *Cotações e Detalhes por Casa:*\n`;
+            txt += `📌 *Cotações e Stakes por Casa:*\n`;
 
             rowsData.forEach((r, i) => {
                 const res = lastResultados[i];
                 const vProprio = (r.valor && r.valor > 0) ? r.valor : 0;
                 const vFB = getRowFreebetValInBRL(r);
-
                 let valTxt = '';
-                if (vProprio > 0 && vFB > 0) {
-                    valTxt = `R$ ${vProprio.toFixed(2)} (Próprio) + FB R$ ${vFB.toFixed(2)} [Total: R$ ${(vProprio + vFB).toFixed(2)}]`;
-                } else if (vProprio > 0) {
-                    valTxt = `R$ ${vProprio.toFixed(2)}`;
+                if (r.tipo === 'Lay') {
+                    const liability = vProprio * Math.max(0, r.odd - 1);
+                    valTxt = `R$ ${vProprio.toFixed(2)} [Resp: R$ ${liability.toFixed(2)}]`;
+                } else if (vProprio > 0 && vFB > 0) {
+                    valTxt = `R$ ${vProprio.toFixed(2)} (+ FB R$ ${vFB.toFixed(2)})`;
                 } else if (vFB > 0) {
                     valTxt = `FB R$ ${vFB.toFixed(2)}`;
                 } else {
-                    valTxt = `Opcional`;
+                    valTxt = `R$ ${vProprio.toFixed(2)}`;
                 }
-
-                const comTxt = r.comissao ? ` | Com: ${r.comissao}${r.comissaoMode}` : '';
-                const aumTxt = r.aumento ? ` | Aum: ${r.aumento}${r.aumentoMode}` : '';
                 const retTxt = (res && res.retorno > 0) ? ` ➔ Retorno: R$ ${res.retorno.toFixed(2)}` : '';
-                txt += `• ${r.bookie}: ${valTxt} @ ${r.odd > 0 ? r.odd.toFixed(3) : '-'}${comTxt}${aumTxt} (${r.tipo})${retTxt}\n`;
+                const lucroTxt = (res && res.lucro !== undefined && metrics.temApostasAtivas) ? ` (${res.lucro >= 0 ? '+' : ''}R$ ${res.lucro.toFixed(2)})` : '';
+                const bookieName = (r.bookie || '').trim() || `Casa ${i + 1}`;
+                txt += `• [Casa ${i + 1}] ${bookieName}: ${valTxt} @ ${r.odd > 0 ? r.odd.toFixed(3) : '-'} (${r.tipo})${retTxt}${lucroTxt}\n`;
             });
 
             navigator.clipboard.writeText(txt).then(() => {
@@ -2273,9 +3462,10 @@
             }).then(canvas => {
                 const link = document.createElement('a');
                 const evName = document.getElementById('eventName')?.value.trim();
+                const stratPrefix = currentStrategy === 'matched-betting' ? `matched-betting-etapa${mbState.etapaAtiva}` : 'arbitragem';
                 const fileName = evName 
-                    ? `calculadora-${evName.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-')}.png` 
-                    : 'calculadora-arbitragem.png';
+                    ? `calculadora-${stratPrefix}-${evName.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-')}.png` 
+                    : `calculadora-${stratPrefix}.png`;
                 link.download = fileName;
                 link.href = canvas.toDataURL('image/png');
                 link.click();
@@ -2307,9 +3497,9 @@
             let speed = isDeleting ? 70 : 130;
 
             if (!isDeleting && charIndex === currentWord.length) {
-                speed = 1800; // Pause at end
+                speed = 1800;
                 isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
+            } else if (!isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
                 speed = 400;
