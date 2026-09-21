@@ -1684,9 +1684,9 @@
                 <div style="text-align: center;">Valor (Opcional)</div>
                 <div style="text-align: center;">ODD</div>
                 <div></div>
-                <div style="text-align: center;">Comissão</div>
+                <div style="text-align: center;">Comissão Exchange</div>
                 <div style="text-align: center;">Freebets</div>
-                <div style="text-align: center;">Aumento</div>
+                <div style="text-align: center;">Super Odds</div>
                 <div></div>
             </div>
 
@@ -1946,15 +1946,15 @@
                     <span class="badge-type ${row.tipo.toLowerCase()}" onclick="toggleTipoAposta(${row.id})" title="Clique para alternar Back / Lay">${row.tipo}</span>
                 </div>
 
-                <!-- Coluna Comissão com seletor % e $ -->
+                <!-- Coluna Comissão Exchange com seletor % e $ -->
                 <div class="col-mini">
-                    <span class="mobile-label">Comissão</span>
+                    <span class="mobile-label">Comissão Exchange</span>
                     <div class="mini-input-wrap">
                         <input type="number" inputmode="decimal" id="comInput-${row.id}" class="pill-input" placeholder="${row.comissaoMode === 'R$' ? 'R$' : '%'}" value="${row.comissao}" step="any" min="0" oninput="updateRowField(${row.id}, 'comissao', this.value)">
                     </div>
                     <div class="mini-toggle-group">
-                        <button type="button" class="mini-tgl ${row.comissaoMode === '%' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'comissaoMode', '%')" title="Comissão em porcentagem (%)">%</button>
-                        <button type="button" class="mini-tgl ${row.comissaoMode === 'R$' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'comissaoMode', 'R$')" title="Comissão em valor fixo ($)">$</button>
+                        <button type="button" class="mini-tgl ${row.comissaoMode === '%' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'comissaoMode', '%')" title="Comissão Exchange em porcentagem (%)">%</button>
+                        <button type="button" class="mini-tgl ${row.comissaoMode === 'R$' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'comissaoMode', 'R$')" title="Comissão Exchange em valor fixo ($)">$</button>
                     </div>
                 </div>
 
@@ -1970,15 +1970,15 @@
                     </div>
                 </div>
 
-                <!-- Coluna Aumento com seletor % e $ -->
+                <!-- Coluna Super Odds com seletor % e $ -->
                 <div class="col-mini">
-                    <span class="mobile-label">Aumento</span>
+                    <span class="mobile-label">Super Odds</span>
                     <div class="mini-input-wrap">
                         <input type="number" inputmode="decimal" id="aumInput-${row.id}" class="pill-input" placeholder="${row.aumentoMode === 'R$' ? 'R$' : '%'}" value="${row.aumento}" step="any" min="0" oninput="updateRowField(${row.id}, 'aumento', this.value)">
                     </div>
                     <div class="mini-toggle-group">
-                        <button type="button" class="mini-tgl ${row.aumentoMode === '%' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'aumentoMode', '%')" title="Aumento/Boost em porcentagem (%)">%</button>
-                        <button type="button" class="mini-tgl ${row.aumentoMode === 'R$' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'aumentoMode', 'R$')" title="Aumento/Boost em valor fixo ($)">$</button>
+                        <button type="button" class="mini-tgl ${row.aumentoMode === '%' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'aumentoMode', '%')" title="Super Odds / Boost em porcentagem (%)">%</button>
+                        <button type="button" class="mini-tgl ${row.aumentoMode === 'R$' ? 'active' : ''}" onclick="setFieldMode(${row.id}, 'aumentoMode', 'R$')" title="Super Odds / Boost em valor fixo ($)">$</button>
                     </div>
                 </div>
 
